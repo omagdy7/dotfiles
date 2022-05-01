@@ -177,7 +177,7 @@ ex ()
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
 
 # reporting tools - install when not installed
-#neofetch
+# neofetch
 #screenfetch
 #alsi
 #paleofetch
@@ -190,4 +190,4 @@ ex ()
 #sysinfo
 #sysinfo-retro
 #cpufetch
-#colorscript random
+colorscript random
