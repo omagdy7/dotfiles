@@ -479,10 +479,28 @@ globalkeys = my_table.join(
         {description = "go back", group = "tag"}),
 
      -- Tag browsing alt + tab
-    awful.key({ altkey,           }, "Tab",   awful.tag.viewnext,
-        {description = "view next", group = "tag"}),
-    awful.key({ altkey, "Shift"   }, "Tab",  awful.tag.viewprev,
-        {description = "view previous", group = "tag"}),
+    -- awful.key({ altkey,           }, "Tab",   awful.tag.viewnext,
+    --     {description = "view next", group = "tag"}),
+    -- awful.key({ altkey, "Shift"   }, "Tab",  awful.tag.viewprev,
+    --     {description = "view previous", group = "tag"}),
+
+  awful.key({ altkey,           }, "Tab",
+    function ()
+        local c = awful.client.restore()
+        -- Focus restored client
+        if c then
+            client.focus = c
+            c:raise()
+        end
+    end),
+  awful.key({ altkey, "Shift"   }, "Tab",
+    function ()
+        -- awful.client.focus.history.previous()
+        awful.client.focus.byidx(1)
+        if client.focus then
+            client.focus:raise()
+        end
+    end),
 
      -- Tag browsing modkey + tab
     awful.key({ modkey,           }, "Tab",   awful.tag.viewnext,
