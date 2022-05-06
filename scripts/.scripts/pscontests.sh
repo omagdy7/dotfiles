@@ -7,9 +7,6 @@ mkdir ${REPLY}
 cd ${REPLY}
 for p in $PROBLEMS
 do
-  mkdir $p
-  cd $p
   touch $p.cpp
-  cd ..
+  echo -e "#include<bits/stdc++.h>\n\nusing namespace std\n\nint main () {\n\n}" > $p.cpp
 done
-cd ..
