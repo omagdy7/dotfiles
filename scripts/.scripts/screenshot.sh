@@ -1,13 +1,4 @@
-#!/bin/bash
+#!/bin/sh -e
 
-CHOICE=$(echo -e "Area\nWindow" | dmenu -i -l 2)
-
-if [ "$CHOICE"="Area" ]; then
-  gnome-screenshot -a -c
-else
-  gnome-screenshot -w -c
-fi
-
-
-
-
+selection=$(hacksaw -f "-i %i -g %g")
+shotgun $selection - | xclip -t 'image/png' -selection clipboard
