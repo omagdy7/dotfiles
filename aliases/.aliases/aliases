@@ -1,4 +1,5 @@
 alias u="cd .."
+alias gs="git status"
 alias cr="~/.scripts/compiler_cpp.sh"
 alias cfinit="~/.scripts/pscontests.sh"
 alias manimss="manim -psqh"
