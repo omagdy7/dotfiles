@@ -1,3 +1,4 @@
+alias clean="~/.scripts/cleanup.sh"
 alias lg="lazygit"
 alias vcpp="~/.scripts/cpp_ps.sh"
 alias u="cd .."
