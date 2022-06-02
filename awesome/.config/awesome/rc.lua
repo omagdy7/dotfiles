@@ -132,7 +132,7 @@ awful.util.terminal = terminal
 -- awful.util.tagnames = {  "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
 --awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 --awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
-awful.util.tagnames = { " WWW ", " DEV ", " STUDY ", " MUSIC ", " READING ", " LEISURE " }
+awful.util.tagnames = { " WWW ", " DEV ", " STUDY ", " MUSIC ", " MAIL ", " LEISURE " }
 -- Use this : https://fontawesome.com/cheatsheet
 -- awful.util.tagnames = { "", "", "", "", "" }
 awful.layout.suit.tile.left.mirror = true

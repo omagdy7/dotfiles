@@ -7,6 +7,10 @@ mkdir ${REPLY}
 cd ${REPLY}
 for p in $PROBLEMS
 do
-  touch $p.cpp
-  echo -e "#include<bits/stdc++.h>\n\nusing namespace; std\n\nint main () {ios_base::sync_with_stdio(false);\ncin.tie(NULL);\nint tt;\nwhile(tt--){\n}}" > $p.cpp
+  mkdir $p
+  cd $p
+  touch main.cpp
+  echo -e "#include<bits/stdc++.h>\n\nusing namespace std;\n\nint main () {\n\tios_base::sync_with_stdio(false);\n\tcin.tie(NULL);\n\tint tt;\n\tcin >> tt;\n\twhile(tt--){\n\n\t}\n}" > main.cpp
+  touch inp
+  cd ..
 done
