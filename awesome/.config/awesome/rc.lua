@@ -101,10 +101,12 @@ local themes = {
     "powerarrow-blue",	 	-- 3
     "blackburn",		-- 4
     "copland",        -- 5    
+    "minmalist",       --6
+    "powerarrow-black"       --7
 }
 
 -- choose your theme here
-local chosen_theme = themes[1]
+local chosen_theme = themes[7]
 
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
@@ -132,22 +134,23 @@ awful.util.terminal = terminal
 -- awful.util.tagnames = {  "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
 --awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 --awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
-awful.util.tagnames = { " WWW ", " DEV ", " STUDY ", " MUSIC ", " MAIL ", " LEISURE " }
+-- awful.util.tagnames = { " WWW ", " DEV ", " STUDY ", " MUSIC ", " MAIL ", " LEISURE " }
+awful.util.tagnames = {"  ", "  ", " 龎 ", "  ", "  "}
 -- Use this : https://fontawesome.com/cheatsheet
 -- awful.util.tagnames = { "", "", "", "", "" }
 awful.layout.suit.tile.left.mirror = true
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    -- awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
+    awful.layout.suit.floating,
+    -- awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
@@ -155,8 +158,8 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.se,
     -- lain.layout.cascade,
     -- lain.layout.cascade.tile,
-    lain.layout.centerwork,
-    lain.layout.centerwork.horizontal,
+    -- lain.layout.centerwork,
+    -- lain.layout.centerwork.horizontal,
     -- lain.layout.termfair,
     -- lain.layout.termfair.center,
 }
@@ -1127,5 +1130,3 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
-awful.spawn.with_shell("nitrogen --set-zoom-fill --random /home/peng/Pictures/wallpapers")
-
