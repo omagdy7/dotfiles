@@ -15,20 +15,20 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-blue"
-theme.font                                      = "Source code pro bold 10"
-theme.taglist_font                              = "Source code pro bold 20"
+theme.font                                      = "Source code pro bold 13"
+theme.taglist_font                              = "Source code pro bold 13"
 theme.fg_normal                                 = "#ffffff"
 theme.fg_blue                                   = "#ffffff"
-theme.fg_magenta                                = "#36a3d9"
+theme.fg_magenta                                = "#cc998d"
 theme.fg_focus                                  = "#6200C4"
 theme.fg_urgent                                 = "#b74822"
-theme.bg_normal                                 = "#000000"
-theme.bg_focus                                  = "#000000"
+theme.bg_normal                                 = "#111222"
+theme.bg_focus                                  = "#ecebe4"
 theme.bg_urgent                                 = "#3F3F3F"
-theme.taglist_fg_focus                          = "#e6c446"
+theme.taglist_fg_focus                          = "#153b50"
 theme.tasklist_bg_focus                         = "#000000"
 theme.tasklist_fg_focus                         = "#CC6600"
-theme.border_width                              = 2
+theme.border_width                              = 1
 theme.border_normal                             = "#000000"
 theme.border_focus                              = "#ffffff"
 theme.border_marked                             = "#000000"
@@ -96,9 +96,9 @@ theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 theme.bg_systray                                = "#000000"
 theme.clock_fontfg                              = "#ffffff"
-theme.clock_font                                = "DejaVu Sans Mono Bold 9"
+theme.clock_font                                = "DejaVu Sans Mono Bold 13"
 theme.arch_fontfg                              = "#ffffff"
-theme.arch_font                                = "Hack Regular 17"
+theme.arch_font                                = "DejaVu Sans Mono Bold 13"
 
 local markup = lain.util.markup
 local separators = lain.util.separators
@@ -164,7 +164,7 @@ theme.mpd = lain.widget.mpd({
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
+        widget:set_markup(markup.font(theme.font, "  " .. mem_now.used .. "MB "))
     end
 })
 
@@ -261,11 +261,11 @@ function theme.at_screen_connect(s)
     -- Create the wibox
     function custom_shape(cr, width, height)
 
-        gears.shape.rounded_rect(cr, width, height, 25)
+        gears.shape.rounded_rect(cr, width, height, 10)
 
     end
 
-    s.mywibox = awful.wibar({ position = "top", screen = s, shape = custom_shape, height = 35, width = 1850, border_width = 5, bg = theme.bg_normal, fg = theme.fg_magenta })
+    s.mywibox = awful.wibar({ position = "top", screen = s, shape = custom_shape, height = 25, width = 1850, border_width = 5, bg = theme.bg_normal, fg = theme.fg_magenta })
 
     tbox_separator = wibox.widget.textbox(" | ")
 
@@ -277,11 +277,11 @@ function theme.at_screen_connect(s)
     }
     
     local arch_logo = wibox.widget {
-      markup = "<span foreground='#ffffff'></span>",
+      markup = "<span foreground='#FBFFFE'> </span>",
       widget = wibox.widget.textbox,
       color = "#ffffff",
       -- font = "Font Awesome 6 Brands Regular 18"
-      font = "Hack Regular 17",
+      font = "DejaVu Sans Mono Bold 18",
     }
 
 
@@ -289,7 +289,7 @@ function theme.at_screen_connect(s)
   local spotify_current_song = wibox.widget {
     widget = wibox.widget.textbox,
     text = awful.spawn("/home/peng/.scripts/spotify.sh"),
-		font = "Hack Regular 17"
+		font = "Hack Regular 10"
   }
 
     -- Add widgets to the wibox
@@ -298,7 +298,7 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             --spr,
-            wibox.container.background(wibox.container.margin(arch_logo, 20, 15, 2, 5)),
+            wibox.container.background(wibox.container.margin(arch_logo, 15, 10, 1, 1)),
             s.mypromptbox,
             spr,
         },
@@ -312,7 +312,8 @@ function theme.at_screen_connect(s)
             wibox.container.background(wibox.container.margin(wibox.widget { theme.volume.widget, layout = wibox.layout.align.horizontal }, 2, 3)),
             vert_sep,
             wibox.container.background(wibox.container.margin(wibox.widget { mem.widget, layout = wibox.layout.align.horizontal }, 2, 3)),
-            -- vert_sep,
+            vert_sep,
+            wibox.container.background(wibox.container.margin(wibox.widget { cpu.widget, layout = wibox.layout.align.horizontal }, 2, 3)),
             -- wibox.container.background(wibox.container.margin(wibox.widget { temp.widget, layout = wibox.layout.align.horizontal }, 4, 4)),
             -- vert_sep,
             -- wibox.container.background(wibox.container.margin(wibox.widget.systray { layout = wibox.layout.align.horizontal }, 8, 4)),

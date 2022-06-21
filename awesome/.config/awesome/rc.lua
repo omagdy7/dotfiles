@@ -132,10 +132,11 @@ local virtualmachine    = "virtualbox"
 -- awesome variables
 awful.util.terminal = terminal
 -- awful.util.tagnames = {  "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+awful.util.tagnames = {  "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 --awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 --awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
 -- awful.util.tagnames = { " WWW ", " DEV ", " STUDY ", " MUSIC ", " MAIL ", " LEISURE " }
-awful.util.tagnames = {"  ", "  ", " 龎 ", "  ", "  "}
+-- awful.util.tagnames = {"  ", "  ", " 龎 ", "  ", "  "}
 -- Use this : https://fontawesome.com/cheatsheet
 -- awful.util.tagnames = { "", "", "", "", "" }
 awful.layout.suit.tile.left.mirror = true
