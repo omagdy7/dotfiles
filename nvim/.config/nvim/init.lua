@@ -1,4 +1,4 @@
--- vim.g.material_style = "deep ocean"
+vim.g.material_style = "deep ocean"
 -- vim.g.material_style = "palenight"
 -- vim.g.material_style = "darker"
 -- vim.g.tokyonight_style = "night"
@@ -11,12 +11,12 @@
 -- vim.g.airline_theme = "tokyonight"
 -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
-require('onedark').setup {
-    style = 'deep'
-}
-require'lspconfig'.gdscript.setup{
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-}
+--  require('onedark').setup {
+--      style = 'deep'
+-- }
+ --require'lspconfig'.gdscript.setup{
+   --capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+ --}
 
 
 require "user.options"
@@ -40,6 +40,6 @@ require "user.indentline"
 require "user.alpha"
 require "user.whichkey"
 require "user.autocommands"
-require "material"
+--require "material"
 
 

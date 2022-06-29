@@ -187,7 +187,6 @@ return packer.startup(function(use)
 	companion_port = 27121,
 	receive_print_message = true,
 }
-
   -- Telescope
   use "nvim-telescope/telescope.nvim"
 
