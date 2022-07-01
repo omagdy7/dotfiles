@@ -94,23 +94,22 @@
 -- Bubbles config for lualine
 -- Author: lokesh-krishna
 -- MIT license, see LICENSE for more details.
-
 -- stylua: ignore
 local colors = {
   blue   = '#80a0ff',
   cyan   = '#79dac8',
-  black  = '#080808',
-  white  = '#c6c6c6',
-  red    = '#ff5189',
-  violet = '#d183e8',
-  grey   = '#303030',
+  black  = '#000000',
+  white  = '#ffffff',
+  red    = '#B22222',
+  violet = '#c95d05',
+  grey   = '#101010',
 }
 
 local bubbles_theme = {
   normal = {
     a = { fg = colors.black, bg = colors.violet },
     b = { fg = colors.white, bg = colors.grey },
-    c = { fg = colors.black, bg = colors.black },
+    c = { fg = colors.grey, bg = colors.grey },
   },
 
   insert = { a = { fg = colors.black, bg = colors.blue } },
@@ -136,6 +135,7 @@ require('lualine').setup {
     },
     lualine_b = { 'filename', 'branch' },
     lualine_c = { 'fileformat' },
+    lualine_d = { 'hey there' },
     lualine_x = {},
     lualine_y = { 'filetype', 'progress' },
     lualine_z = {
@@ -152,4 +152,4 @@ require('lualine').setup {
   },
   tabline = {},
   extensions = {},
-}
+ }

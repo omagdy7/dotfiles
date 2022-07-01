@@ -3,6 +3,6 @@ try
   colorscheme material
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
-  set background=dark
+  set background=background
 endtry
 ]]
