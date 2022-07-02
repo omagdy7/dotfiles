@@ -9,7 +9,7 @@
 #                                                                
 ##################################################################
 
-path="/mnt/CEBE20B1BE2093CD/Omar/Self learning/Books/English books"
+path="/run/media/storage/Omar/Self learning/Books/English books"
 choice=$(ls "$path" | dmenu -l 10)
 new_choice=$choice
 
