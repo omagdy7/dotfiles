@@ -60,6 +60,8 @@ return packer.startup(function(use)
   use "folke/which-key.nvim"
   use "nvim-lua/plenary.nvim"
 
+  -- fix indentation
+  use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
 
   -- Surround
   use "tpope/vim-surround"

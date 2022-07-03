@@ -24,6 +24,9 @@ require('material').setup{
   }
 }
 
+require("nvim-treesitter.configs").setup {
+  yati = { enable = true },
+}
 
 require "user.options"
 require "user.keymaps"

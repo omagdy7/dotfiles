@@ -1,3 +1,4 @@
+alias vcc="~/.scripts/cpp_template.sh"
 alias kpr="ps aux | fzf | awk '{print $2}' | xargs killall > /dev/null 2> /dev/null"
 alias build="./main < inp"
 alias clean="~/.scripts/cleanup.sh"
