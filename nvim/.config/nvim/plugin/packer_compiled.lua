@@ -295,6 +295,11 @@ _G.packer_plugins = {
     path = "/home/pengu/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
   },
+  ["vim-maximizer"] = {
+    loaded = true,
+    path = "/home/pengu/.local/share/nvim/site/pack/packer/start/vim-maximizer",
+    url = "https://github.com/szw/vim-maximizer"
+  },
   ["vim-monokai"] = {
     loaded = true,
     path = "/home/pengu/.local/share/nvim/site/pack/packer/start/vim-monokai",

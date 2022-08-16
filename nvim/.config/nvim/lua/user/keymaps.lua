@@ -56,9 +56,14 @@ keymap("v", "p", '"_dP', opts)
 -- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
+--keymap("n", "<leader>m", ":MaximizerToggle<CR>", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+
+-- Maximizing buffers
+--keymap("n", "<Space>m",":MaximizerToggle", opts)
 
 -- Compiling code --
 -- keymap("n", "<F3>", ":w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % && ./%< <CR>", opts)

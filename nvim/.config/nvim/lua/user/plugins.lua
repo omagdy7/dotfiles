@@ -59,6 +59,7 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
   use "nvim-lua/plenary.nvim"
+  use "szw/vim-maximizer"
 
   -- fix indentation
   use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
