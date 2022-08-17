@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use "folke/which-key.nvim"
   use "nvim-lua/plenary.nvim"
   use "szw/vim-maximizer"
+  use "folke/trouble.nvim"
 
   -- fix indentation
   use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
