@@ -62,8 +62,8 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 
--- Maximizing buffers
---keymap("n", "<Space>m",":MaximizerToggle", opts)
+-- Jumping quickly between two files
+keymap("n", "<leader><leader>", ":bprevious<CR>", opts)
 
 -- Compiling code --
 -- keymap("n", "<F3>", ":w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % && ./%< <CR>", opts)
