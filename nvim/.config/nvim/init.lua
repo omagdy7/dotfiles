@@ -1,24 +1,10 @@
-vim.g.material_style = "deep ocean"
--- vim.g.material_style = "palenight"
--- vim.g.material_style = "darker"
---[[ vim.g.tokyonight_style = "night" ]]
---[[ vim.g.tokyonight_italic_functions = true ]]
---[[ vim.g.tokyonight_italic_keywords	= true ]]
---[[ vim.g.tokyonight_italic_variables = true ]]
---[[ vim.g.tokyonight_italic_comments = true ]]
---[[ vim.g.tokyonight_transparent_sidebar = true; ]]
---[[ vim.g.tokyonight_transparent_float = true; ]]
---[[ vim.g.tokyonight_terminal_colors = true ]]
---[[ vim.g.airline_theme = "tokyonight" ]]
---vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
---[[ vim.g.tokyonight_transparent = true ]]
+--[[ vim.g.material_style = "palenight" ]]
 
---  require('onedark').setup {
---      style = 'deep'
--- }
- --require'lspconfig'.gdscript.setup{
-   --capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
- --}
+
+require('onedark').setup {
+  style = 'deep',
+  transparent = true,
+}
 
 require('material').setup{
   disable = {
@@ -29,6 +15,7 @@ require('material').setup{
 require("nvim-treesitter.configs").setup {
   yati = { enable = true },
 }
+
 
 require "user.options"
 require "user.keymaps"

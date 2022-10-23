@@ -9,7 +9,7 @@
 #                                                                
 ##################################################################
 
-path="/run/media/pengu/New Volume/Omar/Self learning/Books/English books/Books for computer science/"
+path="/home/pengu/Books/"
 choice=$(ls "$path" | dmenu -l 10)
 new_choice=$choice
 

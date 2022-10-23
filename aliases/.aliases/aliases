@@ -1,3 +1,4 @@
+alias gpl="~/.scripts/get_project_lines.sh"
 alias vcc="~/.scripts/cpp_template.sh"
 alias kpr="ps aux | fzf | awk '{print $2}' | xargs killall > /dev/null 2> /dev/null"
 alias build="./main < inp"
@@ -31,7 +32,6 @@ alias book='/home/omar/.scripts/books.sh'
 alias btrfsfs="sudo btrfs filesystem df /"
 alias btrfsli="sudo btrfs su li / -t"
 alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
-alias cat='bat --style header --style rules --style snip --style changes --style header'
 alias ca='vim ~/.config/alacritty/alacritty.yml' # for quickly acssesing alacritty config file
 alias cb="$EDITOR ~/.bashrc"
 alias ......='cd ../../../../..'

@@ -14,7 +14,7 @@ local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
-theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-blue"
+theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.font                                      = "Source code pro bold 13"
 theme.taglist_font                              = "Source code pro bold 13"
 theme.fg_normal                                 = "#ffffff"
@@ -97,8 +97,8 @@ theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/
 theme.bg_systray                                = "#000000"
 theme.clock_fontfg                              = "#ffffff"
 theme.clock_font                                = "DejaVu Sans Mono Bold 13"
-theme.arch_fontfg                              = "#ffffff"
-theme.arch_font                                = "DejaVu Sans Mono Bold 13"
+theme.arch_fontfg                               = "#ffffff"
+theme.arch_font                                 = "DejaVu Sans Mono Bold 13"
 
 local markup = lain.util.markup
 local separators = lain.util.separators
@@ -259,7 +259,7 @@ function theme.at_screen_connect(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create the wibox
-    function custom_shape(cr, width, height)
+    local function custom_shape(cr, width, height)
 
         gears.shape.rounded_rect(cr, width, height, 10)
 
@@ -267,7 +267,7 @@ function theme.at_screen_connect(s)
 
     s.mywibox = awful.wibar({ position = "top", screen = s, shape = custom_shape, height = 25, width = 1850, border_width = 5, bg = theme.bg_normal, fg = theme.fg_magenta })
 
-    tbox_separator = wibox.widget.textbox(" | ")
+   --tbox_separator = wibox.widget.textbox(" | ")
 
     local vert_sep = wibox.widget {
         widget = wibox.widget.separator,
@@ -286,11 +286,11 @@ function theme.at_screen_connect(s)
 
 
   --Spotify
-  local spotify_current_song = wibox.widget {
-    widget = wibox.widget.textbox,
-    text = awful.spawn("/home/peng/.scripts/spotify.sh"),
-		font = "Hack Regular 10"
-  }
+  --[[ local spotify_current_song = wibox.widget { ]]
+  --[[   widget = wibox.widget.textbox, ]]
+  --[[   text = awful.spawn("/home/peng/.scripts/spotify.sh"), ]]
+		--[[ font = "Hack Regular 10" ]]
+  --[[ } ]]
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -300,7 +300,6 @@ function theme.at_screen_connect(s)
             --spr,
             wibox.container.background(wibox.container.margin(arch_logo, 15, 10, 1, 1)),
             s.mypromptbox,
-            spr,
         },
         {
             layout = wibox.layout.align.horizontal,

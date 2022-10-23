@@ -58,15 +58,21 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-  use "nvim-lua/plenary.nvim"
   use "szw/vim-maximizer"
   use "folke/trouble.nvim"
+
+  -- Show colors in terminal with hexcodes or rgb
+  use 'norcalli/nvim-colorizer.lua'
 
   -- fix indentation
   use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
 
   -- Surround
   use "tpope/vim-surround"
+
+  --Debugging
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -77,9 +83,9 @@ return packer.startup(function(use)
   use "drewtempelmeyer/palenight.vim"
   use 'Mofiqul/dracula.nvim'
   use 'tanvirtin/monokai.nvim'
-  use 'eddyekofo94/gruvbox-flat.nvim'
   use 'kyazdani42/nvim-palenight.lua'
   use 'navarasu/onedark.nvim'
+  use 'ellisonleao/gruvbox.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -132,7 +138,7 @@ return packer.startup(function(use)
         cancel = "<C-q>",
       },
     },
-    runner_ui = {
+    popup_ui = {
       total_width = 0.8,
       total_height = 0.8,
       selector_width = 0.3,
