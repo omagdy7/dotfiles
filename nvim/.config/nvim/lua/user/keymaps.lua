@@ -1,14 +1,15 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
+
+--local ls = require "luasnip"
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+local ls = require "luasnip"
 
 -- Modes
 --   normal_mode = "n",
@@ -65,17 +66,22 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- Jumping quickly between two files
 keymap("n", "<leader><leader>", ":bprevious<CR>", opts)
 
--- Compiling code --
--- keymap("n", "<F3>", ":w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % && ./%< <CR>", opts)
--- keymap("n", "<F3>", ":w <CR> :!g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -DONPC -O2 -o %< % <CR>", opts)
+--CompetiTest
 keymap("n", "<F2>", ":CompetiTestReceive<CR>", opts)
 keymap("n", "<F3>", ":CompetiTestRun<CR>", opts)
 
+--sourcing luasnips
+keymap("n", "<leader><leader>s", "<cmd> source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
 
--- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- luasnips
+vim.keymap.set({ "i", "s" }, "<c-k>", function ()
+  print("hello")
+  if ls.expand_or_jumpable then
+    ls.expand_or_jump()end
+end, { silent = false })
+--vim.keymap.set("i", "<c-h>", function () if ls.jumpable(-1) then ls.jump(-1)end end, opts)
+
+--keymap("i", "<c-l>", "function () if ls.expand_or_jumpable then ls.expand_or_jump()end end", opts)
+--keymap("i", "<c-h>", "function () if ls.jumpable(-1) then ls.jump(-1)end end", opts)
 

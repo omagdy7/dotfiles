@@ -1,6 +1,5 @@
 --[[ vim.g.material_style = "palenight" ]]
 
-
 require('onedark').setup {
   style = 'deep',
   transparent = true,
@@ -23,6 +22,8 @@ require "user.plugins"
 require "user.colorscheme"
 require "user.cmp"
 require "user.lsp"
+require "user.snippets"
+--[[ require "user.luasnip" ]]
 require "user.telescope"
 require "user.treesitter"
 require "user.autopairs"
@@ -39,5 +40,23 @@ require "user.alpha"
 require "user.whichkey"
 require "user.autocommands"
 --require "material"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
