@@ -86,6 +86,7 @@ return packer.startup(function(use)
   use 'kyazdani42/nvim-palenight.lua'
   use 'navarasu/onedark.nvim'
   use 'ellisonleao/gruvbox.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

@@ -27,10 +27,10 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Up>", ":resize -5<CR>", opts)
+keymap("n", "<C-Down>", ":resize +5<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize +3<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize -3<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -66,9 +66,15 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- Jumping quickly between two files
 keymap("n", "<leader><leader>", ":bprevious<CR>", opts)
 
+-- Centering after page moves or searching for something
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "n", "nzz", opts)
+
 --CompetiTest
 keymap("n", "<F2>", ":CompetiTestReceive<CR>", opts)
-keymap("n", "<F3>", ":CompetiTestRun<CR>", opts)
+keymap("n", "<F5>", ":CompetiTestAdd<CR>", opts)
+keymap("n", "<F4>", ":CompetiTestRun<CR>", opts)
 
 --sourcing luasnips
 keymap("n", "<leader><leader>s", "<cmd> source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)

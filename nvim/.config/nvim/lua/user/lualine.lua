@@ -101,15 +101,15 @@ local colors = {
   black  = '#000000',
   white  = '#ffffff',
   red    = '#B22222',
-  violet = '#c95d05',
-  grey   = '#101010',
+  violet = '#DA5A77',
+  grey   = '#181818',
 }
 
 local bubbles_theme = {
   normal = {
     a = { fg = colors.black, bg = colors.violet },
     b = { fg = colors.white, bg = colors.grey },
-    c = { fg = colors.grey, bg = colors.grey },
+    c = { fg = colors.white, bg = colors.grey },
   },
 
   insert = { a = { fg = colors.black, bg = colors.blue } },
@@ -131,7 +131,7 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {
-      { 'mode', separator = { left = '' }, right_padding = 2 },
+      { 'mode', separator = { left = '' }, right_padding = 4 },
     },
     lualine_b = { 'filename', 'branch' },
     lualine_c = { 'fileformat' },
@@ -139,7 +139,7 @@ require('lualine').setup {
     lualine_x = {},
     lualine_y = { 'filetype', 'progress' },
     lualine_z = {
-      { 'location', separator = { right = '' }, left_padding = 2 },
+      { 'location', separator = { right = '' }, left_padding = 4 },
     },
   },
   inactive_sections = {

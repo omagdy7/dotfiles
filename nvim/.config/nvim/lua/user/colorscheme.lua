@@ -1,6 +1,6 @@
 vim.cmd [[
 try
-  colorscheme onedark 
+  colorscheme catppuccin-mocha
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=background

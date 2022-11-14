@@ -1,9 +1,9 @@
---[[ vim.g.material_style = "palenight" ]]
+--[[ vim.g.material_style = "deep ocean" ]]
 
-require('onedark').setup {
-  style = 'deep',
-  transparent = true,
-}
+--[[ require('onedark').setup { ]]
+--[[   style = 'deep', ]]
+--[[   transparent = true, ]]
+--[[ } ]]
 
 require('material').setup{
   disable = {
@@ -11,9 +11,13 @@ require('material').setup{
   }
 }
 
-require("nvim-treesitter.configs").setup {
-  yati = { enable = true },
-}
+require('catppuccin').setup({
+  transparent_background = true,
+})
+
+--[[ require("nvim-treesitter.configs").setup { ]]
+--[[   yati = { enable = true }, ]]
+--[[ } ]]
 
 
 require "user.options"
@@ -23,7 +27,6 @@ require "user.colorscheme"
 require "user.cmp"
 require "user.lsp"
 require "user.snippets"
---[[ require "user.luasnip" ]]
 require "user.telescope"
 require "user.treesitter"
 require "user.autopairs"
@@ -39,24 +42,4 @@ require "user.indentline"
 require "user.alpha"
 require "user.whichkey"
 require "user.autocommands"
---require "material"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+require "material"
