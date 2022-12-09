@@ -88,6 +88,9 @@ return packer.startup(function(use)
   use 'ellisonleao/gruvbox.nvim'
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  -- harpoon
+  use "ThePrimeagen/harpoon"
+
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
@@ -106,6 +109,29 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+
+
+  --harpoon setup
+  require("harpoon").setup({
+    global_settings = {
+    -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
+    save_on_toggle = false,
+
+    -- saves the harpoon file upon every change. disabling is unrecommended.
+    save_on_change = true,
+
+    -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
+    enter_on_sendcmd = false,
+
+    -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
+    tmux_autoclose_windows = false,
+
+    -- filetypes that you want to prevent from adding to the harpoon list menu.
+    excluded_filetypes = { "harpoon" },
+
+    -- set marks specific to each git branch inside git repository
+    mark_branch = false,
+  }})
 
 
   --compitest

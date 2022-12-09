@@ -64,7 +64,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 
 -- Jumping quickly between two files
-keymap("n", "<leader><leader>", ":bprevious<CR>", opts)
+--[[ keymap("n", "<leader><leader>", ":bprevious<CR>", opts) ]]
 
 -- Centering after page moves or searching for something
 keymap("n", "<C-d>", "<C-d>zz", opts)
@@ -78,6 +78,16 @@ keymap("n", "<F4>", ":CompetiTestRun<CR>", opts)
 
 --sourcing luasnips
 keymap("n", "<leader><leader>s", "<cmd> source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
+
+--telescope harpoon
+keymap("n", "<leader>H", ":Telescope harpoon marks<CR>", opts)
+
+--harpoon
+keymap("n", "<leader><leader>h", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts) -- show harpoon menu
+keymap("n", "<leader><leader>a", ":lua require('harpoon.mark').add_file()<CR>", opts) -- adding a file
+keymap("n", "<leader><leader>n", ":lua require('harpoon.ui').nav_next()<CR>", opts) -- next file
+keymap("n", "<leader><leader>b", ":lua require('harpoon.ui').nav_prev()<CR>", opts) -- prev file
+
 
 
 -- luasnips

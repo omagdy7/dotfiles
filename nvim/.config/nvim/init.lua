@@ -11,6 +11,8 @@ require('material').setup{
   }
 }
 
+require("telescope").load_extension('harpoon')
+
 require('catppuccin').setup({
   transparent_background = true,
 })

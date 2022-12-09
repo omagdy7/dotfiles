@@ -7,5 +7,5 @@ mkdir ${REPLY}
 cd ${REPLY}
 for p in $PROBLEMS
 do
-  echo "y" | ~/.scripts/cpp_ps.sh $p 
+  echo "d" | ~/.scripts/cpp_ps.sh $p 
 done

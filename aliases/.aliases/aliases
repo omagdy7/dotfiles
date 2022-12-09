@@ -1,3 +1,5 @@
+alias nv="neovide"
+alias pg="ps auxw | grep -v grep | grep $1"
 alias gpl="~/.scripts/get_project_lines.sh"
 alias vcc="~/.scripts/cpp_template.sh"
 alias kpr="ps aux | fzf | awk '{print $2}' | xargs killall > /dev/null 2> /dev/null"
@@ -32,7 +34,7 @@ alias book='/home/omar/.scripts/books.sh'
 alias btrfsfs="sudo btrfs filesystem df /"
 alias btrfsli="sudo btrfs su li / -t"
 alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
-alias ca='vim ~/.config/alacritty/alacritty.yml' # for quickly acssesing alacritty config file
+alias ca='nvim ~/.aliases/aliases' # for quickly acssesing aliases
 alias cb="$EDITOR ~/.bashrc"
 alias ......='cd ../../../../..'
 alias .....='cd ../../../..'
