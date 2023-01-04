@@ -1,3 +1,4 @@
+alias ftr="~/fileToRace.py" 
 alias nv="neovide"
 alias pg="ps auxw | grep -v grep | grep $1"
 alias gpl="~/.scripts/get_project_lines.sh"
