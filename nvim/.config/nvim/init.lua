@@ -1,47 +1,38 @@
---[[ vim.g.material_style = "deep ocean" ]]
 
---[[ require('onedark').setup { ]]
---[[   style = 'deep', ]]
---[[   transparent = true, ]]
---[[ } ]]
+-- Set colorscheme
+vim.cmd [[colorscheme catppuccin-mocha]]
 
-require('material').setup{
-  disable = {
-    background = true
-  }
-}
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
-require("telescope").load_extension('harpoon')
-
-require('catppuccin').setup({
-  transparent_background = true,
+-- [[ Highlight on yank ]]
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
 })
 
---[[ require("nvim-treesitter.configs").setup { ]]
---[[   yati = { enable = true }, ]]
---[[ } ]]
+-- Enable Comment.nvim
+require('Comment').setup()
 
+-- Enable `lukas-reineke/indent-blankline.nvim`
+require('indent_blankline').setup {
+  char = '|',
+  show_trailing_blankline_indent = false,
+}
 
-require "user.options"
-require "user.keymaps"
 require "user.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.snippets"
-require "user.telescope"
+require "user.competitest"
+require "user.bufferline"
 require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
+require "user.lualine"
+require "user.lsp"
+require "user.telescope"
+require "user.keymaps"
+require "user.options"
 require "user.gitsigns"
 require "user.nvim-tree"
-require "user.bufferline"
-require "user.lualine"
-require "user.toggleterm"
-require "user.project"
-require "user.impatient"
-require "user.indentline"
-require "user.alpha"
-require "user.whichkey"
-require "user.autocommands"
-require "material"
+require "user.cmp"

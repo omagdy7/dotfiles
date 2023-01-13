@@ -15,19 +15,19 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
-theme.font                                      = "Source code pro bold 13"
-theme.taglist_font                              = "Source code pro bold 13"
+theme.font                                      = "Source code pro bold 12"
+theme.taglist_font                              = "Source code pro bold 12"
 theme.fg_normal                                 = "#ffffff"
 theme.fg_blue                                   = "#ffffff"
 theme.fg_magenta                                = "#cc998d"
 theme.fg_focus                                  = "#6200C4"
 theme.fg_urgent                                 = "#b74822"
-theme.bg_normal                                 = "#111222"
+theme.bg_normal                                 = "#000000" -- Bar color
 theme.bg_focus                                  = "#ecebe4"
 theme.bg_urgent                                 = "#3F3F3F"
 theme.taglist_fg_focus                          = "#153b50"
-theme.tasklist_bg_focus                         = "#000000"
-theme.tasklist_fg_focus                         = "#CC6600"
+theme.tasklist_bg_focus                         = "#2E4AA9"
+theme.tasklist_fg_focus                         = "#FAFFD8"
 theme.border_width                              = 2
 theme.border_normal                             = "#000000"
 theme.border_focus                              = "#f90057"
@@ -73,8 +73,9 @@ theme.widget_task                               = theme.dir .. "/icons/task.png"
 theme.widget_scissors                           = theme.dir .. "/icons/scissors.png"
 theme.widget_weather                            = theme.dir .. "/icons/dish.png"
 theme.widget_arch_logo                          = theme.dir .. "/icons/archlinux.png"
-theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = true
+theme.tasklist_plain_task_name                  = false
+theme.tasklist_disable_task_name                = false
+theme.tasklist_disable_icon                     = false
 theme.useless_gap                               = 3
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
@@ -96,9 +97,9 @@ theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 theme.bg_systray                                = "#000000"
 theme.clock_fontfg                              = "#ffffff"
-theme.clock_font                                = "DejaVu Sans Mono Bold 13"
+theme.clock_font                                = "DejaVu Sans Mono Bold 12"
 theme.arch_fontfg                               = "#ffffff"
-theme.arch_font                                 = "DejaVu Sans Mono Bold 13"
+theme.arch_font                                 = "DejaVu Sans Mono Bold 12"
 
 local markup = lain.util.markup
 local separators = lain.util.separators
@@ -177,15 +178,6 @@ local cpu = lain.widget.cpu({
     end
 })
 
--- Coretemp (lain, average)
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
-    end
-})
---]]
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
-
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsa({
@@ -261,11 +253,72 @@ function theme.at_screen_connect(s)
     -- Create the wibox
     local function custom_shape(cr, width, height)
 
-        gears.shape.rounded_rect(cr, width, height, 10)
+        gears.shape.rounded_rect(cr, width, height, 0)
 
     end
 
-    s.mywibox = awful.wibar({ position = "top", screen = s, shape = custom_shape, height = 25, width = 1850, border_width = 5, bg = theme.bg_normal, fg = theme.fg_magenta })
+    s.mywibox = awful.wibar({ position = "top", screen = s, shape = custom_shape, height = 23, width = 1920, border_width = 0, bg = theme.bg_normal, fg = theme.fg_magenta })
+
+
+    -- s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons, { bg_normal = theme.bg_systray, bg_focus = theme.bg_focus})
+    s.mytasklist = awful.widget.tasklist {
+        screen   = s,
+        filter   = awful.widget.tasklist.filter.currenttags,
+        buttons  = tasklist_buttons,
+        style    = {
+            shape_border_width = 0,
+            shape_border_color = theme.tasklist_fg_focus,
+            shape = gears.shape.rectangle,
+        },
+        layout = {
+            spacing = 25,
+            spacing_widget = {
+                {
+                    forced_width = 0,
+                    shape        = gears.shape.circle,
+                    widget       = wibox.widget.separator
+                },
+                valign = 'center',
+                halign = 'center',
+                widget = wibox.container.place,
+            },
+            layout  = wibox.layout.flex.horizontal
+        },
+        -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+        -- not a widget instance.
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            id     = 'icon_role',
+                            widget = wibox.widget.imagebox,
+                        },
+                        margins = 0,
+                        widget  = wibox.container.margin,
+                    },
+                    {
+                        id     = 'text_role',
+                        widget = wibox.widget.textbox,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = 10,
+                right = 10,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+        },
+    }
+
+    s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox:buttons(my_table.join(
+                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
+                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
 
    --tbox_separator = wibox.widget.textbox(" | ")
 
@@ -275,22 +328,13 @@ function theme.at_screen_connect(s)
         forced_width = 6,
         color = "#c7fffc",
     }
-    
+
     local arch_logo = wibox.widget {
-      markup = "<span foreground='#FBFFFE'> </span>",
+      markup = "<span foreground='#FBFFFE'></span>",
       widget = wibox.widget.textbox,
       color = "#ffffff",
-      -- font = "Font Awesome 6 Brands Regular 18"
       font = "DejaVu Sans Mono Bold 18",
     }
-
-
-  --Spotify
-  --[[ local spotify_current_song = wibox.widget { ]]
-  --[[   widget = wibox.widget.textbox, ]]
-  --[[   text = awful.spawn("/home/peng/.scripts/spotify.sh"), ]]
-		--[[ font = "Hack Regular 10" ]]
-  --[[ } ]]
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -300,25 +344,22 @@ function theme.at_screen_connect(s)
             --spr,
             wibox.container.background(wibox.container.margin(arch_logo, 15, 10, 1, 1)),
             s.mypromptbox,
-        },
-        {
-            layout = wibox.layout.align.horizontal,
             wibox.container.background(wibox.container.margin(s.mytaglist, 10, 0, 2, 2)),
         },
-        -- s.mytasklist, -- Middle widget
+        -- {
+        --     layout = wibox.layout.align.horizontal,
+        --     wibox.container.background(wibox.container.margin(s.mytaglist, 10, 0, 2, 2)),
+        -- },
+        s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.container.background(wibox.container.margin(wibox.widget { theme.volume.widget, layout = wibox.layout.align.horizontal }, 2, 3)),
+            wibox.widget.systray(),
+            wibox.widget { theme.volume.widget, layout = wibox.layout.align.horizontal },
             vert_sep,
-            wibox.container.background(wibox.container.margin(wibox.widget { mem.widget, layout = wibox.layout.align.horizontal }, 2, 3)),
+            wibox.widget { mem.widget, layout = wibox.layout.align.horizontal },
             vert_sep,
-            wibox.container.background(wibox.container.margin(wibox.widget { cpu.widget, layout = wibox.layout.align.horizontal }, 2, 3)),
-            -- wibox.container.background(wibox.container.margin(wibox.widget { temp.widget, layout = wibox.layout.align.horizontal }, 4, 4)),
-            -- vert_sep,
-            -- wibox.container.background(wibox.container.margin(wibox.widget.systray { layout = wibox.layout.align.horizontal }, 8, 4)),
-            -- vert_sep,
+            wibox.widget { cpu.widget, layout = wibox.layout.align.horizontal },
             wibox.container.background(wibox.container.margin(clock, 15, 5, 2, 2)),
-           -- s.mylayoutbox,
         },
     }
 end

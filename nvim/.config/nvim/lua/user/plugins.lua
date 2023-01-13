@@ -1,253 +1,118 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
+-- Install packer
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  is_bootstrap = true
+  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
 
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+require('packer').startup(function(use)
+  -- Package manager
+  use 'wbthomason/packer.nvim'
 
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+  --nvim-tree
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  }
+  use { -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
+    requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
+
+      -- Additional lua configuration, makes nvim stuff amazing
+      'folke/neodev.nvim',
+    },
+  }
+
+  use { -- Autocompletion
+    'hrsh7th/nvim-cmp',
+    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  }
+
+  use { -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
-  },
-}
+  }
 
--- Install your plugins here
-return packer.startup(function(use)
-  -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "numToStr/Comment.nvim" -- Easily comment stuff
-  use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
-  use "moll/vim-bbye"
-  use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim"
-  use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim"
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "folke/which-key.nvim"
-  use "szw/vim-maximizer"
-  use "folke/trouble.nvim"
+  use { -- Additional text objects via treesitter
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
 
-  -- Show colors in terminal with hexcodes or rgb
-  use 'norcalli/nvim-colorizer.lua'
+  -- Git related plugins
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'lewis6991/gitsigns.nvim'
 
-  -- fix indentation
-  use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
-
-  -- Surround
-  use "tpope/vim-surround"
-
-  --Debugging
-  use 'mfussenegger/nvim-dap'
-  use 'rcarriga/nvim-dap-ui'
-
-  -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use 'crusoexia/vim-monokai'
-  use 'folke/tokyonight.nvim'
-  use "lunarvim/darkplus.nvim"
-  use "marko-cerovac/material.nvim"
-  use "drewtempelmeyer/palenight.vim"
-  use 'Mofiqul/dracula.nvim'
-  use 'tanvirtin/monokai.nvim'
-  use 'kyazdani42/nvim-palenight.lua'
-  use 'navarasu/onedark.nvim'
-  use 'ellisonleao/gruvbox.nvim'
+  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use { "catppuccin/nvim", as = "catppuccin" }
 
-  -- harpoon
-  use "ThePrimeagen/harpoon"
 
-  -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
-  use "windwp/nvim-ts-autotag" --auto close tags
+  require('catppuccin').setup({
+    transparent_background = true,
+  })
 
-  -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  -- bufferline
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
+  -- Fuzzy Finder (files, lsp, etc)
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
-  --harpoon setup
-  require("harpoon").setup({
-    global_settings = {
-    -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-    save_on_toggle = false,
+  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-    -- saves the harpoon file upon every change. disabling is unrecommended.
-    save_on_change = true,
-
-    -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-    enter_on_sendcmd = false,
-
-    -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
-    tmux_autoclose_windows = false,
-
-    -- filetypes that you want to prevent from adding to the harpoon list menu.
-    excluded_filetypes = { "harpoon" },
-
-    -- set marks specific to each git branch inside git repository
-    mark_branch = false,
-  }})
-
-
-  --compitest
-  require('competitest').setup {
-    local_config_file_name = ".competitest.lua",
-
-    floating_border = "rounded",
-    floating_border_highlight = "FloatBorder",
-    picker_ui = {
-      width = 0.2,
-      height = 0.3,
-      mappings = {
-        focus_next = { "j", "<down>", "<Tab>" },
-        focus_prev = { "k", "<up>", "<S-Tab>" },
-        close = { "<esc>", "<C-c>", "q", "Q" },
-        submit = { "<cr>" },
-      },
-    },
-    editor_ui = {
-      popup_width = 0.4,
-      popup_height = 0.6,
-      show_nu = true,
-      show_rnu = false,
-      normal_mode_mappings = {
-        switch_window = { "<C-h>", "<C-l>", "<C-i>" },
-        save_and_close = "<C-s>",
-        cancel = { "q", "Q" },
-      },
-      insert_mode_mappings = {
-        switch_window = { "<C-h>", "<C-l>", "<C-i>" },
-        save_and_close = "<C-s>",
-        cancel = "<C-q>",
-      },
-    },
-    popup_ui = {
-      total_width = 0.8,
-      total_height = 0.8,
-      selector_width = 0.3,
-      selector_show_nu = false,
-      selector_show_rnu = false,
-      show_nu = true,
-      show_rnu = false,
-      mappings = {
-        run_again = "R",
-        run_all_again = "<C-r>",
-        kill = "K",
-        kill_all = "<C-k>",
-        view_input = { "i", "I" },
-        view_output = { "a", "A" },
-        view_stdout = { "o", "O" },
-        view_stderr = { "e", "E" },
-        close = { "q", "Q" },
-      },
-      viewer = {
-        width = 0.5,
-        height = 0.5,
-        show_nu = true,
-        show_rnu = false,
-        close_mappings = { "q", "Q" },
-      },
-    },
-
-	save_current_file = true,
-	save_all_files = false,
-	compile_directory = ".",
-	compile_command = {
-		c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
-		cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
-		rust = { exec = "rustc", args = { "$(FNAME)" } },
-		java = { exec = "javac", args = { "$(FNAME)" } },
-	},
-	running_directory = ".",
-	run_command = {
-		c = { exec = "./$(FNOEXT)" },
-		cpp = { exec = "./$(FNOEXT)" },
-		rust = { exec = "./$(FNOEXT)" },
-		python = { exec = "python", args = { "$(FNAME)" } },
-		java = { exec = "java", args = { "$(FNOEXT)" } },
-	},
-	multiple_testing = -1,
-	maximum_time = 5000,
-	output_compare_method = "squish",
-
-	testcases_directory = ".",
-	input_name = "input",
-	output_name = "output",
-	testcases_files_format = "$(FNOEXT)_$(INOUT)$(TCNUM).txt",
-	testcases_use_single_file = false,
-	testcases_single_file_format = "$(FNOEXT).testcases",
-
-	companion_port = 27121,
-	receive_print_message = true,
-}
-  -- Telescope
-  use "nvim-telescope/telescope.nvim"
-
-  -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-
-  -- Git
-  use "lewis6991/gitsigns.nvim"
-
-  -- competitve programming
   use {
     'xeluxee/competitest.nvim',
     requires = 'MunifTanjim/nui.nvim',
     config = function() require'competitest'.setup() end
   }
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
+  -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
+  local has_plugins, plugins = pcall(require, 'custom.plugins')
+  if has_plugins then
+    plugins(use)
+  end
+
+  if is_bootstrap then
+    require('packer').sync()
   end
 end)
+
+-- When we are bootstrapping a configuration, it doesn't
+-- make sense to execute the rest of the init.lua.
+--
+-- You'll need to restart nvim, and then it will work.
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
+
+-- Automatically source and re-compile packer whenever you save this init.lua
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+  group = packer_group,
+  pattern = vim.fn.expand '$MYVIMRC',
+})
+
