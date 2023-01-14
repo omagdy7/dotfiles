@@ -7,6 +7,7 @@ local options = {
   fileencoding = "utf-8",                  -- the encoding written to a file
   hlsearch = true,                         -- highlight all matches on previous search pattern
   ignorecase = true,                       -- ignore case in search patterns
+  paste = false,                            -- make inserting a new line not commented when pressing o
   mouse = "a",                             -- allow the mouse to be used in neovim
   pumheight = 10,                          -- pop up menu height
   showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
@@ -29,10 +30,10 @@ local options = {
   relativenumber = true,                   -- set relative numbered lines
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
-  wrap = false,                             -- display lines as one long line
+  wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
-  guifont = "comic mono:h13",               -- the font used in graphical neovim applications
+  guifont = "comic mono:h13",              -- the font used in graphical neovim applications
 }
 
 vim.opt.shortmess:append "c"

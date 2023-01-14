@@ -22,11 +22,11 @@ theme.fg_blue                                   = "#ffffff"
 theme.fg_magenta                                = "#cc998d"
 theme.fg_focus                                  = "#6200C4"
 theme.fg_urgent                                 = "#b74822"
-theme.bg_normal                                 = "#000000" -- Bar color
+theme.bg_normal                                 = "#111111" -- Bar color
 theme.bg_focus                                  = "#ecebe4"
 theme.bg_urgent                                 = "#3F3F3F"
 theme.taglist_fg_focus                          = "#153b50"
-theme.tasklist_bg_focus                         = "#2E4AA9"
+theme.tasklist_bg_focus                         = "#3B3B3B"
 theme.tasklist_fg_focus                         = "#FAFFD8"
 theme.border_width                              = 2
 theme.border_normal                             = "#000000"
@@ -95,7 +95,7 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
-theme.bg_systray                                = "#000000"
+theme.bg_systray                                = "#111111"
 theme.clock_fontfg                              = "#ffffff"
 theme.clock_font                                = "DejaVu Sans Mono Bold 12"
 theme.arch_fontfg                               = "#ffffff"
@@ -267,11 +267,11 @@ function theme.at_screen_connect(s)
         buttons  = tasklist_buttons,
         style    = {
             shape_border_width = 0,
-            shape_border_color = theme.tasklist_fg_focus,
+            shape_border_color = "#777777",
             shape = gears.shape.rectangle,
         },
         layout = {
-            spacing = 25,
+            spacing = 0,
             spacing_widget = {
                 {
                     forced_width = 0,
@@ -320,7 +320,7 @@ function theme.at_screen_connect(s)
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
 
 
-   --tbox_separator = wibox.widget.textbox(" | ")
+   tbox_separator = wibox.widget.textbox("  ")
 
     local vert_sep = wibox.widget {
         widget = wibox.widget.separator,
@@ -329,11 +329,11 @@ function theme.at_screen_connect(s)
         color = "#c7fffc",
     }
 
-    local arch_logo = wibox.widget {
-      markup = "<span foreground='#FBFFFE'></span>",
+    local allah = wibox.widget {
+      markup = "<span foreground='#FBFFFE'>ﷲ</span>",
       widget = wibox.widget.textbox,
       color = "#ffffff",
-      font = "DejaVu Sans Mono Bold 18",
+      font = "DejaVu Sans Mono Bold 10",
     }
 
     -- Add widgets to the wibox
@@ -342,17 +342,15 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             --spr,
-            wibox.container.background(wibox.container.margin(arch_logo, 15, 10, 1, 1)),
-            s.mypromptbox,
-            wibox.container.background(wibox.container.margin(s.mytaglist, 10, 0, 2, 2)),
+            wibox.container.background(wibox.container.margin(allah, 10, 10, 1, 1)),
+            -- s.mypromptbox,
+            wibox.container.background(wibox.container.margin(s.mytaglist, 0, 0, 2, 2)),
+            tbox_separator,
         },
-        -- {
-        --     layout = wibox.layout.align.horizontal,
-        --     wibox.container.background(wibox.container.margin(s.mytaglist, 10, 0, 2, 2)),
-        -- },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            tbox_separator,
             wibox.widget.systray(),
             wibox.widget { theme.volume.widget, layout = wibox.layout.align.horizontal },
             vert_sep,

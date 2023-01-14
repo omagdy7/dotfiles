@@ -34,6 +34,20 @@ require('packer').startup(function(use)
     },
   }
 
+  -- undo tree
+  use('mbbill/undotree')
+
+  -- vim surround
+  use('tpope/vim-surround')
+
+  -- Autopairs
+  -- use {
+  --   "windwp/nvim-autopairs",
+  --   config = function() require("nvim-autopairs").setup {
+  --     disable_filetype = {}
+  --   } end
+  -- }
+  --
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
@@ -65,7 +79,7 @@ require('packer').startup(function(use)
   })
 
   -- bufferline
-  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
@@ -81,7 +95,7 @@ require('packer').startup(function(use)
   use {
     'xeluxee/competitest.nvim',
     requires = 'MunifTanjim/nui.nvim',
-    config = function() require'competitest'.setup() end
+    config = function() require 'competitest'.setup() end
   }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
@@ -115,4 +129,3 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = packer_group,
   pattern = vim.fn.expand '$MYVIMRC',
 })
-

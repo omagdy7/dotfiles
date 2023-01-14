@@ -288,7 +288,7 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s)
 -- {{{ Key bindings
 globalkeys = my_table.join(
     -- super + ... function keys
-    awful.key({ modkey }, "r",
+    awful.key({ modkey }, "d",
     function ()
         awful.spawn(string.format("dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn NotoMonoRegular:bold:pixelsize=14",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
@@ -296,6 +296,8 @@ globalkeys = my_table.join(
     {description = "show dmenu", group = "hotkeys"}),
     awful.key({ modkey }, "b", function () awful.util.spawn( browser1 ) end,
         {description = browser1, group = "function keys"}),
+    awful.key({ modkey }, "r", function () awful.util.spawn( "kitty -e ranger" ) end,
+        {description = "launch ranger", group = "function keys"}),
     awful.key({ modkey }, "f", function() awful.util.spawn( filemanager ) end,
         {description = filemanager, group = "alt+ctrl"}),
     awful.key({ altkey }, "c", function () awful.spawn( "/home/peng/.scripts/pscontests.sh" ) end,
@@ -303,6 +305,8 @@ globalkeys = my_table.join(
     awful.key({ altkey }, "w", function () awful.spawn( "/home/peng/.scripts/wally.sh" ) end,
         {description = "set random wallpaper" , group = "hotkeys"}),
     awful.key({ altkey }, "d", function () awful.spawn( "/home/peng/.scripts/dmenuscripts.sh" ) end,
+        {description = "books" , group = "hotkeys"}),
+    awful.key({ altkey }, "p", function () awful.spawn( "/home/peng/.scripts/power.sh" ) end,
         {description = "books" , group = "hotkeys"}),
     awful.key({ modkey }, "o", function () awful.util.spawn( "rofi -show drun" ) end,
         {description = "rofi" , group = "function keys" }),
@@ -315,6 +319,11 @@ globalkeys = my_table.join(
 
     -- super + shift + ...
     awful.key({ modkey, "Shift"   }, "Return", function() awful.util.spawn( filemanager ) end),
+    awful.key({ modkey, "Shift"   }, "t", function () awful.util.spawn( "kitty -e nvim /tmp/temp.txt" ) end,
+        {description = "launch a temp file in nvim", group = "super+shift"}),
+    awful.key({ modkey, "Shift"   }, "c", function () awful.util.spawn( "/home/peng/.scripts/config_files.sh" ) end,
+        {description = "dmenu with config files", group = "super+shift"}),
+
 
 
     -- ctrl+alt +  ...
@@ -345,7 +354,6 @@ globalkeys = my_table.join(
     -- Hotkeys Awesome
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
         {description = "show help", group="awesome"}),
-
     -- Tag browsing with modkey
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
         {description = "view previous", group = "tag"}),
@@ -456,6 +464,7 @@ globalkeys = my_table.join(
                 if client.focus then client.focus:raise() end
             end,
             {description = "focus right", group = "client"}),
+
 
 
     -- Layout manipulation

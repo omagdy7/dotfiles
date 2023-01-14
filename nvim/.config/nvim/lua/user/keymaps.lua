@@ -26,9 +26,15 @@ vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', '<leader>of', builtin.oldfiles, opts)
 vim.keymap.set('n', '<leader>ch', builtin.command_history, opts)
 
+-- undoteree
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+
 -- nohlsearch
 keymap("n", "<leader>h", ":noh<CR>", opts)
 
+-- lsp
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, opts)
 
 -- Normal --
 -- Better window navigation
@@ -50,10 +56,6 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
-
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode

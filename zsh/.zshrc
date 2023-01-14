@@ -187,6 +187,23 @@ ex ()
   fi
 }
 
+fcd() {
+  local dir
+  dir=$(find ~ -type d | fzf)
+  if [[ -n $dir ]]; then
+      cd "$dir"
+  fi
+}
+
+fo() {
+  local dir
+  dir=$(find /run/media/peng/Storage/omar -type d | fzf)
+  if [[ -n $dir ]]; then
+      cd "$dir"
+  fi
+
+}
+
 
 
 #create a file called .zshrc-personal and put all your personal aliases
