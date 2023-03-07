@@ -305,7 +305,9 @@ globalkeys = my_table.join(
     awful.key({ altkey }, "w", function () awful.spawn( "/home/peng/.scripts/wally.sh" ) end,
         {description = "set random wallpaper" , group = "hotkeys"}),
     awful.key({ altkey }, "d", function () awful.spawn( "/home/peng/.scripts/dmenuscripts.sh" ) end,
-        {description = "books" , group = "hotkeys"}),
+        {description = "all scripts" , group = "hotkeys"}),
+    awful.key({ altkey }, "b", function () awful.spawn( "/home/peng/.scripts/books.sh" ) end,
+        {description = "Books" , group = "hotkeys"}),
     awful.key({ altkey }, "p", function () awful.spawn( "/home/peng/.scripts/power.sh" ) end,
         {description = "books" , group = "hotkeys"}),
     awful.key({ modkey }, "o", function () awful.util.spawn( "rofi -show drun" ) end,
@@ -880,5 +882,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
-awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
+awful.spawn.with_shell("picom --config  $HOME/.config/awesome/picom.conf")
 awful.spawn.with_shell("~/.scripts/force_full_composition_nvidia.sh")
+awful.spawn.with_shell("sudo ~/.scripts/mount.sh")

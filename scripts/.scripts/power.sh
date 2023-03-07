@@ -1,11 +1,15 @@
 #!/bin/sh
 
 
-CHOICES="poweroff\nreboot"
+CHOICES="poweroff\nreboot\nlogout"
 
 CHOICE=$(echo -e $CHOICES | dmenu -l 3)
 
-systemctl $CHOICE
+if [[ "$CHOICE" == "logout" ]]; then
+  awesome-client "awesome.quit()"
+else
+  systemctl $CHOICE
+fi
 
 
 

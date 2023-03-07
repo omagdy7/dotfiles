@@ -9,8 +9,8 @@
 #                                                                #
 ##################################################################
 
-path="/home/pengu/Books/"
-choice=$(ls "$path" | dmenu -l 10)
+path="/run/media/peng/Storage/omar/Books"
+choice=$(ls "$path" | dmenu -i -l 10)
 new_choice=$choice
 
 while [ -d "$path/$new_choice" ] 

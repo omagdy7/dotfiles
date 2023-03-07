@@ -114,7 +114,7 @@ fcd() {
 
 fo() {
   local dir
-  dir=$(find /run/media/peng/Storage/omar -type d | fzf)
+  dir=$(find /run/media/Storage/omar/College -type d | fzf)
   if [[ -n $dir ]]; then
       cd "$dir"
   fi
