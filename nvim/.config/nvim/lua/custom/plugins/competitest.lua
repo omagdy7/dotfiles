@@ -112,4 +112,5 @@ require('competitest').setup {
 
 	companion_port = 27121,
 	receive_print_message = true,
+	template_file = false,
 }

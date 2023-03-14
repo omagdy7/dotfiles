@@ -300,17 +300,17 @@ globalkeys = my_table.join(
         {description = "launch ranger", group = "function keys"}),
     awful.key({ modkey }, "f", function() awful.util.spawn( filemanager ) end,
         {description = filemanager, group = "alt+ctrl"}),
-    awful.key({ altkey }, "c", function () awful.spawn( "/home/peng/.scripts/pscontests.sh" ) end,
+    awful.key({ altkey }, "c", function () awful.spawn( "/home/omar/.scripts/pscontests.sh" ) end,
         {description = "contest init" , group = "hotkeys"}),
-    awful.key({ altkey }, "w", function () awful.spawn( "/home/peng/.scripts/wally.sh" ) end,
+    awful.key({ altkey }, "w", function () awful.spawn( "/home/omar/.scripts/wally.sh" ) end,
         {description = "set random wallpaper" , group = "hotkeys"}),
-    awful.key({ altkey }, "d", function () awful.spawn( "/home/peng/.scripts/dmenuscripts.sh" ) end,
+    awful.key({ altkey }, "d", function () awful.spawn( "/home/omar/.scripts/dmenuscripts.sh" ) end,
         {description = "all scripts" , group = "hotkeys"}),
-    awful.key({ altkey }, "b", function () awful.spawn( "/home/peng/.scripts/books.sh" ) end,
+    awful.key({ altkey }, "b", function () awful.spawn( "/home/omar/.scripts/books.sh" ) end,
         {description = "Books" , group = "hotkeys"}),
-    awful.key({ altkey }, "p", function () awful.spawn( "/home/peng/.scripts/power.sh" ) end,
+    awful.key({ altkey }, "p", function () awful.spawn( "/home/omar/.scripts/power.sh" ) end,
         {description = "books" , group = "hotkeys"}),
-    awful.key({ modkey }, "o", function () awful.util.spawn( "rofi -show drun" ) end,
+    awful.key({ modkey }, "o", function () awful.util.spawn( "rofi -show run" ) end,
         {description = "rofi" , group = "function keys" }),
 
     -- super + ...
@@ -323,7 +323,7 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Shift"   }, "Return", function() awful.util.spawn( filemanager ) end),
     awful.key({ modkey, "Shift"   }, "t", function () awful.util.spawn( "kitty -e nvim /tmp/temp.txt" ) end,
         {description = "launch a temp file in nvim", group = "super+shift"}),
-    awful.key({ modkey, "Shift"   }, "c", function () awful.util.spawn( "/home/peng/.scripts/config_files.sh" ) end,
+    awful.key({ modkey, "Shift"   }, "c", function () awful.util.spawn( "/home/omar/.scripts/config_files.sh" ) end,
         {description = "dmenu with config files", group = "super+shift"}),
 
 
@@ -347,7 +347,7 @@ globalkeys = my_table.join(
         {description = "Scrot", group = "screenshots"}),
     awful.key({ modkey1           }, "Print", function () awful.util.spawn( "xfce4-screenshooter" ) end,
         {description = "Xfce screenshot", group = "screenshots"}),
-    awful.key({ modkey, "Shift"  }, "s", function() awful.util.spawn("/home/peng/.scripts/screenshot.sh") end,
+    awful.key({ modkey, "Shift"  }, "s", function() awful.util.spawn("/home/omar/.scripts/screenshot.sh") end,
         {description = "Gnome screenshot", group = "screenshots"}),
 
     -- Personal keybindings}}}
@@ -395,9 +395,9 @@ globalkeys = my_table.join(
         {description = "view previous", group = "tag"}),
 
         --Keyboard layout
-    awful.key({ altkey  }, "2", function () awful.spawn( "/home/peng/.scripts/klayoutar.sh" ) end,
+    awful.key({ altkey  }, "2", function () awful.spawn( "/home/omar/.scripts/klayoutar.sh" ) end,
         {description = "change keyboardlayout to arabic" , group = "hotkeys" }),
-    awful.key({ altkey }, "1", function () awful.spawn( "/home/peng/.scripts/klayoutus.sh" ) end,
+    awful.key({ altkey }, "1", function () awful.spawn( "/home/omar/.scripts/klayoutus.sh" ) end,
         {description = "change keyboardlayout to english" , group = "hotkeys" }),
 
     -- Default client focus
@@ -884,4 +884,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 awful.spawn.with_shell("picom --config  $HOME/.config/awesome/picom.conf")
 awful.spawn.with_shell("~/.scripts/force_full_composition_nvidia.sh")
-awful.spawn.with_shell("sudo ~/.scripts/mount.sh")
+awful.spawn.with_shell("nitrogen --restore")

@@ -1,37 +1,34 @@
--- Set colorscheme
-vim.cmd [[colorscheme catppuccin-mocha]]
+vim.defer_fn(function()
+  pcall(require, "impatient")
+end, 0)
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+require "core"
+require "core.options"
 
--- [[ Highlight on yank ]]
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
+-- setup packer + plugins
+local fn = vim.fn
+local install_path = fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
 
--- Enable Comment.nvim
-require('Comment').setup()
+if fn.empty(fn.glob(install_path)) > 0 then
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a" })
+  print "Cloning packer .."
+  fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
 
--- Enable `lukas-reineke/indent-blankline.nvim`
-  require('indent_blankline').setup {
-    char = '|',
-    show_trailing_blankline_indent = false,
-  }
+  -- install plugins + compile their configs
+  vim.cmd "packadd packer.nvim"
+  require "plugins"
+  vim.cmd "PackerSync"
 
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.competitest"
-require "user.cmp"
-require "user.lsp"
-require "user.telescope"
-require "user.gitsigns"
-require "user.bufferline"
-require "user.treesitter"
-require "user.lualine"
-require "user.nvim-tree"
+  -- install binaries from mason.nvim & tsparsers
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PackerComplete",
+    callback = function()
+      vim.cmd "bw | silent! MasonInstallAll" -- close packer window
+      require("packer").loader "nvim-treesitter"
+    end,
+  })
+end
+
+pcall(require, "custom")
+
+require("core.utils").load_mappings()

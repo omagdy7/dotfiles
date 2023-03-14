@@ -351,13 +351,13 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             tbox_separator,
-            wibox.widget.systray(),
             wibox.widget { theme.volume.widget, layout = wibox.layout.align.horizontal },
             vert_sep,
             wibox.widget { mem.widget, layout = wibox.layout.align.horizontal },
             vert_sep,
             wibox.widget { cpu.widget, layout = wibox.layout.align.horizontal },
             wibox.container.background(wibox.container.margin(clock, 15, 5, 2, 2)),
+            wibox.widget.systray(),
         },
     }
 end
