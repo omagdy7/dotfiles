@@ -100,7 +100,7 @@ M.tabufline = {
     ["<Bslash>"] = { "<cmd> TbufPick <CR>", "Pick buffer" },
 
     -- close buffer + hide terminal buffer
-    ["<leader>x"] = {
+    ["<leader>v"] = {
       function()
         require("nvchad_ui.tabufline").close_buffer()
       end,
@@ -313,7 +313,7 @@ M.nvterm = {
       "toggle horizontal term",
     },
 
-    ["<A-v>"] = {
+    ["<A-;>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
@@ -337,7 +337,7 @@ M.nvterm = {
       "toggle horizontal term",
     },
 
-    ["<A-v>"] = {
+    ["<A-;>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
@@ -353,7 +353,7 @@ M.nvterm = {
       "new horizontal term",
     },
 
-    ["<leader>v"] = {
+    ["<leader>;"] = {
       function()
         require("nvterm.terminal").new "vertical"
       end,

@@ -9,7 +9,7 @@
 #                                                                #
 ##################################################################
 
-path="/run/media/peng/Storage/omar/Books"
+path="/run/media/omar/Storage/omar/Books"
 choice=$(ls "$path" | dmenu -i -l 10)
 new_choice=$choice
 

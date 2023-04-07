@@ -8,7 +8,6 @@ function run {
 }
 
 run nm-applet
-run variety
 run xfce4-power-manager
 run blueberry-tray
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

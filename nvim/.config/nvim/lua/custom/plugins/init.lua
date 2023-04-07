@@ -13,6 +13,17 @@ return {
   },
 
   ["MunifTanjim/nui.nvim"] = {},
+  ["Exafunction/codeium.vim"] = {},
+  -- ["catppuccin/nvim"] = {
+  --   config = function()
+  --     require "custom.plugins.catppuccin"
+  --   end
+  -- },
+  ["windwp/nvim-ts-autotag"] = {
+    config = function()
+      require "custom.plugins.nvim-ts-autotag"
+    end
+  },
 
 }
 
