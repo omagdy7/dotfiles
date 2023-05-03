@@ -20,7 +20,7 @@ return {
         if node.type == "directory" or node:has_children() then
           if not node:is_expanded() then -- if unexpanded, expand
             state.commands.toggle_node(state)
-          else -- if expanded and has children, seleect the next child
+          else                           -- if expanded and has children, seleect the next child
             require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
           end
         else -- if not a directory just open it
@@ -48,9 +48,9 @@ return {
         for i, result in pairs(results) do
           if result.val and result.val ~= "" then
             vim.list_extend(messages, {
-              { ("%s."):format(i), "Identifier" },
+              { ("%s."):format(i),           "Identifier" },
               { (" %s: "):format(result.msg) },
-              { result.val, "String" },
+              { result.val,                  "String" },
               { "\n" },
             })
           end
@@ -69,16 +69,14 @@ return {
       close_if_last_window = true,
       source_selector = {
         winbar = true,
-        content_layout = "center",
+        content_layout = "left",
         tab_labels = {
-          filesystem = get_icon "FolderClosed" .. " File",
-          buffers = get_icon "DefaultFile" .. " Bufs",
-          git_status = get_icon "Git" .. " Git",
+          filesystem = get_icon "FolderClosed" .. " Files",
           diagnostics = get_icon "Diagnostic" .. " Diagnostic",
         },
       },
       default_component_configs = {
-        indent = { padding = 0, indent_size = 1 },
+        indent = { padding = 0, indent_size = 2 },
         icon = {
           folder_closed = get_icon "FolderClosed",
           folder_open = get_icon "FolderOpen",
