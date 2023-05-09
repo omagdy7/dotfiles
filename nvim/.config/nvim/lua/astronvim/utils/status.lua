@@ -150,6 +150,7 @@ M.env.sign_handlers = astronvim.user_opts("heirline.sign_handlers", M.env.sign_h
 ---@param fallback string the color to fallback on if a lualine theme is not present
 ---@return string # The background color of the lualine theme or the fallback parameter if one doesn't exist
 function M.hl.lualine_mode(mode, fallback)
+  if not vim.g.colors_name then return fallback end
   local lualine_avail, lualine = pcall(require, "lualine.themes." .. vim.g.colors_name)
   local lualine_opts = lualine_avail and lualine[mode]
   return lualine_opts and type(lualine_opts.a) == "table" and lualine_opts.a.bg or fallback
@@ -361,10 +362,22 @@ end
 -- @usage local heirline_component = { provider = require("astronvim.utils.status").provider.numbercolumn }
 -- @see astronvim.utils.status.utils.stylize
 function M.provider.numbercolumn(opts)
-  opts = extend_tbl({ escape = false }, opts)
+  opts = extend_tbl({ thousands = false, culright = true, escape = false }, opts)
   return function()
+    local lnum, rnum, virtnum = vim.v.lnum, vim.v.relnum, vim.v.virtnum
     local num, relnum = vim.opt.number:get(), vim.opt.relativenumber:get()
-    local str = ((num and not relnum) and "%l") or ((relnum and not num) and "%r") or "%{v:relnum?v:relnum:v:lnum}"
+    local str
+    if not num and not relnum then
+      str = ""
+    elseif virtnum ~= 0 then
+      str = "%="
+    else
+      local cur = relnum and (rnum > 0 and rnum or (num and lnum or 0)) or lnum
+      if opts.thousands and cur > 999 then
+        cur = string.reverse(cur):gsub("%d%d%d", "%1" .. opts.thousands):reverse():gsub("^%" .. opts.thousands, "")
+      end
+      str = (rnum == 0 and not opts.culright and relnum) and cur .. "%=" or "%=" .. cur
+    end
     return M.utils.stylize(str, opts)
   end
 end
@@ -400,7 +413,8 @@ function M.provider.foldcolumn(opts)
         for col = 1, width do
           str = str
             .. (
-              ((closed and (col == foldinfo.level or col == width)) and foldclosed)
+              (vim.v.virtnum ~= 0 and foldsep)
+              or ((closed and (col == foldinfo.level or col == width)) and foldclosed)
               or ((foldinfo.start == vim.v.lnum and first_level + col > foldinfo.llevel) and foldopen)
               or foldsep
             )
@@ -456,6 +470,16 @@ function M.provider.macro_recording(opts)
     if register ~= "" then register = opts.prefix .. register end
     return M.utils.stylize(register, opts)
   end
+end
+
+--- A provider function for displaying the current command
+---@param opts? table of options passed to the stylize function
+---@return string # the statusline string for showing the current command
+-- @usage local heirline_component = { provider = require("astronvim.utils.status").provider.showcmd() }
+-- @see astronvim.utils.status.utils.stylize
+function M.provider.showcmd(opts)
+  opts = extend_tbl({ minwid = 0, maxwid = 5, escape = false }, opts)
+  return M.utils.stylize(("%%%d.%d(%%S%%)"):format(opts.minwid, opts.maxwid), opts)
 end
 
 --- A provider function for displaying the current search count
@@ -607,35 +631,30 @@ function M.provider.unique_path(opts)
     bufnr = 0,
     max_length = 16,
   }, opts)
+  local function path_parts(bufnr)
+    local parts = {}
+    for match in (vim.api.nvim_buf_get_name(bufnr) .. "/"):gmatch("(.-)" .. "/") do
+      table.insert(parts, match)
+    end
+    return parts
+  end
   return function(self)
     opts.bufnr = self and self.bufnr or opts.bufnr
     local name = opts.buf_name(opts.bufnr)
     local unique_path = ""
     -- check for same buffer names under different dirs
+    local current
     for _, value in ipairs(vim.t.bufs) do
       if name == opts.buf_name(value) and value ~= opts.bufnr then
-        local other = {}
-        for match in (vim.api.nvim_buf_get_name(value) .. "/"):gmatch("(.-)" .. "/") do
-          table.insert(other, match)
-        end
-
-        local current = {}
-        for match in (vim.api.nvim_buf_get_name(opts.bufnr) .. "/"):gmatch("(.-)" .. "/") do
-          table.insert(current, match)
-        end
-
-        unique_path = ""
+        if not current then current = path_parts(opts.bufnr) end
+        local other = path_parts(value)
 
         for i = #current - 1, 1, -1 do
-          local value_current = current[i]
-          local other_current = other[i]
-
-          if value_current ~= other_current then
-            unique_path = value_current .. "/"
+          if current[i] ~= other[i] then
+            unique_path = current[i] .. "/"
             break
           end
         end
-        break
       end
     end
     return M.utils.stylize(
@@ -827,6 +846,13 @@ function M.condition.is_macro_recording() return vim.fn.reg_recording() ~= "" en
 ---@return boolean # whether or not searching is currently visible
 -- @usage local heirline_component = { provider = "Example Provider", condition = require("astronvim.utils.status").condition.is_hlsearch }
 function M.condition.is_hlsearch() return vim.v.hlsearch ~= 0 end
+
+--- A condition function if showcmdloc is set to statusline
+---@return boolean # whether or not statusline showcmd is enabled
+-- @usage local heirline_component = { provider = "Example Provider", condition = require("astronvim.utils.status").condition.is_statusline_showcmd }
+function M.condition.is_statusline_showcmd()
+  return vim.fn.has "nvim-0.9" == 1 and vim.opt.showcmdloc:get() == "statusline"
+end
 
 --- A condition function if the current file is in a git repo
 ---@param bufnr table|integer a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
@@ -1038,15 +1064,21 @@ function M.component.cmd_info(opts)
       padding = { left = 1 },
       condition = M.condition.is_hlsearch,
     },
+    showcmd = {
+      padding = { left = 1 },
+      condition = M.condition.is_statusline_showcmd,
+    },
     surround = {
       separator = "center",
       color = "cmd_info_bg",
-      condition = function() return M.condition.is_hlsearch() or M.condition.is_macro_recording() end,
+      condition = function()
+        return M.condition.is_hlsearch() or M.condition.is_macro_recording() or M.condition.is_statusline_showcmd()
+      end,
     },
     condition = function() return vim.opt.cmdheight:get() == 0 end,
     hl = M.hl.get_attributes "cmd_info",
   }, opts)
-  return M.component.builder(M.utils.setup_providers(opts, { "macro_recording", "search_count" }))
+  return M.component.builder(M.utils.setup_providers(opts, { "macro_recording", "search_count", "showcmd" }))
 end
 
 --- A function to build a set of children components for a mode section

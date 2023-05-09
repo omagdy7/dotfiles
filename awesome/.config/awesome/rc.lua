@@ -26,7 +26,7 @@ local freedesktop                    = require("freedesktop")
 -- when client with a matching name is opened:
 local hotkeys_popup                  = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
-local my_table = awful.util.table or gears.table      -- 4.{0,1} compatibility
+local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi      = require("beautiful.xresources").apply_dpi
 -- }}}
 
@@ -337,25 +337,33 @@ globalkeys = my_table.join(
 
     -- alt + ...
     awful.key({ altkey, "Shift" }, "t",
-        function() awful.spawn.with_shell(
-            "variety -t  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") end,
+        function()
+            awful.spawn.with_shell(
+                "variety -t  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+        end,
         { description = "Pywal Wallpaper trash", group = "altkey" }),
     awful.key({ altkey, "Shift" }, "n",
-        function() awful.spawn.with_shell(
-            "variety -n  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") end,
+        function()
+            awful.spawn.with_shell(
+                "variety -n  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+        end,
         { description = "Pywal Wallpaper next", group = "altkey" }),
     awful.key({ altkey, "Shift" }, "u",
         function() awful.spawn.with_shell("wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") end,
         { description = "Pywal Wallpaper update", group = "altkey" }),
     awful.key({ altkey, "Shift" }, "p",
-        function() awful.spawn.with_shell(
-            "variety -p  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") end,
+        function()
+            awful.spawn.with_shell(
+                "variety -p  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+        end,
         { description = "Pywal Wallpaper previous", group = "altkey" }),
 
     -- screenshots
     awful.key({}, "Print",
-        function() awful.util.spawn(
-            "scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'") end,
+        function()
+            awful.util.spawn(
+                "scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")
+        end,
         { description = "Scrot", group = "screenshots" }),
     awful.key({ modkey1 }, "Print", function() awful.util.spawn("xfce4-screenshooter") end,
         { description = "Xfce screenshot", group = "screenshots" }),
@@ -593,7 +601,7 @@ globalkeys = my_table.join(
     awful.key({}, "XF86AudioMute",
         function()
             os.execute(string.format("amixer -q set %s toggle",
-            beautiful.volume.togglechannel or beautiful.volume.channel))
+                beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
         end),
     awful.key({ modkey1, "Shift" }, "m",
@@ -775,7 +783,7 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA", -- Firefox addon DownThemAll.
+                "DTA",   -- Firefox addon DownThemAll.
                 "copyq", -- Includes session name in class.
             },
             class = {
@@ -805,7 +813,7 @@ awful.rules.rules = {
             },
             role = {
                 "AlarmWindow", -- Thunderbird's calendar.
-                "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                "pop-up",      -- e.g. Google Chrome's (detached) Developer Tools.
                 "Preferences",
                 "setup",
             }
@@ -867,15 +875,15 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c, { size = dpi(21) }):setup {
         {
-          -- Left
+            -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
         {
-              -- Middle
+            -- Middle
             {
-              -- Title
+                -- Title
                 align  = "center",
                 widget = awful.titlebar.widget.titlewidget(c)
             },
@@ -883,7 +891,7 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         {
-          -- Right
+            -- Right
             awful.titlebar.widget.floatingbutton(c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.stickybutton(c),

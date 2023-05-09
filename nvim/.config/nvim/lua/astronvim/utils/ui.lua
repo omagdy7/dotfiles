@@ -94,10 +94,11 @@ function M.toggle_buffer_semantic_tokens(bufnr)
   end
 end
 
---- Toggle codelens refresh
+--- Toggle codelens
 function M.toggle_codelens()
   vim.g.codelens_enabled = not vim.g.codelens_enabled
-  ui_notify(string.format("CodeLens refresh %s", bool2str(vim.g.codelens_enabled)))
+  if not vim.g.codelens_enabled then vim.lsp.codelens.clear() end
+  ui_notify(string.format("CodeLens %s", bool2str(vim.g.codelens_enabled)))
 end
 
 --- Toggle showtabline=2|0
@@ -149,16 +150,16 @@ function M.set_indent()
     if not indent or indent == 0 then return end
     vim.bo.expandtab = (indent > 0) -- local to buffer
     indent = math.abs(indent)
-    vim.bo.tabstop = indent         -- local to buffer
-    vim.bo.softtabstop = indent     -- local to buffer
-    vim.bo.shiftwidth = indent      -- local to buffer
+    vim.bo.tabstop = indent -- local to buffer
+    vim.bo.softtabstop = indent -- local to buffer
+    vim.bo.shiftwidth = indent -- local to buffer
     ui_notify(string.format("indent=%d %s", indent, vim.bo.expandtab and "expandtab" or "noexpandtab"))
   end
 end
 
 --- Change the number display modes
 function M.change_number()
-  local number = vim.wo.number                 -- local to window
+  local number = vim.wo.number -- local to window
   local relativenumber = vim.wo.relativenumber -- local to window
   if not number and not relativenumber then
     vim.wo.number = true
@@ -195,7 +196,7 @@ function M.toggle_syntax()
   local ts_avail, parsers = pcall(require, "nvim-treesitter.parsers")
   if vim.g.syntax_on then -- global var for on//off
     if ts_avail and parsers.has_parser() then vim.cmd.TSBufDisable "highlight" end
-    vim.cmd.syntax "off"  -- set vim.g.syntax_on = false
+    vim.cmd.syntax "off" -- set vim.g.syntax_on = false
   else
     if ts_avail and parsers.has_parser() then vim.cmd.TSBufEnable "highlight" end
     vim.cmd.syntax "on" -- set vim.g.syntax_on = true
