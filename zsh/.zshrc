@@ -2,6 +2,8 @@ export CPLUS_INCLUDE_PATH="$HOME/programming/cppDev/imgui/imgui/backends:$HOME/p
 
 export ZSH="/home/$USER/.oh-my-zsh"
 
+export PATH="$PATH:/usr/bin/docker"
+
 
 # Starship prompt
 eval "$(starship init zsh)"
@@ -14,7 +16,7 @@ CASE_SENSITIVE="true"
 DISABLE_MAGIC_FUNCTIONS=true
 
 # Use bat as the default manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
@@ -30,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 ####   ARCOLINUX SETTINGS   ####
-export PAGER='bat'
+export PAGER='less'
 
 
 setopt GLOB_DOTS
