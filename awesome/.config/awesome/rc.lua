@@ -324,7 +324,7 @@ globalkeys = my_table.join(
 
     -- super + shift + ...
     awful.key({ modkey, "Shift" }, "Return", function() awful.util.spawn(filemanager) end),
-    awful.key({ modkey, "Shift" }, "t", function() awful.util.spawn("kitty -e nvim /tmp/temp.txt") end,
+    awful.key({ modkey, "Shift" }, "t", function() awful.util.spawn("/home/omar/.scripts/create_tmp.sh") end,
         { description = "launch a temp file in nvim", group = "super+shift" }),
     awful.key({ modkey, "Shift" }, "c", function() awful.util.spawn("/home/omar/.scripts/config_files.sh") end,
         { description = "dmenu with config files", group = "super+shift" }),
