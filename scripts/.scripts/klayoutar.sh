@@ -1,3 +1,3 @@
 #!/bin/sh
 
-setxkbmap ar
+setxkbmap ara
