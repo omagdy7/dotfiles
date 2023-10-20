@@ -115,7 +115,7 @@ local editorgui                        = "neovide"
 local filemanager                      = "pcmanfm"
 local mailclient                       = "mailspring"
 local mediaplayer                      = "spotify"
-local terminal                         = "kitty"
+local terminal                         = "alacritty"
 local virtualmachine                   = "virtualbox"
 
 -- awesome variables

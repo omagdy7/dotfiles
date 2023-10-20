@@ -1,8 +1,9 @@
-export CPLUS_INCLUDE_PATH="$HOME/programming/cppDev/imgui/imgui/backends:$HOME/programming/cppDev/imgui-sfml:$HOME/programming/cppDev/imgui/imgui/"
-
+export CPLUS_INCLUDE_PATH="$HOME/programming/cppDev/imgui/imgui/backends:$HOME/programming/cppDev/imgui-sfml:$HOME/programming/cppDev/imgui/imgui/:$HOME/programming/problem_solving/"
 export ZSH="/home/$USER/.oh-my-zsh"
-
-export PATH="$PATH:/usr/bin/docker"
+export ANDROID_HOME=$HOME/Android/Sdk/
+export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin"
+# export PATH=$PATH:$ANDROID_HOME/tools
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 
 # Starship prompt
