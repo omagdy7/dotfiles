@@ -18,6 +18,9 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 # Use bat as the default manpager
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="bat -l man"
+# export MANPAGER="nvim -c 'set ft=man' -"
+# export MANPAGER="most"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"

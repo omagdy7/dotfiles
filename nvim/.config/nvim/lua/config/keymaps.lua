@@ -19,6 +19,30 @@ end
 map("v", "<S-j>", ":m '>+1<CR>gv=gv", { desc = "Move down" })
 map("v", "<S-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 
+-- fix annoying typs when saving or quitting
+vim.cmd([[
+    cnoreabbrev W! w!
+    cnoreabbrev W1 w!
+    cnoreabbrev w1 w!
+    cnoreabbrev Q! q!
+    cnoreabbrev Q1 q!
+    cnoreabbrev q1 q!
+    cnoreabbrev Qa! qa!
+    cnoreabbrev Qall! qall!
+    cnoreabbrev Wa wa
+    cnoreabbrev Wq wq
+    cnoreabbrev wQ wq
+    cnoreabbrev WQ wq
+    cnoreabbrev wq1 wq!
+    cnoreabbrev Wq1 wq!
+    cnoreabbrev wQ1 wq!
+    cnoreabbrev WQ1 wq!
+    cnoreabbrev W w
+    cnoreabbrev Q q
+    cnoreabbrev Qa qa
+    cnoreabbrev Qall qall
+]])
+
 map("n", "<leader>h", "<Cmd>noh<CR>", { desc = "remove highlights", remap = true })
 map("n", "<leader>j", "/<()><CR>ciw<CR><C-o>O", { desc = "jump to <()>", remap = true })
 map("n", "<leader>c", "<Cmd>bd<CR>", { desc = "Close current buffer", remap = true })
