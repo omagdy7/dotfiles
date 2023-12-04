@@ -12,6 +12,12 @@ return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
+  { 'rose-pine/neovim', name = 'rose-pine',
+    opts = {
+      disable_background = true
+    }
+  },
+
   { "catppuccin/nvim", name = "catppuccin", priority = 1000,
     opts = {
       flavour = "mocha",
@@ -213,6 +219,9 @@ return {
       ensure_installed = {
         "bash",
         "html",
+        "rust",
+        "cpp",
+        "c",
         "javascript",
         "json",
         "lua",

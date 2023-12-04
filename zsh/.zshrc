@@ -5,6 +5,7 @@ export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm
 export PATH=$PATH:$ANDROID_HOME/emulator/
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 
 # Starship prompt

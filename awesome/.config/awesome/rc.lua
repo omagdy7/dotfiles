@@ -337,6 +337,9 @@ globalkeys = my_table.join(
 	awful.key({ altkey }, "p", function()
 		awful.spawn("/home/omar/.scripts/power.sh")
 	end, { description = "books", group = "hotkeys" }),
+	awful.key({ modkey }, "p", function()
+		awful.spawn("/home/omar/.scripts/execute_shell.sh")
+	end, { description = "execture arbitrary shell commands", group = "hotkeys" }),
 	awful.key({ modkey }, "o", function()
 		awful.util.spawn("rofi -show drun")
 	end, { description = "rofi", group = "function keys" }),

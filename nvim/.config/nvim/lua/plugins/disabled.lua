@@ -8,6 +8,10 @@ return {
     enabled = false,
   },
   {
+    "echasnovski/mini.ai",
+    enabled = false,
+  },
+  {
     "nvim-treesitter/nvim-treesitter-context",
     enabled = false,
   },
