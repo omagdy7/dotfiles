@@ -5,7 +5,7 @@
 vim.opt.ch = 0
 vim.opt.list = false
 vim.opt.confirm = false
-vim.o.guifont = "Comic mono:h14" -- text below applies for VimScript
+vim.o.guifont = "Monaspace xenon:h12:bold" -- text below applies for VimScript
 
 -- Helper function for transparency formatting
 local alpha = function()

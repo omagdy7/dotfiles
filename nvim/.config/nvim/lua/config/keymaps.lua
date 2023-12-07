@@ -16,8 +16,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("v", "<S-j>", ":m '>+1<CR>gv=gv", { desc = "Move down" })
-map("v", "<S-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
+-- map("v", "<S-j>", ":m '>+1<CR>gv=gv", { desc = "Move down" })
+-- map("v", "<S-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 
 map("n", "<leader>t", ":lua require('dbgstmt').select()<CR>", { desc = "Move up" })
 
@@ -31,7 +31,9 @@ vim.cmd([[
     cnoreabbrev q1 q!
     cnoreabbrev Qa! qa!
     cnoreabbrev Qall! qall!
+    cnoreabbrev WW w
     cnoreabbrev Wa wa
+    cnoreabbrev WA wa
     cnoreabbrev Wq wq
     cnoreabbrev wQ wq
     cnoreabbrev WQ wq
@@ -52,6 +54,9 @@ map("n", "<leader>l", "", { desc = "unset lazy shortcut", remap = true })
 map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "code actions", remap = true })
 map("n", "<leader>y", "<cmd>Telescop flutter commands<CR>", { desc = "Flutter commands", remap = true })
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Line diagnostics", remap = true })
+
+-- oil.nvim
+map("n", "<leader>o", "<cmd>Oil<CR>", { desc = "Open Oil.nvim", remap = true })
 
 -- Better navigation
 map("n", "<C-d>", "<C-d>zz", { desc = "better half page down scroll", remap = true })
