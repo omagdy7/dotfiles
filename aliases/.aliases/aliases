@@ -1,3 +1,5 @@
+alias vrs=$HOME/.scripts/rust_template.sh
+alias zigd=$HOME/programming/zig-dev/zig-linux-x86_64-0.12.0-dev.1802+56deb5b05/zig
 alias gc="git commit"
 alias zell="zellij --layout compact"
 alias pwd="pwd && pwd | xclip -sel clipboard"
@@ -82,15 +84,15 @@ alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 alias keys-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 alias kpi='killall picom'
 alias kp='killall polybar'
-alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
+alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
 alias la='ls -a'
-alias l.="exa -a | egrep '^\.'"                                     # show only dotfiles
-alias ll='exa -l --color=always --group-directories-first --icons'  # long format
+alias l.="eza -a | egrep '^\.'"                                     # show only dotfiles
+alias ll='eza -l --color=always --group-directories-first --icons'  # long format
 alias ll='ls -alFh'
-alias ls='exa -l --color=always --group-directories-first --icons' # preferred listing
-alias lsa='exa -al --color=always --group-directories-first --icons' # preferred listing
+alias ls='eza -l --color=always --group-directories-first --icons' # preferred listing
+alias lsa='eza -al --color=always --group-directories-first --icons' # preferred listing
 alias lta="leftwm-theme apply"
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
 alias lti="leftwm-theme install"
 alias ltu="leftwm-theme uninstall"
 alias ltupd="leftwm-theme update"

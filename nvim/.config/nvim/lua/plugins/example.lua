@@ -37,6 +37,13 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
+
+  {
+    'RaafatTurki/hex.nvim' ,
+    config = true,
+    lazy = false,
+  },
+
   {
     'akinsho/flutter-tools.nvim',
     lazy = false,
@@ -47,7 +54,7 @@ return {
     config = true,
   },
 
--- If you are using Packer
+  -- If you are using Packer
   { "folke/tokyonight.nvim", priority = 1000,
     opts = {
       style = "night",
@@ -55,6 +62,12 @@ return {
     }
   },
 
+
+
+  {
+    'krady21/compiler-explorer.nvim',
+    lazy = false,
+  },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
@@ -397,6 +410,7 @@ return {
       },
     },
   },
+
 
   {
     "echasnovski/mini.surround",

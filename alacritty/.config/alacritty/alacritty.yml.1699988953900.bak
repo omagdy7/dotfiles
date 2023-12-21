@@ -106,7 +106,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Monaspace Xenon
+    family: comic mono
     # The `style` can be specified to pick a specific face.
     style: Bold
 
@@ -116,7 +116,8 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Monaspace Xenon
+    family: comic mono
+
     # The `style` can be specified to pick a specific face.
     style: Bold
 
@@ -126,7 +127,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Monaspace Xenon
+    family: comic mono
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -137,13 +138,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Monaspace Xenon
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 13.0
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
@@ -167,33 +168,32 @@ font:
 #draw_bold_text_with_bright_colors: false
 # Colors (ArcoLinux)
 colors:
-  # Default colors
+  name: Mikazuki
+  author: ""
   primary:
-    background: '#0A0E14'
-    foreground: '#B3B1AD'
-
-  # Normal colors
+    background: "#000000"
+    foreground: "#ffffff"
+  cursor:
+    text: "#000000"
+    cursor: "#ffffff"
   normal:
-    black: '#01060E'
-    red: '#EA6C73'
-    green: '#91B362'
-    yellow: '#F9AF4F'
-    blue: '#53BDFA'
-    magenta: '#FAE994'
-    cyan: '#90E1C6'
-    white: '#C7C7C7'
-
-  # Bright colors
+    black: "#2a1d17"
+    red: "#da1657"
+    green: "#3ea250"
+    yellow: "#e3d33d"
+    blue: "#3ea290"
+    magenta: "#ff850d"
+    cyan: "#8c16da"
+    white: "#e9e9e9"
   bright:
-    black: '#686868'
-    red: '#F07178'
-    green: '#C2D94C'
-    yellow: '#FFB454'
-    blue: '#59C2FF'
-    magenta: '#FFEE99'
-    cyan: '#95E6CB'
-    white: '#FFFFFF'
+    black: "#4f362b"
+    red: "#da4375"
+    green: "#6cb87a"
+    yellow: "#e3da84"
+    blue: "#8ca8a3"
+    magenta: "#ffa64f"
+    cyan: "#a167c7"
+    white: "#fdfdfd"
 key_bindings:
   - { key: F11, action: ToggleFullscreen }
-
-theme: Ayu-Dark
+theme: Mikazuki
