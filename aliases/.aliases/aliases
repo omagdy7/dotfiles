@@ -1,3 +1,4 @@
+alias service="systemctl"
 alias vrs=$HOME/.scripts/rust_template.sh
 alias zigd=$HOME/programming/zig-dev/zig-linux-x86_64-0.12.0-dev.1802+56deb5b05/zig
 alias gc="git commit"

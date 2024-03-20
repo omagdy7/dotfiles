@@ -1,4 +1,6 @@
 export CPLUS_INCLUDE_PATH="$HOME/programming/cppDev/imgui/imgui/backends:$HOME/programming/cppDev/imgui-sfml:$HOME/programming/cppDev/imgui/imgui/:$HOME/programming/problem_solving/algo/"
+# export C_INCLUDE_PATH="/usr/lib/gcc/arm-none-eabi/13.2.0/include/:$HOME/programming/thirdparties/tiva-c/:$HOME/programming/thirdparties/tiva-c/third_party/FreeRTOS/Source/include/:$HOME/programming/thirdparties/tiva-c/boards/ek-tm4c123gxl/freertos_demo/:"
+export C_INCLUDE_PATH="/usr/lib/gcc/arm-none-eabi/13.2.0/include/:$HOME/programming/thirdparties/tiva-c/"
 export ZSH="/home/$USER/.oh-my-zsh"
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin:/home/omar/Android/Sdk"
@@ -6,6 +8,7 @@ export PATH=$PATH:$ANDROID_HOME/emulator/
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:/opt/usr/bin/"
 
 
 # Starship prompt

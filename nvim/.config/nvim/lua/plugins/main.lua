@@ -10,7 +10,13 @@
 -- * override the configuration of LazyVim plugins
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
+  { "ellisonleao/gruvbox.nvim"},
+  -- Using Packer
+  { 'navarasu/onedark.nvim' , name = 'onedark',
+    opts = {
+      style = 'deep',  transparent= true
+    }
+  },
 
   { 'rose-pine/neovim', name = 'rose-pine',
     opts = {
@@ -72,6 +78,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
+      -- colorscheme = "onedark",
       colorscheme = "material-deep-ocean",
       -- colorscheme = "tokyonight-night",
     },
@@ -164,35 +171,6 @@ return {
     },
   },
 
-  -- add pyright to lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    keys = {
-      {
-        "gl",
-          function()
-          local float = vim.diagnostic.config().float
-
-          if float then
-            local config = type(float) == "table" and float or {}
-            config.scope = "line"
-
-            vim.diagnostic.open_float(config)
-          end
-        end,
-        "Show line diagnostics",
-      },
-      desc = "Lsp",
-    },
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
-      },
-    },
-  },
 
   -- add tsserver and setup with typescript.nvim instead of lspconfig
   {
