@@ -317,17 +317,11 @@ globalkeys = my_table.join(
 		awful.util.spawn(browser1)
 	end, { description = browser1, group = "function keys" }),
 	awful.key({ modkey }, "r", function()
-		awful.util.spawn("kitty -e ranger")
+		awful.util.spawn(terminal .. " -e ranger")
 	end, { description = "launch ranger", group = "function keys" }),
 	awful.key({ modkey }, "f", function()
 		awful.util.spawn(filemanager)
 	end, { description = filemanager, group = "alt+ctrl" }),
-	awful.key({ altkey }, "c", function()
-		awful.spawn("/home/omar/.scripts/pscontests.sh")
-	end, { description = "contest init", group = "hotkeys" }),
-	awful.key({ altkey }, "w", function()
-		awful.spawn("/home/omar/.scripts/wally.sh")
-	end, { description = "set random wallpaper", group = "hotkeys" }),
 	awful.key({ altkey }, "d", function()
 		awful.spawn("/home/omar/.scripts/dmenuscripts.sh")
 	end, { description = "all scripts", group = "hotkeys" }),
@@ -339,10 +333,13 @@ globalkeys = my_table.join(
 	end, { description = "books", group = "hotkeys" }),
 	awful.key({ modkey }, "p", function()
 		awful.spawn("/home/omar/.scripts/execute_shell.sh")
-	end, { description = "execture arbitrary shell commands", group = "hotkeys" }),
+	end, { description = "execute arbitrary shell commands", group = "hotkeys" }),
 	awful.key({ modkey }, "o", function()
 		awful.util.spawn("rofi -show drun")
-	end, { description = "rofi", group = "function keys" }),
+	end, { description = "rofi application launcher", group = "function keys" }),
+	awful.key({ modkey }, "w", function()
+		awful.util.spawn("rofi -show window")
+	end, { description = "rofi fuzzy find windows", group = "function keys" }),
 
 	-- super + ...
 	awful.key({ modkey }, "v", function()
@@ -368,30 +365,13 @@ globalkeys = my_table.join(
 		awful.util.spawn(terminal)
 	end, { description = terminal, group = "alt+ctrl" }),
 
-	-- alt + ...
-	awful.key({ altkey, "Shift" }, "t", function()
-		awful.spawn.with_shell("variety -t  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-	end, { description = "Pywal Wallpaper trash", group = "altkey" }),
-	awful.key({ altkey, "Shift" }, "n", function()
-		awful.spawn.with_shell("variety -n  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-	end, { description = "Pywal Wallpaper next", group = "altkey" }),
-	awful.key({ altkey, "Shift" }, "u", function()
-		awful.spawn.with_shell("wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-	end, { description = "Pywal Wallpaper update", group = "altkey" }),
-	awful.key({ altkey, "Shift" }, "p", function()
-		awful.spawn.with_shell("variety -p  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-	end, { description = "Pywal Wallpaper previous", group = "altkey" }),
-
 	-- screenshots
 	awful.key({}, "Print", function()
 		awful.util.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")
 	end, { description = "Scrot", group = "screenshots" }),
-	awful.key({ modkey1 }, "Print", function()
-		awful.util.spawn("xfce4-screenshooter")
-	end, { description = "Xfce screenshot", group = "screenshots" }),
 	awful.key({ modkey, "Shift" }, "s", function()
 		awful.util.spawn("/home/omar/.scripts/screenshot.sh")
-	end, { description = "Gnome screenshot", group = "screenshots" }),
+	end, { description = "take a screenshot", group = "screenshots" }),
 
 	-- Personal keybindings}}}
 
@@ -438,13 +418,6 @@ globalkeys = my_table.join(
 	awful.key({ modkey }, "y", function()
 		awful.spawn("/home/omar/.scripts/youtube.sh")
 	end, { description = "change keyboardlayout to english", group = "hotkeys" }),
-	-- Default client focus
-	awful.key({ altkey }, "j", function()
-		awful.client.focus.byidx(1)
-	end, { description = "focus next by index", group = "client" }),
-	awful.key({ altkey }, "k", function()
-		awful.client.focus.byidx(-1)
-	end, { description = "focus previous by index", group = "client" }),
 
 	-- By direction client focus
 	awful.key({ modkey }, "j", function()
@@ -558,7 +531,7 @@ globalkeys = my_table.join(
 		lain.util.delete_tag()
 	end, { description = "delete tag", group = "tag" }),
 
-	-- Standard program
+	-- Standard programs
 	awful.key({ modkey }, "Return", function()
 		awful.spawn(terminal)
 	end, { description = terminal, group = "super" }),
