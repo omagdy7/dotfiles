@@ -1,5 +1,3 @@
-# theme = "Ayu-Dark"
-
 [colors.bright]
 black = "#686868"
 blue = "#59C2FF"
@@ -21,26 +19,26 @@ white = "#C7C7C7"
 yellow = "#F9AF4F"
 
 [colors.primary]
-background = "#0A0E14"
+background = "#000000"
 foreground = "#B3B1AD"
 
 [font]
 size = 11.0
 
 [font.bold]
-family = "Monaspace Xenon"
+family = "Monaspace Radon"
 style = "Bold"
 
 [font.bold_italic]
-family = "Monaspace Xenon"
+family = "Monaspace Radon"
 style = "Bold Italic"
 
 [font.italic]
-family = "Monaspace Xenon"
+family = "Monaspace Radon"
 style = "Italic"
 
 [font.normal]
-family = "Monaspace Xenon"
+family = "Monaspace Radon"
 style = "Bold"
 
 [[keyboard.bindings]]
@@ -51,4 +49,4 @@ key = "F11"
 history = 50000
 
 [window]
-opacity = 0.8
+opacity = 0.85
