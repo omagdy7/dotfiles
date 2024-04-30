@@ -14,7 +14,7 @@ choice=$(ls -a "$path" | dmenu -i -l 10)
 new_choice=$choice
 
 while [ -d "$path/$new_choice" ]; do
-	choice=$(ls -a "$path/$new_choice" | dmenu -l 10)
+	choice=$(ls -a "$path/$new_choice" | dmenu -i -l 10)
 	new_choice+="/"
 	new_choice+=$choice #path/books for cs/
 done
