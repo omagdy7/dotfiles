@@ -35,6 +35,46 @@ return {
     "windwp/nvim-ts-autotag",
   },
 
+  -- tmux navigator
+{
+  "christoomey/vim-tmux-navigator",
+  cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
+    "TmuxNavigatePrevious",
+  },
+  keys = {
+    { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+    { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+    { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+    { "<c-;>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+    { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+
+
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim", -- optional
+      "ibhagwan/fzf-lua",              -- optional
+    },
+    config = true,
+    keys = {
+      {
+        "<leader>g;",
+        "<Cmd>Neogit<CR>"
+      }
+    }
+
+  },
+
   {
     'stevearc/oil.nvim',
     opts = {},
@@ -43,21 +83,19 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
+  {
+    "lervag/vimtex",
+    lazy = false,
+    init = function()
+      -- VimTeX configuration goes here
+      vim.g.vimtex_view_method = 'zathura'
+    end
+  },
 
   {
     'RaafatTurki/hex.nvim' ,
     config = true,
     lazy = false,
-  },
-
-  {
-    'akinsho/flutter-tools.nvim',
-    lazy = false,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for vim.ui.select
-    },
-    config = true,
   },
 
   -- If you are using Packer
@@ -69,7 +107,6 @@ return {
   },
 
 
-
   {
     'krady21/compiler-explorer.nvim',
     lazy = false,
@@ -79,26 +116,49 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "onedark",
-      colorscheme = "material-deep-ocean",
+      colorscheme = "catppuccin-mocha",
+      -- colorscheme = "material-deep-ocean",
       -- colorscheme = "tokyonight-night",
     },
   },
+
+
+  {
+    "ThePrimeagen/harpoon",
+  },
+
 
   -- change trouble config
   {
     "folke/trouble.nvim",
     -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
+    keys = {
+      {
+        "<leader>xx", function() require("trouble").toggle() end
+      },
+      {
+        "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end
+      },
+      {
+        "<leader>xd", function() require("trouble").toggle("document_diagnostics") end
+      },
+      {
+        "<leader>xq", function() require("trouble").toggle("quickfix") end
+      },
+      {
+       "<leader>xl", function() require("trouble").toggle("loclist") end
+      },
+      {
+        "gR", function() require("trouble").toggle("lsp_references") end
+      },
+    },
   },
-
-  -- disable trouble
-  { "folke/trouble.nvim", enabled = false },
 
   -- add symbols-outline
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = true,
   },
 
@@ -120,24 +180,37 @@ return {
       -- add a keymap to browse plugin files
       -- stylua: ignore
       {
+        "<leader>f<S-R>",
+        false
+      },
+      {
+        "<leader>fe",
+        false
+      },
+      {
+        "<leader>f<S-E>",
+        false
+      },
+      {
         "<leader>fp",
         function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
         desc = "Find Plugin File",
       },
       {
-        "<leader>f/",
+        "<leader>fw",
         function() require("telescope.builtin").live_grep() end,
-        desc = "Find words File",
+        desc = "Find words in project",
       },
       {
-        "<leader>fw",
-        function()
-          require("telescope.builtin").live_grep {
-            additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-        }
-        end,
-        desc = "Find words in all files",
-      }
+        "<leader>f/",
+        function() require("telescope.builtin").live_grep() end,
+        desc = "Find words in project",
+      },
+      {
+        "<leader>fm",
+        "<Cmd>Telescope harpoon marks<CR>",
+        desc = "harpoon marks",
+      },
     },
     -- change some options
     opts = {
@@ -159,6 +232,18 @@ return {
     },
   },
 
+  -- add harpoon support for telescope
+  {
+    "telescope.nvim",
+    dependencies = {
+      "ThePrimeagen/harpoon",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("harpoon")
+      end,
+    },
+  },
+
   -- add telescope-fzf-native
   {
     "telescope.nvim",
@@ -171,17 +256,47 @@ return {
     },
   },
 
+  {
+    'stevearc/conform.nvim',
+    keys = {
+      {
+        "<leader>c<S-F>", false
+      },
+    }
+  },
+
 
   -- add tsserver and setup with typescript.nvim instead of lspconfig
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- disable default lazy keymaps for lsp
+      keys[#keys + 1] = { "<leader>ca", false}
+      keys[#keys + 1] = { "<leader>c<S-A>", false}
+      keys[#keys + 1] = { "<leader>cc", false}
+      keys[#keys + 1] = { "<leader>c<S-C>", false}
+      keys[#keys + 1] = { "<leader>cd", false}
+      keys[#keys + 1] = { "<leader>cf", false}
+      keys[#keys + 1] = { "<leader>c<S-F>", false}
+      keys[#keys + 1] = { "<leader>cl", false}
+      keys[#keys + 1] = { "<leader>cm", false}
+      keys[#keys + 1] = { "<leader>co", false}
+      keys[#keys + 1] = { "<leader>cr", false}
+      keys[#keys + 1] = { "<leader>c<S-R>", false}
+      keys[#keys + 1] = { "<leader>cs", false}
+
+      keys[#keys + 1] = { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename variable",}
+      keys[#keys + 1] = { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "code actions",}
+    end,
+
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
         require("lazyvim.util").lsp.on_attach(function(_, buffer)
           -- stylua: ignore
-          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+          -- vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+          -- vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
         end)
       end,
     },
@@ -283,7 +398,7 @@ return {
       lualine_style = "default",
       disable = {
         background = true,
-      }
+      },
     }
   },
 
@@ -302,6 +417,9 @@ return {
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
+    keys = {
+      { "<leader>cm", false }
+    },
     opts = {
       ensure_installed = {
         "stylua",
@@ -338,7 +456,7 @@ return {
       local cmp = require("cmp")
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        ["<A-j>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -351,7 +469,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
+        ["<A-k>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
           elseif luasnip.jumpable(-1) then
