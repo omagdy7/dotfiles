@@ -167,33 +167,33 @@ font:
 #draw_bold_text_with_bright_colors: false
 # Colors (ArcoLinux)
 colors:
-  name: Colorful Colors
-  author: ""
+  # Default colors
   primary:
-    background: "#000000"
-    foreground: "#ffffff"
-  cursor:
-    text: "#000000"
-    cursor: "#ffffff"
+    background: '#0A0E14'
+    foreground: '#B3B1AD'
+
+  # Normal colors
   normal:
-    black: "#151515"
-    red: "#ff8eaf"
-    green: "#a6e25f"
-    yellow: "#f8e578"
-    blue: "#a6e2f0"
-    magenta: "#e85b92"
-    cyan: "#5f868f"
-    white: "#d5f1f2"
+    black: '#01060E'
+    red: '#EA6C73'
+    green: '#91B362'
+    yellow: '#F9AF4F'
+    blue: '#53BDFA'
+    magenta: '#FAE994'
+    cyan: '#90E1C6'
+    white: '#C7C7C7'
+
+  # Bright colors
   bright:
-    black: "#696969"
-    red: "#ed4c7a"
-    green: "#a6e179"
-    yellow: "#ffdf6b"
-    blue: "#79d2ff"
-    magenta: "#bb5d79"
-    cyan: "#87a8af"
-    white: "#e2f1f6"
+    black: '#686868'
+    red: '#F07178'
+    green: '#C2D94C'
+    yellow: '#FFB454'
+    blue: '#59C2FF'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
 key_bindings:
   - { key: F11, action: ToggleFullscreen }
 
-theme: Colorfulcolors
+theme: Ayu-Dark

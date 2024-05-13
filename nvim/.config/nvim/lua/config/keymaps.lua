@@ -55,23 +55,23 @@ vim.cmd([[
 map("n", "<leader>i", "<Cmd>VimtexCompile<CR>", { desc = "Compile latex document", remap = true })
 
 -- harpoon keymaps
-map("n", "<leader>mm", function()
+map("n", "<leader>m", function()
   require("harpoon.ui").toggle_quick_menu()
 end, { desc = "toggle harpoon menu", remap = true })
 
-map("n", "<leader>ma", function()
+map("n", "<leader>a", function()
   require("harpoon.mark").add_file()
 end, { desc = "Add file to harpoon", remap = true })
 
-map("n", "<leader>mq", function()
+map("n", "<leader>q", function()
   require("harpoon.ui").nav_file(1)
 end, { desc = "navigate to first harpoon mark", remap = true })
 
-map("n", "<leader>mw", function()
+map("n", "<leader>w", function()
   require("harpoon.ui").nav_file(2)
 end, { desc = "navigate to second harpoon mark", remap = true })
 
-map("n", "<leader>me", function()
+map("n", "<leader>e", function()
   require("harpoon.ui").nav_file(3)
 end, { desc = "navigate to third harpoon mark", remap = true })
 

@@ -5,6 +5,7 @@ export ZSH="/home/$USER/.oh-my-zsh"
 export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin:/home/omar/Android/Sdk"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:/opt/usr/bin/"
+export PATH="$PATH:$HOME/.scripts/"
 
 
 # Starship prompt
@@ -105,6 +106,10 @@ ex ()
 ## cd + ls ##
 function cl() {
   cd "$@" && ls
+}
+
+copyfile() {
+  cat "$@" | xclip -sel clipboard
 }
 
 ## interactivley cd ##

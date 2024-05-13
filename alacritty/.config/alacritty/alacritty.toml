@@ -26,19 +26,19 @@ foreground = "#B3B1AD"
 size = 11.0
 
 [font.bold]
-family = "Monaspace Radon"
+family = "Monaspace Xenon"
 style = "Bold"
 
 [font.bold_italic]
-family = "Monaspace Radon"
+family = "Monaspace Xenon"
 style = "Bold Italic"
 
 [font.italic]
-family = "Monaspace Radon"
+family = "Monaspace Xenon"
 style = "Italic"
 
 [font.normal]
-family = "Monaspace Radon"
+family = "Monaspace Xenon"
 style = "Bold"
 
 [[keyboard.bindings]]

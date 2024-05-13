@@ -167,33 +167,54 @@ font:
 #draw_bold_text_with_bright_colors: false
 # Colors (ArcoLinux)
 colors:
-  name: Colorful Colors
-  author: ""
+  # Default colors
   primary:
-    background: "#000000"
-    foreground: "#ffffff"
+    background: '#2c2c2c'
+    foreground: '#d6d6d6'
+
+    dim_foreground: '#dbdbdb'
+    bright_foreground: '#d9d9d9'
+    dim_background: '#202020' # not sure
+    bright_background: '#3a3a3a' # not sure
+
+  # Cursor colors
   cursor:
-    text: "#000000"
-    cursor: "#ffffff"
+    text: '#2c2c2c'
+    cursor: '#d9d9d9'
+
+  # Normal colors
   normal:
-    black: "#151515"
-    red: "#ff8eaf"
-    green: "#a6e25f"
-    yellow: "#f8e578"
-    blue: "#a6e2f0"
-    magenta: "#e85b92"
-    cyan: "#5f868f"
-    white: "#d5f1f2"
+    black: '#1c1c1c'
+    red: '#bc5653'
+    green: '#909d63'
+    yellow: '#ebc17a'
+    blue: '#7eaac7'
+    magenta: '#aa6292'
+    cyan: '#86d3ce'
+    white: '#cacaca'
+
+  # Bright colors
   bright:
-    black: "#696969"
-    red: "#ed4c7a"
-    green: "#a6e179"
-    yellow: "#ffdf6b"
-    blue: "#79d2ff"
-    magenta: "#bb5d79"
-    cyan: "#87a8af"
-    white: "#e2f1f6"
+    black: '#636363'
+    red: '#bc5653'
+    green: '#909d63'
+    yellow: '#ebc17a'
+    blue: '#7eaac7'
+    magenta: '#aa6292'
+    cyan: '#86d3ce'
+    white: '#f7f7f7'
+
+  # Dim colors
+  dim:
+    black: '#232323'
+    red: '#74423f'
+    green: '#5e6547'
+    yellow: '#8b7653'
+    blue: '#556b79'
+    magenta: '#6e4962'
+    cyan: '#5c8482'
+    white: '#828282'
 key_bindings:
   - { key: F11, action: ToggleFullscreen }
 
-theme: Colorfulcolors
+theme: Afterglow
