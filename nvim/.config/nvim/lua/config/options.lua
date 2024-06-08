@@ -5,6 +5,7 @@
 vim.opt.ch = 0
 vim.opt.list = false
 vim.opt.confirm = false
+vim.o.clipboard = ""
 vim.o.guifont = "Monaspace argon:h12:bold" -- text below applies for VimScript
 
 -- Helper function for transparency formatting

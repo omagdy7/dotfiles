@@ -10,7 +10,12 @@
 -- * override the configuration of LazyVim plugins
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim"},
+  { "ellisonleao/gruvbox.nvim",
+    config = true,
+    opts = {
+      transparent_mode = true,
+    }
+  },
   -- Using Packer
   { 'navarasu/onedark.nvim' , name = 'onedark',
     opts = {
@@ -24,13 +29,6 @@ return {
     }
   },
 
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000,
-    opts = {
-      flavour = "mocha",
-      transparent_background = true,
-    }
-  },
-
   {
     "windwp/nvim-ts-autotag",
   },
@@ -38,6 +36,7 @@ return {
   -- tmux navigator
 {
   "christoomey/vim-tmux-navigator",
+  lazy = true,
   cmd = {
     "TmuxNavigateLeft",
     "TmuxNavigateDown",
@@ -115,8 +114,9 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
+      colorscheme = "gruvbox",
       -- colorscheme = "onedark",
-      colorscheme = "catppuccin-mocha",
+      -- colorscheme = "catppuccin",
       -- colorscheme = "material-deep-ocean",
       -- colorscheme = "tokyonight-night",
     },
@@ -302,6 +302,7 @@ return {
     },
     ---@class PluginLspOpts
     opts = {
+      inlay_hints = { enabled = false },
       ---@type lspconfig.options
       servers = {
         -- tsserver will be automatically installed with mason and loaded with lspconfig
@@ -456,24 +457,24 @@ return {
       local cmp = require("cmp")
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<A-j>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- this way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
+        ["<C-k>"] = cmp.mapping(function(fallback)
+          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+          -- this way you will only jump inside the snippet region
+          if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
+          elseif cmp.visible() then
+            cmp.select_next_item()
           elseif has_words_before() then
             cmp.complete()
           else
             fallback()
           end
         end, { "i", "s" }),
-        ["<A-k>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
+        ["<C-j>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
             luasnip.jump(-1)
+          elseif cmp.visible() then
+            cmp.select_prev_item()
           else
             fallback()
           end

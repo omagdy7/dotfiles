@@ -10,19 +10,19 @@ foreground = "#B3B1AD"
 size = 11
 
   [font.bold]
-  family = "Comic mono"
+  family = "Monaspace Xenon"
   style = "Bold"
 
   [font.bold_italic]
-  family = "Comic mono"
+  family = "Monaspace Xenon"
   style = "Bold Italic"
 
   [font.italic]
-  family = "Comic mono"
+  family = "Monaspace Xenon"
   style = "Italic"
 
   [font.normal]
-  family = "Comic mono"
+  family = "Monaspace Xenon"
   style = "Bold"
 
 [[keyboard.bindings]]

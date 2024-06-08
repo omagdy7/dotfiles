@@ -1,8 +1,8 @@
 export CPLUS_INCLUDE_PATH="$HOME/programming/cppDev/imgui/imgui/backends:$HOME/programming/cppDev/imgui-sfml:$HOME/programming/cppDev/imgui/imgui/:$HOME/programming/problem_solving/algo/"
 # export C_INCLUDE_PATH="/usr/lib/gcc/arm-none-eabi/13.2.0/include/:$HOME/programming/thirdparties/tiva-c/:$HOME/programming/thirdparties/tiva-c/third_party/FreeRTOS/Source/include/:$HOME/programming/thirdparties/tiva-c/boards/ek-tm4c123gxl/freertos_demo/:"
-export C_INCLUDE_PATH="/usr/lib/gcc/arm-none-eabi/13.2.0/include/:$HOME/programming/thirdparties/tiva-c/"
+# export C_INCLUDE_PATH="/usr/lib/gcc/arm-none-eabi/13.2.0/include/:$HOME/programming/thirdparties/tiva-c/"
 export ZSH="/home/$USER/.oh-my-zsh"
-export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin:/home/omar/Android/Sdk"
+export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:/opt/usr/bin/"
 export PATH="$PATH:$HOME/.scripts/"
@@ -103,11 +103,6 @@ ex ()
 }
 
 
-## cd + ls ##
-function cl() {
-  cd "$@" && ls
-}
-
 copyfile() {
   cat "$@" | xclip -sel clipboard
 }
@@ -133,4 +128,4 @@ bindkey '^k' up-line-or-beginning-search
 bindkey '^j' down-line-or-beginning-search
 bindkey '^o' clear-screen
 
-colorscript random
+# colorscript random
