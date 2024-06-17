@@ -457,7 +457,7 @@ return {
       local cmp = require("cmp")
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<C-k>"] = cmp.mapping(function(fallback)
+        ["<C-;>"] = cmp.mapping(function(fallback)
           -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
           -- this way you will only jump inside the snippet region
           if luasnip.expand_or_jumpable() then
@@ -468,9 +468,9 @@ return {
             cmp.complete()
           else
             fallback()
-          end
+            end
         end, { "i", "s" }),
-        ["<C-j>"] = cmp.mapping(function(fallback)
+        ["<C-h>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
             luasnip.jump(-1)
           elseif cmp.visible() then

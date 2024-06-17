@@ -82,6 +82,14 @@ map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Line diagno
 
 -- oil.nvim keymaps
 map("n", "<leader>o", "<cmd>Oil<CR>", { desc = "Open Oil.nvim", remap = true })
+map("n", "<leader>e", function()
+  if vim.o.filetype == "oil" then
+    vim.cmd("bd")
+  else
+    vim.cmd("vsplit | vertical resize -60 | wincmd r")
+    require("oil").open()
+  end
+end, { desc = "Open Oil.nvim ins split mode", remap = true })
 map("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil.nvim", remap = true })
 
 -- competitest keymaps

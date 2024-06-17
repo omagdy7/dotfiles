@@ -9,21 +9,21 @@ foreground = "#B3B1AD"
 [font]
 size = 11
 
-  [font.bold]
-  family = "Comic mono"
-  style = "Bold"
+[font.bold]
+family = "Comic mono"
+style = "Bold"
 
-  [font.bold_italic]
-  family = "Comic mono"
-  style = "Bold Italic"
+[font.bold_italic]
+family = "Comic mono"
+style = "Bold Italic"
 
-  [font.italic]
-  family = "Comic mono"
-  style = "Italic"
+[font.italic]
+family = "Comic mono"
+style = "Italic"
 
-  [font.normal]
-  family = "Comic mono"
-  style = "Bold"
+[font.normal]
+family = "Comic mono"
+style = "Bold"
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
