@@ -1,4 +1,4 @@
-import = [
+general.import = [
   "/usr/lib/node_modules/alacritty-themes/themes/Ayu-Dark.toml"
 ]
 
@@ -10,19 +10,19 @@ foreground = "#B3B1AD"
 size = 11
 
 [font.bold]
-family = "Comic mono"
+family = "Monaspace Xenon"
 style = "Bold"
 
 [font.bold_italic]
-family = "Comic mono"
+family = "Monaspace Xenon"
 style = "Bold Italic"
 
 [font.italic]
-family = "Comic mono"
+family = "Monaspace Xenon"
 style = "Italic"
 
 [font.normal]
-family = "Comic mono"
+family = "Monaspace Xenon"
 style = "Bold"
 
 [[keyboard.bindings]]
@@ -33,4 +33,4 @@ key = "F11"
 history = 50_000
 
 [window]
-opacity = 0.9
+opacity = 0.90
