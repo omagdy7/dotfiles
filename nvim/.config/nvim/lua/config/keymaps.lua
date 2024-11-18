@@ -16,7 +16,25 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("n", "<leader>t", ":lua require('dbgstmt').select()<CR>", { desc = "dbgstmt" })
+-- Define a function to reload the plugin
+function ReloadPlugin(plugin_name)
+  -- Clear the module from Lua's cache
+  package.loaded[plugin_name] = nil
+  -- Require the module again
+  return require(plugin_name)
+end
+
+-- Keymap to reload the plugin and call its setup function
+vim.keymap.set("n", "<leader>rp", function()
+  local plugin_name = "dbgln" -- Replace with your plugin's module name
+  local plugin = ReloadPlugin(plugin_name)
+  if plugin.setup then
+    plugin.setup() -- Call setup if it exists
+    print(plugin_name .. " reloaded and setup!")
+  else
+    print("Failed to call setup for " .. plugin_name)
+  end
+end, { desc = "Reload and setup the plugin" })
 
 -- Better navigation
 map("n", "<C-d>", "<C-d>zz", { desc = "better half page down scroll", remap = true })
@@ -24,6 +42,10 @@ map("n", "<C-u>", "<C-u>zz", { desc = "better half page up scroll", remap = true
 map("n", "n", "nzz", { desc = "better jump for searched word", remap = true })
 map("n", "<C-o>", "<C-o>zz", { desc = "better next jump", remap = true })
 map("n", "<C-i>", "<C-i>zz", { desc = "better prev jump", remap = true })
+
+-- plugin development
+map("n", "<leader>t", ":lua require('dbgln').setup()<CR>", { desc = "dbgln" })
+map("n", "<leader>d", "<cmd>DbgLn<CR>", { desc = "Print Debgging Line" })
 
 -- fix annoying typos when saving or quitting
 vim.cmd([[

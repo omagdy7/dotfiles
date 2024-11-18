@@ -129,3 +129,6 @@ bindkey '^j' down-line-or-beginning-search
 bindkey '^o' clear-screen
 
 # colorscript random
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/omar/.cache/lm-studio/bin"

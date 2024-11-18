@@ -901,7 +901,7 @@ end)
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 awful.spawn.with_shell("picom --config  $HOME/.config/awesome/picom.conf")
-awful.spawn.with_shell("~/.scripts/force_full_composition_nvidia.sh")
+awful.spawn.with_shell("$HOME/.config/awesome/autostart.sh")
+awful.spawn.with_shell("$HOME/.scripts/force_full_composition_nvidia.sh")
 awful.spawn.with_shell("nitrogen --restore")

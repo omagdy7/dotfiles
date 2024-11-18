@@ -30,7 +30,14 @@ return {
   },
 
   {
+    lazy = false,
     "windwp/nvim-ts-autotag",
+    per_filetype = {
+      ["astro"] = {
+        enable_close = true,
+        enable_rename = true
+      }
+    }
   },
 
   -- tmux navigator
@@ -56,6 +63,7 @@ return {
 
   {
     "NeogitOrg/neogit",
+    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",         -- required
       "sindrets/diffview.nvim",        -- optional - Diff integration
