@@ -44,7 +44,6 @@ map("n", "<C-o>", "<C-o>zz", { desc = "better next jump", remap = true })
 map("n", "<C-i>", "<C-i>zz", { desc = "better prev jump", remap = true })
 
 -- plugin development
-map("n", "<leader>t", ":lua require('dbgln').setup()<CR>", { desc = "dbgln" })
 map("n", "<leader>d", "<cmd>DbgLn<CR>", { desc = "Print Debgging Line" })
 
 -- fix annoying typos when saving or quitting
@@ -93,25 +92,20 @@ map("n", "<leader>w", function()
   require("harpoon.ui").nav_file(2)
 end, { desc = "navigate to second harpoon mark", remap = true })
 
-map("n", "<leader>e", function()
-  require("harpoon.ui").nav_file(3)
-end, { desc = "navigate to third harpoon mark", remap = true })
-
 map("n", "<leader>h", "<Cmd>noh<CR>", { desc = "remove highlights", remap = true })
 map("n", "<leader>j", "/<++><CR>ciw<CR><C-o>O", { desc = "jump to <++>", remap = true })
 map("n", "<leader><space>", "<Cmd>bprevious<CR>", { desc = "Jump to recently used buffer" })
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Line diagnostics", remap = true })
 
 -- oil.nvim keymaps
-map("n", "<leader>o", "<cmd>Oil<CR>", { desc = "Open Oil.nvim", remap = true })
-map("n", "<leader>e", function()
-  if vim.o.filetype == "oil" then
-    vim.cmd("bd")
-  else
-    vim.cmd("vsplit | vertical resize -60 | wincmd r")
-    require("oil").open()
-  end
-end, { desc = "Open Oil.nvim ins split mode", remap = true })
+-- map("n", "<leader>e", function()
+--   if vim.o.filetype == "oil" then
+--     vim.cmd("bd")
+--   else
+--     vim.cmd("vsplit | vertical resize -60 | wincmd r")
+--     require("oil").open()
+--   end
+-- end, { desc = "Open Oil.nvim ins split mode", remap = true })
 map("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil.nvim", remap = true })
 
 -- competitest keymaps
