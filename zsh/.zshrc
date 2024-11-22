@@ -19,6 +19,7 @@ CASE_SENSITIVE="true"
 DISABLE_MAGIC_FUNCTIONS=true
 
 # Use bat as the default manpager
+export MANPAGER='nvim +Man!'
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # export MANPAGER="bat -l man"
 # export MANPAGER="nvim -c 'set ft=man' -"
