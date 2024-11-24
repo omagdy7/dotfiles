@@ -10,7 +10,8 @@
   # font_family   	 JetBrains Mono Nerd Font
   # font_family   	 JetBrains Mono Extra Bold Nerd Font
 # font_family   	 DejaVu Mono
- font_family   	 comic mono bold
+ # font_family   	 comic mono bold
+ font_family   	 Monaspace Radon
 # font_family   	 source code pro
 # font_family   	 Iosevka Term
 # font_family   	 Fira Sans Bold
@@ -31,7 +32,7 @@ bold_italic_font auto
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 13.0
+font_size 11.0
 
 #: Font size (in pts)
 
@@ -943,8 +944,8 @@ inactive_tab_font_style normal
 
 #: The foreground and background colors
 
-# background_opacity 1.0
-background_opacity 0.50
+background_opacity 0.9
+# background_opacity 0.50
 # background_opacity 1.00
 
 #: The opacity of the background. A number between 0 and 1, where 1 is
@@ -2041,7 +2042,7 @@ map opt+cmd+,    debug_config
 
 
 # BEGIN_KITTY_THEME
-# Oceanic Material
+# Ayu Mirage
 include current-theme.conf
 # END_KITTY_THEME
 #

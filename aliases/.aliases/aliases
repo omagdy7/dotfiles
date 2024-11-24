@@ -1,209 +1,96 @@
-alias service="systemctl"
-alias vrs=$HOME/.scripts/rust_template.sh
-alias zigd=$HOME/programming/zig-dev/zig-linux-x86_64-0.12.0-dev.1802+56deb5b05/zig
-alias gc="git commit"
-alias zell="zellij --layout compact"
-alias pwd="pwd && wl-copy $(pwd | sed 's/.*/\\\"&\\\"/' | tr -d '\n')"
-alias pwdx="pwd && pwd | sed 's/.*/\\\"&\\\"/' | tr -d '\n' | xclip -sel clipboard"
-alias nv="neovide"
-alias gpl="~/.scripts/get_project_lines.sh"
-alias vcc="~/.scripts/cpp_template.sh"
-alias kpr="ps aux | fzf | awk '{print $2}' | xargs killall > /dev/null 2> /dev/null"
-alias clean="~/.scripts/cleanup.sh"
-alias lg="lazygit"
-alias vcpp="~/.scripts/cpp_ps.sh"
-alias u="cd .."
-alias gs="git status"
-alias cr="~/.scripts/compiler_cpp.sh"
-alias cfinit="~/.scripts/pscontests.sh"
-alias manimss="manim -psqh"
-alias manimrh="manim -pqh"
-alias manimrm="manim -pqm"
-alias rw="$HOME/.scripts/wally.sh"
-alias abl="arcolinux-betterlockscreen"
-alias adt="arcolinux-desktop-trasher"
-alias agm="arcolinux-get-mirrors"
-alias amr="arcolinux-mirrorlist-rank-info"
-alias aom="arcolinux-osbeck-as-mirror"
-alias apt-get='man pacman'
-alias apt='man pacman'
-alias ars="arcolinux-reflector-simple"
-alias atm="arcolinux-tellme"
-alias att="arcolinux-tweak-tool"
-alias avs="arcolinux-vbox-share"
-alias awa="arcolinux-welcome-app"
-alias big="expac -H M '%m\t%n' | sort -h | nl"
-alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
-alias book='/home/omar/.scripts/books.sh'
-alias btrfsfs="sudo btrfs filesystem df /"
-alias btrfsli="sudo btrfs su li / -t"
-alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
-alias ca='nvim ~/.aliases/aliases' # for quickly acssesing aliases
-alias cb="$EDITOR ~/.bashrc"
-alias ......='cd ../../../../..'
-alias .....='cd ../../../..'
-alias ....='cd ../../..'
-alias ...='cd ../..'
-alias ..='cd ..'
-alias cd..='cd ..'
-alias cf='$EDITOR ~/.config/fish/config.fish'
-alias ck='$EDITOR ~/.config/kitty/kitty.conf'
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-alias cw='$EDITOR ~/.config/awesome/rc.lua'
-alias cz='$EDITOR ~/.zshrc'
-alias df='df -h'
-alias dir='dir --color=auto'
-alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-alias fix-gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-alias fix-keyserver="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/gpg.conf ~/.gnupg/ ; echo 'done'"
-alias fix-keys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-key="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fixkey="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-pacman-conf="/usr/local/bin/arcolinux-fix-pacman-conf"
-alias fix-pacman-keyserver="/usr/local/bin/arcolinux-fix-pacman-gpg-conf"
-alias fixpacman="sudo rm /var/lib/pacman/db.lck"
-alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
-alias fix-sddm-config="/usr/local/bin/arcolinux-fix-sddm-config"
-alias free="free -mt"
-alias gitpkg='pacman -Q | grep -i "\-git" | wc -l'			# List amount of -git packages
-alias give-me-azerty-be="sudo localectl set-x11-keymap be"
-alias give-me-qwerty-us="sudo localectl set-x11-keymap us"
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-alias grep='grep --color=auto'
-alias grubup="sudo update-grub"
-alias hw="hwinfo --short"
-alias hw='hwinfo --short'                                   # Hardware Info
-alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
-alias jctl="journalctl -p 3 -xb"
-alias kc='killall conky'
-alias key-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias keys-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias kpi='killall picom'
-alias kp='killall polybar'
-alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
-alias la='ls -a'
-alias l.="eza -a | egrep '^\.'"                                     # show only dotfiles
-alias ll='eza -l --color=always --group-directories-first --icons'  # long format
-alias ll='ls -alFh'
-alias ls='eza -l --color=always --group-directories-first --icons' # preferred listing
-alias lsa='eza -al --color=always --group-directories-first --icons' # preferred listing
-alias lta="leftwm-theme apply"
-alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
-alias lti="leftwm-theme install"
-alias ltu="leftwm-theme uninstall"
-alias ltupd="leftwm-theme update"
-alias ltupg="leftwm-theme upgrade"
-alias merge="xrdb -merge ~/.Xresources"
-alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
-alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 30 --number 10 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias narcomirrorlist='sudo nano /etc/pacman.d/arcolinux-mirrorlist'
-alias nb="$EDITOR ~/.bashrc"
-alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
-alias nfstab="sudo $EDITOR /etc/fstab"
-alias ngnupgconf="sudo nano /etc/pacman.d/gnupg/gpg.conf"
-alias ngrub="sudo $EDITOR /etc/default/grub"
-alias nhosts="sudo $EDITOR /etc/hosts"
-alias nlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
-alias nlxdm="sudo $EDITOR /etc/lxdm/lxdm.conf"
-alias nmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
-alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
-alias nnsswitch="sudo $EDITOR /etc/nsswitch.conf"
-alias npacman="sudo $EDITOR /etc/pacman.conf"
-alias nsamba="sudo $EDITOR /etc/samba/smb.conf"
-alias nsddmk="sudo $EDITOR /etc/sddm.conf.d/kde_settings.conf"
-alias nsddm="sudo $EDITOR /etc/sddm.conf"
-alias nz="$EDITOR ~/.zshrc"
-alias pacman='sudo pacman --color auto'
-alias paruskip='paru -S --mflags --skipinteg'
-alias pause='playerctl -p spotify pause'
-alias pdw='pwd'
-alias personal='cp -Rf /personal/* ~'
-alias pksyua="paru -Syu --noconfirm"
-alias play='playerctl -p spotify play'
-alias please='sudo'
-alias poweroff='systemctl poweroff'
-alias probe="sudo -E hw-probe -all -upload"
-alias psa="ps auxf"
-alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-alias psmem='ps auxf | sort -nr -k 4'
-alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
-alias rams='rate-mirrors --allow-root --protocol https arch  | sudo tee /etc/pacman.d/mirrorlist'
-alias reboot='systemctl reboot'
-alias rg="rg --sort path"
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
-alias rmgitcache="rm -r ~/.cache/git"
-alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
-alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
-alias rmpkg="sudo pacman -Rdd"
-alias setbright1='xrandr --output HDMI-0 --brightness 1.00' #Sets the brightness to 1.00
-alias setbright30='xrandr --output HDMI-0 --brightness 0.30' #Sets the brightness to 0.30
-alias setbright40='xrandr --output HDMI-0 --brightness 0.40' #Sets the brightness to 0.40
-alias setbright50='xrandr --output HDMI-0 --brightness 0.50' #Sets the brightness to 0.50
-alias setbright75='xrandr --output HDMI-0 --brightness 0.75' #Sets the brightness to 0.75
-alias skel='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
-alias snapchome="sudo snapper -c home create-config /home"
-alias snapch="sudo snapper -c home create"
-alias snapcroot="sudo snapper -c root create-config /"
-alias snapcr="sudo snapper -c root create"
-alias snapli="sudo snapper list"
-alias sr="sudo reboot"
-alias ssn="sudo shutdown now"
-alias start-vmware="sudo systemctl enable --now vmtoolsd.service"
-alias sv="sudo systemctl enable --now vmtoolsd.service"
-alias sysfailed="systemctl list-units --failed"
-alias tarnow='tar -acf '
-alias tb='nc termbin.com 9999'
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
-alias togdm="sudo pacman -S gdm --noconfirm --needed ; sudo systemctl enable gdm.service -f ; echo 'Gdm is active - reboot now'"
-alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'"
-alias tolxdm="sudo pacman -S lxdm --noconfirm --needed ; sudo systemctl enable lxdm.service -f ; echo 'Lxdm is active - reboot now'"
-alias toly="sudo pacman -S ly --noconfirm --needed ; sudo systemctl enable ly.service -f ; echo 'Ly is active - reboot now'"
-alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
-alias trizenskip='trizen -S --skipinteg'
-alias udpate='sudo pacman -Syyu'
-alias unhblock="hblock -S none -D none"
-alias unlock="sudo rm /var/lib/pacman/db.lck"
-alias untar='tar -zxvf '
-alias upall="paru -Syu --noconfirm"
-alias upal='paru -Syu --noconfirm'
-alias upate='sudo pacman -Syyu'
-alias update-fc='sudo fc-cache -fv'
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias update='sudo pacman -Syyu'
-alias updqte='sudo pacman -Syyu'
-alias updte='sudo pacman -Syyu'
-alias upd='/usr/bin/update'
-alias upqll='paru -Syu --noconfirm'
-alias userlist="cut -d: -f1 /etc/passwd"
-alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
-alias vdir='vdir --color=auto'
-alias wget="wget -c"
-alias wget='wget -c '
-alias whichvga="/usr/local/bin/arcolinux-which-vga"
-alias xd="ls /usr/share/xsessions"
-alias yayskip='yay -S --mflags --skipinteg'
-alias yta-aac="yt-dlp --extract-audio --audio-format aac "
-alias yta-best="yt-dlp --extract-audio --audio-format best "
-alias yta-flac="yt-dlp --extract-audio --audio-format flac "
-alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "
-alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 "
-alias vi="vim -u ~/.vim/vimrc"
-alias v='nvim'
+# System Management and Utilities
+alias service="systemctl"                        # Shortcut for systemctl commands
+alias poweroff='systemctl poweroff'             # Shutdown system
+alias reboot='systemctl reboot'                 # Reboot system
+alias fixpacman="sudo rm /var/lib/pacman/db.lck" # Fix locked pacman database issue
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'# Remove unused packages and dependencies
+alias grubup="sudo update-grub"                 # Update GRUB configuration
+alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local" # Fix user permissions
+alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/" # Downgrade packages
+
+# Navigation
+alias u="cd .."               # Move up one directory
+alias ...='cd ../..'          # Move up two directories
+alias ....='cd ../../..'      # Move up three directories
+alias .....='cd ../../../..'  # Move up four directories
+alias ......='cd ../../../../..' # Move up five directories
+alias cd..='cd ..'            # Alias for going up one directory
+
+# Directory Listings
+alias ls='eza -l --color=always --group-directories-first --icons' # Default listing
+alias la='eza -a --color=always --group-directories-first --icons' # Show all files
+alias l.="eza -a | egrep '^\.'"                                    # Show dotfiles only
+alias ll='eza -l --color=always --group-directories-first --icons' # Long format
+alias lsa='eza -al --color=always --group-directories-first --icons' # All with long format
+alias lt='eza -aT --color=always --group-directories-first --icons' # Tree view
+
+# File and System Information
+alias df='df -h'              # Disk usage in human-readable format
+alias free="free -mt"         # Memory usage in MB/GB
+alias hw="hwinfo --short"     # Hardware information
+alias pdw='pwd'               # Print current directory
+alias pwd="pwd && wl-copy $(pwd | sed 's/.*/\\\"&\\\"/' | tr -d '\n')"  # Copy current dir to Wayland clipboard
+alias pwdx="pwd && pwd | sed 's/.*/\\\"&\\\"/' | tr -d '\n' | xclip -sel clipboard" # Copy current dir to X clipboard
+alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'" # Display ISO version
+
+# Clipboard Utilities
+alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify" # Fix GPG signature errors
+alias fix-gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys" # Retrieve GPG keys
+alias fix-keyserver="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/gpg.conf ~/.gnupg/ ; echo 'done'" # Fix GPG server issues
+
+# Git and Version Control
+alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # Count installed git packages
+alias rg="rg --sort path"  # Ripgrep with sorted results
+alias lg="lazygit"         # Launch lazygit
+
+# Text Editors and Configuration
+alias ca='nvim ~/.aliases/aliases'        # Edit aliases
+alias cz='$EDITOR ~/.zshrc'              # Edit ZSH configuration
+alias cf='$EDITOR ~/.config/fish/config.fish' # Edit Fish shell configuration
+alias ck='$EDITOR ~/.config/kitty/kitty.conf' # Edit Kitty terminal configuration
+alias cw='$EDITOR ~/.config/awesome/rc.lua'  # Edit Awesome WM configuration
+alias cb="$EDITOR ~/.bashrc"            # Edit Bash configuration
+alias vim="vim -u ~/.vim/vimrc"         # Vim with custom vimrc
+alias v='nvim'                          # Open Neovim
+alias nv="neovide"                      # Launch Neovide
+
+# Scripting and Development
+alias vrs=$HOME/.scripts/rust_template.sh      # Rust project template
+alias vcc="~/.scripts/cpp_template.sh"         # C++ project template
+alias cr="~/.scripts/compiler_cpp.sh"          # C++ compiler script
+alias cfinit="~/.scripts/pscontests.sh"        # Programming contests script
+alias vcpp="~/.scripts/cpp_ps.sh"              # C++ problem-solving script
+alias rw="$HOME/.scripts/wally.sh"             # Custom script alias
+alias gpl="~/.scripts/get_project_lines.sh"    # Count project lines
+
+# Kill Processes
+alias kpr="ps aux | fzf | awk '{print $2}' | xargs killall > /dev/null 2> /dev/null" # Kill process interactively
+alias psa="ps auxf"                  # Display process tree
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e" # Grep for a process
+alias psmem='ps auxf | sort -nr -k 4' # Sort processes by memory usage
+alias psmem10='ps auxf | sort -nr -k 4 | head -10' # Top 10 memory-consuming processes
+
+# File Management
+alias untar='tar -zxvf '              # Extract tar.gz files
+alias wget="wget -c"                 # Resume incomplete downloads
+alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)' # Backup skel directory
+alias big="expac -H M '%m\t%n' | sort -h | nl" # List installed packages by size
+
+# Media and Downloading
+alias yta-aac="yt-dlp --extract-audio --audio-format aac " # Download audio in AAC format
+alias yta-best="yt-dlp --extract-audio --audio-format best " # Download audio in best format
+alias yta-flac="yt-dlp --extract-audio --audio-format flac " # Download audio in FLAC format
+alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 " # Download audio in MP3 format
+alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 " # Download best video
+
+# Shell Switching
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'" # Switch to Bash
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'" # Switch to Zsh
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'" # Switch to Fish
+
+# Display Manager Switching
+alias togdm="sudo pacman -S gdm --noconfirm --needed ; sudo systemctl enable gdm.service -f ; echo 'Gdm is active - reboot now'" # Switch to GDM
+alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'" # Switch to LightDM
+alias tolxdm="sudo pacman -S lxdm --noconfirm --needed ; sudo systemctl enable lxdm.service -f ; echo 'Lxdm is active - reboot now'" # Switch to LXDM
+alias toly="sudo pacman -S ly --noconfirm --needed ; sudo systemctl enable ly.service -f ; echo 'Ly is active - reboot now'" # Switch to Ly
+alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'" # Switch to SDDM

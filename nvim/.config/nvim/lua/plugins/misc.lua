@@ -66,4 +66,17 @@ return {
     cmd = "SymbolsOutline",
     config = true,
   },
+
+  -- Lua
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      window = {
+        width = 0.9,
+      },
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
 }

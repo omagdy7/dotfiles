@@ -1,12 +1,7 @@
 [general]
 import = [
-  "/usr/lib/node_modules/alacritty-themes/themes/Gruvbox-Dark.toml"
+  "/usr/lib/node_modules/alacritty-themes/themes/Ayu-Mirage.toml"
 ]
-
-# [general]
-# import = [
-#   "/usr/lib/node_modules/alacritty-themes/themes/Ayu-Mirage.toml"
-# ]
 
 [colors.primary]
 background = "#000000"
@@ -39,4 +34,4 @@ key = "F11"
 history = 50_000
 
 [window]
-opacity = 1.0
+opacity = 0.9
