@@ -61,7 +61,7 @@ window#waybar {
 #workspaces button {
   padding: 2px 0px;
   border-bottom: 2px;
-  color: #eceff4;
+  color: #d4be98;
   border-color: #d8dee9;
   border-style: solid;
   margin-top: 2px;
@@ -103,7 +103,7 @@ window#waybar {
 }
 
 #clock {
-  color: #a3be8c;
+  color: #e78a4e;
 }
 
 #backlight {
@@ -136,11 +136,11 @@ window#waybar {
 }
 
 #cpu {
-  color: #a3be8c;
+  color: #a9b665;
 }
 
 #memory {
-  color: #d3869b;
+  color: #ea6963;
 }
 
 #network.disabled {
@@ -156,7 +156,7 @@ window#waybar {
 }
 
 #pulseaudio {
-  color: #b48ead;
+  color: #d3869b;
 }
 
 #pulseaudio.muted {

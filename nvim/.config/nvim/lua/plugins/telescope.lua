@@ -1,12 +1,12 @@
 return {
   "nvim-telescope/telescope.nvim",
   keys = {
-      -- add a keymap to browse plugin files
-      -- stylua: ignore
-      {
-        "<leader>f<S-R>",
-        false
-      },
+    -- add a keymap to browse plugin files
+    -- stylua: ignore
+    {
+      "<leader>f<S-R>",
+      false
+    },
     {
       "<leader>fe",
       false,
@@ -16,16 +16,33 @@ return {
       false,
     },
     {
-      "<leader>fp",
+      "<leader>p",
       function()
-        require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
+        require("telescope.builtin").lsp_document_symbols()
       end,
-      desc = "Find Plugin File",
+      desc = "Find Document Sympols",
+    },
+    {
+      "<leader>fd",
+      "<Cmd>Telescope find_files<CR>",
+      desc = "Find Buffer",
+    },
+    {
+      "<leader>ff",
+      "<Cmd>Telescope git_files<CR>",
+      desc = "Find Buffer",
     },
     {
       "<leader>fb",
       "<Cmd>Telescope buffers<CR>",
       desc = "Find Buffer",
+    },
+    {
+      "<leader>fk",
+      function()
+        require("telescope.builtin").keymaps()
+      end,
+      desc = "Find Keymaps",
     },
     {
       "<leader>fw",
@@ -37,12 +54,26 @@ return {
     {
       "<leader>f/",
       function()
-        require("telescope.builtin").live_grep()
+        require("telescope.builtin").current_buffer_fuzzy_find()
       end,
-      desc = "Find words in project",
+      desc = "Grep current File",
     },
     {
       "<leader>fm",
+      function()
+        require("telescope.builtin").marks()
+      end,
+      desc = "Find Vim Marks",
+    },
+    {
+      "<leader>ft",
+      function()
+        require("telescope.builtin").help_tags()
+      end,
+      desc = "Find help tags",
+    },
+    {
+      "<leader>fh",
       "<Cmd>Telescope harpoon marks<CR>",
       desc = "harpoon marks",
     },

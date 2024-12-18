@@ -49,11 +49,19 @@ eval "$(zoxide init zsh)"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
+
+# I have no idea what this does but it's required by zsh-vi-mode
+zinit ice depth=1
+
 # Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+
+# Set this before loading the plugin
+ZVM_INIT_MODE=sourcing zinit light jeffreytse/zsh-vi-mode
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
@@ -84,7 +92,6 @@ if [ -d "$HOME/.aliases" ] ;
 fi
 
 # Keybindings
-bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^k' up-line-or-beginning-search
@@ -127,7 +134,10 @@ export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:/opt/usr/bin/"
 export PATH="$PATH:$HOME/.scripts/"
-export PATH="$PATH:/home/omar/.cache/lm-studio/bin"
+export PATH="$PATH:$HOME/.cache/lm-studio/bin"
+export PATH="$PATH:$HOME/.cargo/bin/"
+# export PATH="$PATH:/opt/android-sdk/tools/bin"
+export ANDROID_HOME="/opt/android-sdk"
 
 # Useful functions
 
@@ -166,3 +176,11 @@ fcd() {
       cd "$dir"
   fi
 }
+
+# pnpm
+export PNPM_HOME="/home/omar/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

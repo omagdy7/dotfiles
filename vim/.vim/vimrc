@@ -51,4 +51,3 @@ endif
 if &shell =~# 'fish$'
   set shell=/bin/bash
 endif
-

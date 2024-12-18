@@ -26,13 +26,15 @@ return {
     init = function()
       -- VimTeX configuration goes here
       vim.g.vimtex_view_method = "zathura"
+      -- Set LuaLaTeX as the default compiler
+      vim.g.vimtex_compiler_method = "lualatex"
     end,
   },
 
   -- tmux navigator
   {
     "christoomey/vim-tmux-navigator",
-    lazy = true,
+    lazy = false,
     cmd = {
       "TmuxNavigateLeft",
       "TmuxNavigateDown",
@@ -44,7 +46,7 @@ return {
       { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
       { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
       { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-;>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
@@ -67,16 +69,13 @@ return {
     config = true,
   },
 
-  -- Lua
   {
-    "folke/zen-mode.nvim",
-    opts = {
-      window = {
-        width = 0.9,
-      },
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+    lazy = false,
+    "xiyaowong/transparent.nvim",
+    extra_groups = {
+      "TroubleNormal",
+      "TroubleNormalNC",
+      "NvimTreeNormal", -- NvimTree
     },
   },
 }

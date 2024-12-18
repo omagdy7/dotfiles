@@ -3,33 +3,28 @@ import = [
   "/usr/lib/node_modules/alacritty-themes/themes/Gruvbox-Dark.toml"
 ]
 
-# [general]
-# import = [
-#   "/usr/lib/node_modules/alacritty-themes/themes/Ayu-Mirage.toml"
-# ]
-
 [colors.primary]
-background = "#000000"
-foreground = "#B3B1AD"
+background = "#0d0e0f"
+foreground = "#d4be98"
 
 [font]
 size = 11
 
-  [font.bold]
-  family = "Monaspace Radon"
-  style = "Bold"
+[font.bold]
+family = "MonaspiceRn Nerd Font Mono"
+style = "Bold"
 
-  [font.bold_italic]
-  family = "Monaspace Radon"
-  style = "Bold Italic"
+[font.bold_italic]
+family = "MonaspiceRn Nerd Font Mono"
+style = "Bold Italic"
 
-  [font.italic]
-  family = "Monaspace Radon"
-  style = "Italic"
+[font.italic]
+family = "MonaspiceRn Nerd Font Mono"
+style = "Italic"
 
-  [font.normal]
-  family = "Monaspace Radon"
-  style = "Bold"
+[font.normal]
+family = "MonaspiceRn Nerd Font Mono"
+style = "Bold"
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
@@ -39,4 +34,9 @@ key = "F11"
 history = 50_000
 
 [window]
-opacity = 1.0
+opacity = 0.40
+
+[[keyboard.bindings]]
+key = ";"
+mods = "Control"
+chars = "$HOME/.scripts/tmux-sessionizer.sh\r"

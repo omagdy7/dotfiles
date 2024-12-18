@@ -49,7 +49,7 @@ return {
           "progress",
         },
         lualine_y = {},
-        lualine_z = {},
+        lualine_z = { "location" },
       },
       inactive_sections = {
         lualine_a = {},
