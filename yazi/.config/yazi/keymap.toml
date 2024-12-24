@@ -1,0 +1,9 @@
+[[manager.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "cd /mnt/Storage/omar/College/"
+desc = "Cd to College folder"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd ~/programming/"
+desc = "Cd to ~/programming"
