@@ -90,6 +90,9 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'" # Switch to B
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'" # Switch to Zsh
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'" # Switch to Fish
 
+# Custom scripts
+alias mem="~/.scripts/mem.sh"
+
 # Display Manager Switching
 alias togdm="sudo pacman -S gdm --noconfirm --needed ; sudo systemctl enable gdm.service -f ; echo 'Gdm is active - reboot now'" # Switch to GDM
 alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'" # Switch to LightDM

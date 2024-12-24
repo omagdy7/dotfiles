@@ -136,8 +136,9 @@ export PATH="$PATH:/opt/usr/bin/"
 export PATH="$PATH:$HOME/.scripts/"
 export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 export PATH="$PATH:$HOME/.cargo/bin/"
-# export PATH="$PATH:/opt/android-sdk/tools/bin"
-export ANDROID_HOME="/opt/android-sdk"
+export ANDROID_HOME="$HOME/Android/sdk"
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Useful functions
 
@@ -165,6 +166,16 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+# Makes yazi change the cwd automatically when exiting
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 
