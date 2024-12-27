@@ -33,4 +33,4 @@ choice=$(echo "$program_names" | $launcher)
 file=$(echo "$configs" | grep -w "$choice" | cut -d':' -f2)
 
 cwd=$(dirname $file)
-kitty -e nvim -c "cd $cwd" $file
+ghostty -e nvim -c "cd $cwd" $file

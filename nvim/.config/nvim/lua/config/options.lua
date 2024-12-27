@@ -8,6 +8,8 @@ vim.opt.confirm = false
 vim.o.clipboard = ""
 vim.o.guifont = "Monaspace Radon:h12:bold" -- text below applies for VimScript
 
+vim.o.spell = false
+
 -- Best search settings :)
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
