@@ -7,3 +7,8 @@ desc = "Cd to College folder"
 on   = [ "g", "p" ]
 run  = "cd ~/programming/"
 desc = "Cd to ~/programming"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "b" ]
+run  = "cd /mnt/Storage/omar/Books/"
+desc = "Cd to Books"

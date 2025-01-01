@@ -8,7 +8,7 @@ font-style = bold
 gtk-titlebar = false
 background-opacity = 0.6
 confirm-close-surface = false
-adjust-cell-height = 35%
+adjust-cell-height = 10%
 
 
 unfocused-split-opacity = 1

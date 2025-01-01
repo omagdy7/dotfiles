@@ -10,7 +10,10 @@ configs=("aliases:$HOME/dotfiles/aliases/.aliases/aliases"
   "starship:$HOME/dotfiles/starship/.config/starship.toml"
   "tmux:$HOME/dotfiles/tmux/.tmux.conf"
   "zathura:$HOME/dotfiles/zathura/.config/zathura/zathurarc"
-  "zsh:$HOME/dotfiles/zsh/.zshrc")
+  "zsh:$HOME/dotfiles/zsh/.zshrc"
+  "yazi:$HOME/dotfiles/yazi/.config/yazi/keymap.toml"
+  "ghostty:$HOME/dotfiles/ghostty/.config/ghostty/config"
+)
 
 configs=$(printf '%s\n' "${configs[@]}")
 
@@ -33,4 +36,4 @@ choice=$(echo "$program_names" | $launcher)
 file=$(echo "$configs" | grep -w "$choice" | cut -d':' -f2)
 
 cwd=$(dirname $file)
-ghostty -e nvim -c "cd $cwd" $file
+kitty -e nvim -c "cd $cwd" $file

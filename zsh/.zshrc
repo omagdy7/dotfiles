@@ -195,3 +195,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+. "$HOME/.atuin/bin/env"
+
+# Bind ctrl-r but not up arrow
+eval "$(atuin init zsh --disable-up-arrow)"

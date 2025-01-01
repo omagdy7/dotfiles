@@ -112,3 +112,7 @@ map("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil.nvim", remap = true })
 map("n", "<F2>", "<cmd> CompetiTest receive problem <CR>", { desc = "Receive test", remap = true })
 map("n", "<F4>", "<cmd> CompetiTest run <CR>", { desc = "Run test", remap = true })
 map("n", "<F5>", "<cmd> CompetiTest add_testcase <CR>", { desc = "Add test", remap = true })
+
+-- Better end and start of line navigation
+map("n", "g;", "$", { silent = true, remap = true })
+map("n", "gh", "^", { silent = true, remap = true })
