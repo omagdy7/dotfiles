@@ -55,6 +55,8 @@ nord15 #b48ead
 
 window#waybar {
   background: rgba (0, 0, 0, 1.0);
+  /* This to fix weird rendering bug around the bar on hyprland */
+  background-color: rgba(0, 0, 0, 0.99999);
   /*border-radius: 5px 5px 5px 5px;*/
 }
 
@@ -74,6 +76,7 @@ window#waybar {
 #custom-spotify,
 #clock,
 #battery,
+#custom-pomodoro,
 #cpu,
 #memory,
 #idle_inhibitor,
@@ -137,6 +140,10 @@ window#waybar {
 
 #cpu {
   color: #a9b665;
+}
+
+#custom-pomodoro {
+  color: #fc5773;
 }
 
 #memory {
