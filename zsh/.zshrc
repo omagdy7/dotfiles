@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/omar/.zsh/completions:"* ]]; then export FPATH="/home/omar/.zsh/completions:$FPATH"; fi
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -39,6 +41,7 @@ export MANPAGER='nvim +Man!'
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Pager
+# export PAGER='nvim +Man!'
 export PAGER='less'
 
 # start zoxide
@@ -180,9 +183,9 @@ function y() {
 
 
 # Interactive cd
-fcd() {
+function fcd() {
   local dir
-  dir=$(find ~ -type d | fzf)
+  dir=$(fd --full-path ~/programming/ --type directory | fzf)
   if [[ -n $dir ]]; then
       cd "$dir"
   fi
@@ -200,3 +203,4 @@ esac
 
 # Bind ctrl-r but not up arrow
 eval "$(atuin init zsh --disable-up-arrow)"
+. "/home/omar/.deno/env"

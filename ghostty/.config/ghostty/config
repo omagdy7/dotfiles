@@ -1,9 +1,15 @@
 theme = GruvBoxCustom
 font-size = 11
-font-family = MonaspiceRn Nerd Font Mono
-font-family-bold = MonaspiceRn Nerd Font Mono
-font-family-italic = MonaspiceRn Nerd Font Mono
-font-family-bold-italic = MonaspiceRn Nerd Font Mono
+
+# font-family = MonaspiceRn Nerd Font Mono
+# font-family-bold = MonaspiceRn Nerd Font Mono
+# font-family-italic = MonaspiceRn Nerd Font Mono
+# font-family-bold-italic = MonaspiceRn Nerd Font Mono
+
+font-family = Monaspace Radon
+font-family-bold = Monaspace Radon
+font-family-italic = Monaspace Radon
+font-family-bold-italic = Monaspace Radon
 font-style = bold
 gtk-titlebar = false
 background-opacity = 0.6
@@ -19,40 +25,42 @@ window-padding-balance = true
 window-save-state = always
 window-colorspace = "display-p3"
 
-# keybindings
-keybind = ctrl+a>r=reload_config
-keybind = ctrl+a>x=close_surface
-keybind = ctrl+a>n=new_window
+keybind = ctrl+enter=unbind
 
-# tabs 
-keybind = ctrl+a>c=new_tab
-keybind = ctrl+a>shift+l=next_tab
-keybind = ctrl+a>shift+h=previous_tab
-keybind = ctrl+a>comma=move_tab:-1
-keybind = ctrl+a>period=move_tab:1
-
-# quick tab switch
-keybind = ctrl+a>1=goto_tab:1
-keybind = ctrl+a>2=goto_tab:2
-keybind = ctrl+a>3=goto_tab:3
-keybind = ctrl+a>4=goto_tab:4
-keybind = ctrl+a>5=goto_tab:5
-keybind = ctrl+a>6=goto_tab:6
-keybind = ctrl+a>7=goto_tab:7
-keybind = ctrl+a>8=goto_tab:8
-keybind = ctrl+a>9=goto_tab:9
-
-# split
-keybind = ctrl+a>\=new_split:right
-keybind = ctrl+a>-=new_split:down
-
-keybind = ctrl+a>j=goto_split:bottom
-keybind = ctrl+a>k=goto_split:top
-keybind = ctrl+a>h=goto_split:left
-keybind = ctrl+a>l=goto_split:right
-
-keybind = ctrl+a>z=toggle_split_zoom
-keybind = ctrl+a>e=equalize_splits
+# # keybindings
+# keybind = ctrl+a>r=reload_config
+# keybind = ctrl+a>x=close_surface
+# keybind = ctrl+a>n=new_window
+#
+# # tabs 
+# keybind = ctrl+a>c=new_tab
+# keybind = ctrl+a>shift+l=next_tab
+# keybind = ctrl+a>shift+h=previous_tab
+# keybind = ctrl+a>comma=move_tab:-1
+# keybind = ctrl+a>period=move_tab:1
+#
+# # quick tab switch
+# keybind = ctrl+a>1=goto_tab:1
+# keybind = ctrl+a>2=goto_tab:2
+# keybind = ctrl+a>3=goto_tab:3
+# keybind = ctrl+a>4=goto_tab:4
+# keybind = ctrl+a>5=goto_tab:5
+# keybind = ctrl+a>6=goto_tab:6
+# keybind = ctrl+a>7=goto_tab:7
+# keybind = ctrl+a>8=goto_tab:8
+# keybind = ctrl+a>9=goto_tab:9
+#
+# # split
+# keybind = ctrl+a>\=new_split:right
+# keybind = ctrl+a>-=new_split:down
+#
+# keybind = ctrl+a>j=goto_split:bottom
+# keybind = ctrl+a>k=goto_split:top
+# keybind = ctrl+a>h=goto_split:left
+# keybind = ctrl+a>l=goto_split:right
+#
+# keybind = ctrl+a>z=toggle_split_zoom
+# keybind = ctrl+a>e=equalize_splits
 
 # other
 copy-on-select = clipboard

@@ -27,7 +27,7 @@ return {
       -- VimTeX configuration goes here
       vim.g.vimtex_view_method = "zathura"
       -- Set LuaLaTeX as the default compiler
-      vim.g.vimtex_compiler_method = "lualatex -shell-escape"
+      vim.g.vimtex_compiler_method = "lualatex"
     end,
   },
 

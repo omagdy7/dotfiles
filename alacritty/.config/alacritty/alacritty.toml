@@ -4,7 +4,8 @@ import = [
 ]
 
 [colors.primary]
-background = "#0d0e0f"
+# background = "#0d0e0f"
+background = "#181d1c"
 foreground = "#d4be98"
 
 [font]
@@ -34,7 +35,7 @@ key = "F11"
 history = 50_000
 
 [window]
-opacity = 0.40
+opacity = 0.75
 
 [[keyboard.bindings]]
 key = ";"

@@ -3,7 +3,10 @@ return {
   requiers = "meuter/lualine-so-fancy.nvim",
   -- enabled = false,
   lazy = false,
-  event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+  dependencies = {
+    -- display macro recording
+    { "yavorski/lualine-macro-recording.nvim" },
+  },
   config = function()
     -- local icons = require("config.icons")
     require("lualine").setup({
@@ -42,6 +45,7 @@ return {
           },
           { "fancy_diagnostics", sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
           { "fancy_searchcount" },
+          { "macro_recording", "%S" },
         },
         lualine_x = {
           "fancy_lsp_servers",

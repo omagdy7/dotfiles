@@ -16,7 +16,7 @@ return {
       false,
     },
     {
-      "<leader>p",
+      "<leader>fp",
       function()
         require("telescope.builtin").lsp_document_symbols()
       end,
