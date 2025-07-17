@@ -9,33 +9,25 @@
 #                                                                #
 ##################################################################
 
-# Set the path to the books directory
 path="/mnt/Storage/omar/Books/"
 
-# Detect whether we're in a Wayland or X11 session
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-  # Wayland session - use wofi
-  launcher="wofi --dmenu -i -l 10"
+  launcher="rofi -dmenu -i -l 10"
 elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
-  # X11 session - use dmenu
   launcher="dmenu -i -l 10"
 else
   echo "Error: Could not detect display server (Wayland or X11)."
   exit 1
 fi
 
-# Initial directory to choose from
-choice=$(ls -a "$path" | $launcher)
+# Direct approach - no temp file, just pipe everything
+choice=$(fd -e pdf . "$path" -x basename | sort | $launcher)
 
-# Initialize the new choice as the first directory selected
-new_choice=$choice
+if [ -z "$choice" ]; then
+  exit 0
+fi
 
-# Loop through directories until a file is selected
-while [ -d "$path/$new_choice" ]; do
-  # Recurse into the selected directory and show options again
-  choice=$(ls -a "$path/$new_choice" | $launcher)
-  new_choice+="/$choice" # Append the choice to the path
-done
+# Find the file again (less efficient but simpler)
+full_path=$(fd -e pdf . "$path" | grep "/$choice$" | head -1)
 
-# Open the selected file with zathura in fullscreen mode
-zathura --mode fullscreen "$path/$new_choice"
+zathura --mode fullscreen "$full_path"
