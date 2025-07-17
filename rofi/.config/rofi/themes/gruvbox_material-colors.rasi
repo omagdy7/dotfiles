@@ -1,0 +1,11 @@
+* {
+    background:     #1b1c1f;   /* base */
+    prompt:         #292929;   /* surface0 */
+    border:         #595959;   /* overlay0 */
+    text:           #ebdbb2;   /* text */
+    stext:          #928374;   /* overlay1 */
+    select:         #404040;   /* surface1 */
+    urgent:         #ea6962;   /* red/urgent highlighting */
+    active:         #7daea3;   /* blue */
+    highlight:      #d3869b;   /* mauve for search highlight */
+}

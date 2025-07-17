@@ -1,18 +1,28 @@
 configuration{
-    modi: "run,drun,window";
-    icon-theme: "Oranchelo";
-    show-icons: true;
-    terminal: "alacritty";
-    drun-display-format: "{icon} {name}";
-    location: 0;
-    disable-history: false;
-    hide-scrollbar: true;
-    display-drun: "   Apps ";
-    display-run: "   Run ";
-    display-window: " 﩯  Window";
-    display-Network: " 󰤨  Network";
-    sidebar-mode: true;
+  modi: "run,drun,calc,window,file-browser-extended";
+  icon-theme: "Papirus";
+  show-icons: true;
+  terminal: "alacritty";
+  drun-display-format: "{icon} {name}";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: true;
+  display-drun: " 🚀 ";
+  display-run: " 🚀 ";
+  display-calc: " 🧮 ";
+  display-emoji: " 😉 ";
+  display-window: " 🪟 Window";
+  display-Network: " 🌐 Network";
+  sidebar-mode: false;
+  timeout {
+    action: "kb-cancel";
+    delay: 0;
+  }
+  filebrowser {
+    directories-first: true;
+    sorting-method:    "name";
+  }
 }
 
-@theme "catppuccin-mocha"
+@theme "gruvbox_material"
 
