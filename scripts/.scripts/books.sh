@@ -12,22 +12,22 @@
 path="/mnt/Storage/omar/Books/"
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-  launcher="rofi -dmenu -i -l 10"
+  launcher=(rofi -dmenu -i -l 10 -p "Book name"  -theme-str "window { width: 45%; }")
 elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
-  launcher="dmenu -i -l 10"
+  launcher=(dmenu -i -l 10)
 else
   echo "Error: Could not detect display server (Wayland or X11)."
   exit 1
 fi
 
-# Direct approach - no temp file, just pipe everything
-choice=$(fd -e pdf . "$path" -x basename | sort | $launcher)
+# Pipe filenames to launcher and capture choice
+choice=$(fd -e pdf . "$path" -x basename | sort | "${launcher[@]}")
 
-if [ -z "$choice" ]; then
-  exit 0
-fi
+# Exit silently if nothing selected
+[ -z "$choice" ] && exit 0
 
-# Find the file again (less efficient but simpler)
+# Find the full path of the selected file
 full_path=$(fd -e pdf . "$path" | grep "/$choice$" | head -1)
 
+# Open in zathura fullscreen
 zathura --mode fullscreen "$full_path"
