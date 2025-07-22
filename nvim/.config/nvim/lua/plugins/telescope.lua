@@ -16,6 +16,11 @@ return {
       false,
     },
     {
+      "<leader>fq",
+      "<Cmd>Telescope quickfix<CR>",
+      desc = "Find quickfix list",
+    },
+    {
       "<leader>fp",
       function()
         require("telescope.builtin").lsp_document_symbols()
@@ -24,13 +29,18 @@ return {
     },
     {
       "<leader>fd",
-      "<Cmd>Telescope find_files<CR>",
-      desc = "Find Buffer",
+      "<Cmd>Telescope diagnostics<CR>",
+      desc = "Find diagnostics in current project",
     },
     {
       "<leader>ff",
+      "<Cmd>Telescope find_files<CR>",
+      desc = "Find files in current project",
+    },
+    {
+      "<leader>fg",
       "<Cmd>Telescope git_files<CR>",
-      desc = "Find Buffer",
+      desc = "Find git files in current project",
     },
     {
       "<leader>fb",

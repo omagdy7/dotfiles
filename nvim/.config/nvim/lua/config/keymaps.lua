@@ -72,6 +72,29 @@ vim.cmd([[
     cnoreabbrev Qall qall
 ]])
 
+-- load the session for the current directory
+vim.keymap.set("n", "<leader>ql", function()
+  require("persistence").load()
+end)
+
+-- select a session to load
+vim.keymap.set("n", "<leader>qs", function()
+  require("persistence").select()
+end)
+
+-- load the last session
+vim.keymap.set("n", "<leader>qL", function()
+  require("persistence").load({ last = true })
+end)
+
+-- stop Persistence => session won't be saved on exit
+vim.keymap.set("n", "<leader>qd", function()
+  require("persistence").stop()
+end)
+
+-- Sane keymap to deal with built-in terminal
+map("t", "<Esc>", "<C-\\><C-n>", { desc = "Using Escape in terminal mode to actualy put you back in normal mode" })
+
 -- vimtex keymaps
 map("n", "<leader>i", "<Cmd>VimtexCompile<CR>", { desc = "Compile latex document", remap = true })
 
@@ -84,12 +107,20 @@ map("n", "<leader>a", function()
   require("harpoon.mark").add_file()
 end, { desc = "Add file to harpoon", remap = true })
 
-map("n", "<leader>q", function()
+map("n", "<leader>1", function()
   require("harpoon.ui").nav_file(1)
 end, { desc = "navigate to first harpoon mark", remap = true })
 
-map("n", "<leader>w", function()
+map("n", "<leader>2", function()
   require("harpoon.ui").nav_file(2)
+end, { desc = "navigate to second harpoon mark", remap = true })
+
+map("n", "<leader>3", function()
+  require("harpoon.ui").nav_file(3)
+end, { desc = "navigate to second harpoon mark", remap = true })
+
+map("n", "<leader>4", function()
+  require("harpoon.ui").nav_file(4)
 end, { desc = "navigate to second harpoon mark", remap = true })
 
 map("n", "<leader>h", "<Cmd>noh<CR>", { desc = "remove highlights", remap = true })
@@ -97,15 +128,6 @@ map("n", "<leader>j", "/<++><CR>ciw<CR><C-o>O", { desc = "jump to <++>", remap =
 map("n", "<leader><space>", "<Cmd>bprevious<CR>", { desc = "Jump to recently used buffer" })
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Line diagnostics", remap = true })
 
--- oil.nvim keymaps
--- map("n", "<leader>e", function()
---   if vim.o.filetype == "oil" then
---     vim.cmd("bd")
---   else
---     vim.cmd("vsplit | vertical resize -60 | wincmd r")
---     require("oil").open()
---   end
--- end, { desc = "Open Oil.nvim ins split mode", remap = true })
 map("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil.nvim", remap = true })
 
 -- competitest keymaps
