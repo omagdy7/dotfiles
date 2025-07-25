@@ -1,0 +1,20 @@
+[default_session]
+startup_command = "nvim -c ':Telescope find_files'"
+preview_command = "eza --all --git --icons --color=always {}"
+windows = [ "run", "git" ]
+
+[[window]]
+name = "git"
+startup_script = "git status"
+disable_startup_script = false
+
+[[window]]
+name = "run"
+startup_script = "ls"
+disable_startup_script = false
+
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "yazi"
+windows = [ "run", "git" ]

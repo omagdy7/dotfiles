@@ -35,7 +35,7 @@ key = "F11"
 history = 50_000
 
 [window]
-opacity = 0.75
+opacity = 0.90
 
 [[keyboard.bindings]]
 key = ";"

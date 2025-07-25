@@ -181,6 +181,17 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+function t() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
+
 
 # Interactive cd
 function fcd() {

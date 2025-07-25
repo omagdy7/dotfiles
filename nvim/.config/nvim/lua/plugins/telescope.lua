@@ -78,9 +78,9 @@ return {
     {
       "<leader>ft",
       function()
-        require("telescope.builtin").help_tags()
+        require("telescope.builtin").treesitter()
       end,
-      desc = "Find help tags",
+      desc = "Find treesitter nodes",
     },
     {
       "<leader>fh",

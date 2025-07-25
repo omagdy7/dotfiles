@@ -6,7 +6,8 @@ vim.opt.ch = 0
 vim.opt.list = false
 vim.opt.confirm = false
 -- vim.o.clipboard = ""
-vim.o.guifont = "Monaspace Radon:h12:bold" -- text below applies for VimScript
+vim.o.guifont = "Monaspace Radon:bold,Noto Color Emoji:h10" -- text below applies for VimScript
+vim.o.undofile = true
 
 vim.o.spell = false
 
