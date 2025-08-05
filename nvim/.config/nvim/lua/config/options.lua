@@ -9,8 +9,6 @@ vim.opt.confirm = false
 vim.o.guifont = "Monaspace Radon:bold,Noto Color Emoji:h10" -- text below applies for VimScript
 vim.o.undofile = true
 
-vim.o.spell = false
-
 -- Best search settings :)
 vim.opt.smartcase = true
 vim.opt.ignorecase = true

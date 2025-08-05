@@ -12,7 +12,7 @@ font-family-italic = Monaspace Radon
 font-family-bold-italic = Monaspace Radon
 font-style = bold
 gtk-titlebar = false
-background-opacity = 0.6
+background-opacity = 0.85
 confirm-close-surface = false
 adjust-cell-height = 10%
 

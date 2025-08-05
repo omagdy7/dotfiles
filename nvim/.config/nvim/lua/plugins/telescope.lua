@@ -55,6 +55,26 @@ return {
       desc = "Find Keymaps",
     },
     {
+      "<leader>cd",
+      function()
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
+
+        require("telescope.builtin").git_commits({
+          attach_mappings = function(prompt_bufnr, _)
+            actions.select_default:replace(function()
+              actions.close(prompt_bufnr)
+              local entry = action_state.get_selected_entry()
+              local commit = entry.value
+              vim.cmd("DiffviewOpen " .. commit .. "..HEAD")
+            end)
+            return true
+          end,
+        })
+      end,
+      desc = "Diff between current commit and an arbitrary commit",
+    },
+    {
       "<leader>fw",
       function()
         require("telescope.builtin").live_grep()

@@ -72,6 +72,21 @@ vim.cmd([[
     cnoreabbrev Qall qall
 ]])
 
+-- dap keymaps
+
+-- Eval var under cursor
+vim.keymap.set("n", "<space>;", function()
+  require("dapui").eval(nil, { enter = true })
+end)
+
+vim.keymap.set("n", "<space>b", require("dap").toggle_breakpoint)
+
+vim.keymap.set("n", "<F1>", require("dap").continue)
+vim.keymap.set("n", "<F7>", require("dap").step_over)
+vim.keymap.set("n", "<F8>", require("dap").step_into)
+vim.keymap.set("n", "<F9>", require("dap").step_out)
+vim.keymap.set("n", "<F12>", require("dap").restart)
+
 -- load the session for the current directory
 vim.keymap.set("n", "<leader>ql", function()
   require("persistence").load()

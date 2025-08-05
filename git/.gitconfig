@@ -1,0 +1,49 @@
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[alias]
+  st = status -s
+  lol = log --oneline --graph --all
+
+[merge]
+    conflictstyle = zdiff3
+
+[http]
+	version = HTTP/1.1
+	postBuffer = 524288000
+
+[user]
+	email = omar.professional8777@gmail.com
+	name = omagdy
+
+[diff]
+	tool = nvimdiff
+
+[difftool]
+	prompt = false
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[init]
+  defaultBranch = main
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+
+[push]
+  autoSetupRemote = true
