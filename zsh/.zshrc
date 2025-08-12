@@ -1,4 +1,7 @@
+# Enable zsh profiler
+# zmodload zsh/zprof
 # Add deno completions to search path
+
 if [[ ":$FPATH:" != *":/home/omar/.zsh/completions:"* ]]; then export FPATH="/home/omar/.zsh/completions:$FPATH"; fi
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -32,6 +35,9 @@ fi
 
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
+
+# vi-mode
+# set -o vi
 
 # Starship prompt
 eval "$(starship init zsh)"
@@ -130,10 +136,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf --zsh)"
 
 # PATH
-# export C_INCLUDE_PATH="/usr/lib/gcc/arm-none-eabi/13.2.0/include/:$HOME/programming/thirdparties/tiva-c/:$HOME/programming/thirdparties/tiva-c/third_party/FreeRTOS/Source/include/:$HOME/programming/thirdparties/tiva-c/boards/ek-tm4c123gxl/freertos_demo/:"
-# export C_INCLUDE_PATH="/usr/lib/gcc/arm-none-eabi/13.2.0/include/:$HOME/programming/thirdparties/tiva-c/"
-export CPLUS_INCLUDE_PATH="$HOME/programming/cppDev/imgui/imgui/backends:$HOME/programming/cppDev/imgui-sfml:$HOME/programming/cppDev/imgui/imgui/:$HOME/programming/problem_solving/algo/"
-export PATH="$PATH:/usr/bin/docker:/usr/local/arm-cross-compiler/install/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:/opt/usr/bin/"
 export PATH="$PATH:$HOME/.scripts/"
@@ -193,6 +195,42 @@ function t() {
 }
 
 
+# Function to get the top 10 most memory intensive processes
+function topmem() {
+    # Get total memory in KB (used for converting to MB)
+    local scale=1024
+
+    ps --no-headers -eo comm,rss | \
+        awk -v scale="$scale" '
+        {
+            mem[$1] += $2
+        }
+        END {
+            for (proc in mem)
+                printf "%-20s %10.2f MB\n", proc, mem[proc]/scale
+        }
+        ' | sort -k2 -nr | head -n 10
+}
+
+# Funciton to get the most packages that take space on disk
+function toppacman() {
+  local n="${1:-10}"
+  pacman -Qi | awk -F': ' '
+    /^Name/ { name=$2 }
+    /^Installed Size/ {
+      s=$2; gsub(/^[ \t]+|[ \t]+$/,"",s)
+      split(s,a," ")
+      val=a[1]; unit=a[2]
+      if (unit=="KiB") mult=1/1024
+      else if (unit=="MiB") mult=1
+      else if (unit=="GiB") mult=1024
+      else mult=1
+      printf("%.2f MiB\t%s\n", val*mult, name)
+    }
+  ' | sort -nr | head -n "$n"
+}
+
+
 # Interactive cd
 function fcd() {
   local dir
@@ -215,3 +253,5 @@ esac
 # Bind ctrl-r but not up arrow
 eval "$(atuin init zsh --disable-up-arrow)"
 . "/home/omar/.deno/env"
+# Print profiling results
+# zprof

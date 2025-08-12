@@ -3,6 +3,7 @@
 configs=(
   "aliases:$HOME/dotfiles/aliases/.aliases/aliases"
   "alacritty:$HOME/dotfiles/alacritty/.config/alacritty/alacritty.toml"
+  "wezterm:$HOME/dotfiles/wezterm/.config/wezterm/wezterm.lua"
   "awesome:$HOME/dotfiles/awesome/.config/awesome/rc.lua"
   "kitty:$HOME/dotfiles/kitty/.config/kitty/kitty.conf"
   "hyprland:$HOME/dotfiles/hypr/.config/hypr/hyprland.conf"

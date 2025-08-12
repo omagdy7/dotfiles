@@ -9,23 +9,40 @@ background = "#181d1c"
 foreground = "#d4be98"
 
 [font]
-size = 11
+size = 9
+
 
 [font.bold]
-family = "MonaspiceRn Nerd Font Mono"
+family = "Comic Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "MonaspiceRn Nerd Font Mono"
+family = "Comic Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "MonaspiceRn Nerd Font Mono"
+family = "Comic Mono"
 style = "Italic"
 
 [font.normal]
-family = "MonaspiceRn Nerd Font Mono"
+family = "Comic Mono"
 style = "Bold"
+
+# [font.bold]
+# family = "MonaspiceRn Nerd Font Mono"
+# style = "Bold"
+#
+# [font.bold_italic]
+# family = "MonaspiceRn Nerd Font Mono"
+# style = "Bold Italic"
+#
+# [font.italic]
+# family = "MonaspiceRn Nerd Font Mono"
+# style = "Italic"
+#
+# [font.normal]
+# family = "MonaspiceRn Nerd Font Mono"
+# style = "Bold"
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
