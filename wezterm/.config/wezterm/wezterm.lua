@@ -59,21 +59,24 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 -- or, changing the font size and color scheme.
-config.font_size = 10
+config.font_size = 12
 config.color_scheme = "Gruvbox-dark"
 
 -- font
-config.font = wezterm.font("Comic Mono", { weight = "Bold" }) -- name as shown by wezterm ls-fonts
+config.font = wezterm.font("MonaspiceXe Nerd Font Mono", { weight = "Bold" }) -- name as shown by wezterm ls-fonts
+-- config.font = wezterm.font("Comic Mono", { weight = "Bold" }) -- name as shown by wezterm ls-fonts
 config.font_size = 10
 
 -- opacity
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.75
 
 -- fps
 config.max_fps = 120
 
 -- hide default tab bar
 config.hide_tab_bar_if_only_one_tab = true
+
+config.line_height = 1.0
 
 -- remove padding
 config.window_padding = {

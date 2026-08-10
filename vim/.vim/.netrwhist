@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/mnt/dev/programming/AOC/2025/Rust/src'
 let g:netrw_dirhist_6='/tmp/cdev'
 let g:netrw_dirhist_5='/home/omar/dotfiles/vim/.vim'
 let g:netrw_dirhist_4='/home/omar/dotfiles/vim'

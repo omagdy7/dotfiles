@@ -1,12 +1,23 @@
 [[mgr.prepend_keymap]]
+on   = [ "g", "h" ]
+run  = "cd /home/omar/"
+desc = "Go Home"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "cd /mnt/Storage/omar/College/"
+desc = "Cd to College folder"
+
+
+[[mgr.prepend_keymap]]
 on   = [ "g", "c" ]
 run  = "cd /mnt/Storage/omar/College/"
 desc = "Cd to College folder"
 
 [[mgr.prepend_keymap]]
 on   = [ "g", "s" ]
-run  = "cd /mnt/Storage/omar/College/Fall\\ 2024/"
-desc = "Cd to Current Semster folder"
+run  = "cd /mnt/Storage/"
+desc = "Cd to 2TB Disk"
 
 [[mgr.prepend_keymap]]
 on   = [ "g", "p" ]
@@ -15,5 +26,5 @@ desc = "Cd to ~/programming"
 
 [[mgr.prepend_keymap]]
 on   = [ "g", "b" ]
-run  = "cd /mnt/Storage/omar/Books/"
+run  = "cd /mnt/dev/Books/"
 desc = "Cd to Books"

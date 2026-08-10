@@ -8,6 +8,9 @@ vim.opt.confirm = false
 -- vim.o.clipboard = ""
 vim.o.guifont = "Monaspace Radon:bold,Noto Color Emoji:h10" -- text below applies for VimScript
 vim.o.undofile = true
+vim.o.mousescroll = "ver:1"
+
+vim.o.winblend = 0
 
 -- Best search settings :)
 vim.opt.smartcase = true
@@ -18,7 +21,7 @@ local alpha = function()
   return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
 end
 -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-vim.g.neovide_transparency = 0.5
+vim.g.neovide_transparency = 0.85
 vim.g.transparency = 0.8
 vim.g.cmdheight = 1
 vim.g.neovide_background_color = "#0A0E14" .. alpha()

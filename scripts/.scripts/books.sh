@@ -9,7 +9,7 @@
 #                                                                #
 ##################################################################
 
-path="/mnt/Storage/omar/Books/"
+path="/mnt/dev/Books/"
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
   launcher=(rofi -dmenu -i -l 10 -p "Book name"  -theme-str "window { width: 45%; }")
@@ -31,3 +31,5 @@ full_path=$(fd -e pdf . "$path" | grep "/$choice$" | head -1)
 
 # Open in zathura fullscreen
 zathura --mode fullscreen "$full_path"
+# QT_QPA_PLATFORM=xcb sioyek "$full_path"
+

@@ -74,13 +74,13 @@ return {
       end,
       desc = "Diff between current commit and an arbitrary commit",
     },
-    {
-      "<leader>fw",
-      function()
-        require("telescope.builtin").live_grep()
-      end,
-      desc = "Find words in project",
-    },
+    -- {
+    --   "<leader>fw",
+    --   function()
+    --     require("telescope.builtin").live_grep()
+    --   end,
+    --   desc = "Find words in project",
+    -- },
     {
       "<leader>f/",
       function()

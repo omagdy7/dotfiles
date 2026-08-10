@@ -1,57 +1,168 @@
-return {
-  -- add tsserver and setup with typescript.nvim instead of lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    init = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      -- disable default lazy keymaps for lsp
-      keys[#keys + 1] = { "<leader>ca", false }
-      keys[#keys + 1] = { "<leader>c<S-A>", false }
-      keys[#keys + 1] = { "<leader>cc", false }
-      keys[#keys + 1] = { "<leader>c<S-C>", false }
-      keys[#keys + 1] = { "<leader>cd", false }
-      keys[#keys + 1] = { "<leader>cf", false }
-      keys[#keys + 1] = { "<leader>c<S-F>", false }
-      keys[#keys + 1] = { "<leader>cl", false }
-      keys[#keys + 1] = { "<leader>cm", false }
-      keys[#keys + 1] = { "<leader>co", false }
-      keys[#keys + 1] = { "<leader>cr", false }
-      keys[#keys + 1] = { "<leader>c<S-R>", false }
-      keys[#keys + 1] = { "<leader>cs", false }
+-- ════════════════════════════════════════════════════════════════════════════
+-- LSP Keymaps (applied per-buffer on attach)
+-- ════════════════════════════════════════════════════════════════════════════
+local function setup_keymaps(bufnr)
+  local function map(mode, lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, { buf = bufnr, desc = desc, silent = true })
+  end
 
-      keys[#keys + 1] = { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename variable" }
-      keys[#keys + 1] = { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "code actions" }
-    end,
+  -- Hover & Signature
+  map("n", "K", function()
+    vim.lsp.buf.hover({ border = "rounded", max_height = 25, max_width = 120 })
+  end, "Hover")
+  -- map({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, "Signature Help")
 
-    dependencies = {
-      "jose-elias-alvarez/typescript.nvim",
-      init = function()
-        require("lazyvim.util").lsp.on_attach(function(_, buffer)
-          -- stylua: ignore
-          -- vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-          -- vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
-        end)
-      end,
+  -- gd, gD, gr, gi, gy handled by Snacks picker (snacks.lua)
+
+  -- Diagnostics navigation
+  map("n", "[d", function()
+    vim.diagnostic.jump({ count = -1 })
+  end, "Prev Diagnostic")
+  map("n", "]d", function()
+    vim.diagnostic.jump({ count = 1 })
+  end, "Next Diagnostic")
+
+  -- <leader>c = Code
+  map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, "Code Action")
+  map("n", "<leader>lr", vim.lsp.buf.rename, "Rename Symbol")
+  map("n", "<leader>cd", vim.diagnostic.open_float, "Line Diagnostic")
+  map("n", "<leader>lv", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Definition in Vsplit")
+
+  -- <leader>l = LSP (using native :lsp command from 0.12)
+  map("n", "<leader>li", "<cmd>checkhealth vim.lsp<cr>", "LSP Info")
+  map("n", "<leader>lh", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+  end, "Toggle Inlay Hints")
+end
+
+-- ════════════════════════════════════════════════════════════════════════════
+-- LspAttach Handler
+-- ════════════════════════════════════════════════════════════════════════════
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then
+      return
+    end
+
+    setup_keymaps(bufnr)
+
+    -- Document highlight on cursor hold
+    if client.server_capabilities.documentHighlightProvider then
+      local group = vim.api.nvim_create_augroup("LspDocumentHighlight_" .. bufnr, { clear = true })
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        buffer = bufnr,
+        group = group,
+        callback = vim.lsp.buf.document_highlight,
+      })
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        buffer = bufnr,
+        group = group,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+  end,
+})
+
+-- ════════════════════════════════════════════════════════════════════════════
+-- Diagnostic Configuration
+-- ════════════════════════════════════════════════════════════════════════════
+vim.diagnostic.config({
+  virtual_text = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = "rounded", source = true, header = "", prefix = "" },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.INFO] = "󰋽 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
     },
-    ---@class PluginLspOpts
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+      [vim.diagnostic.severity.WARN] = "WarningMsg",
+    },
+  },
+})
+
+-- ════════════════════════════════════════════════════════════════════════════
+-- LSP Server Configuration (native 0.12 API)
+-- Server configs loaded from lsp/ directory, activated with vim.lsp.enable()
+-- ════════════════════════════════════════════════════════════════════════════
+vim.lsp.config("*", {
+  root_markers = { ".git" },
+})
+
+vim.lsp.enable({
+  "lua_ls",
+  "gopls",
+  "zls",
+  "ts_ls",
+  "rust_analyzer",
+  "intelephense",
+  "bashls",
+  "pyright",
+  "cssls",
+  "html",
+  "jsonls",
+  "yamlls",
+  "sourcekit",
+})
+
+-- ════════════════════════════════════════════════════════════════════════════
+-- Mason: auto-install LSP servers, formatters, and linters
+-- ════════════════════════════════════════════════════════════════════════════
+return {
+  {
+    "nvim-lspconfig",
     opts = {
       inlay_hints = { enabled = false },
-      ---@type lspconfig.options
-      servers = {
-        -- tsserver will be automatically installed with mason and loaded with lspconfig
-        tsserver = {},
-      },
-      -- you can do any additional lsp server setup here
-      -- return true if you don't want this server to be setup with lspconfig
-      ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-      setup = {
-        -- example to setup with typescript.nvim
-        tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
+    },
+  },
+  {
+    "mason-org/mason.nvim",
+    lazy = false,
+    opts = {},
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    lazy = false,
+    dependencies = { "mason-org/mason.nvim" },
+    opts = {
+      automatic_installation = true,
+      automatic_enable = false,
+    },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = false,
+    dependencies = { "mason-org/mason.nvim" },
+    opts = {
+      ensure_installed = {
+        -- Linters
+        "eslint_d",
+        "luacheck",
+        "golangci-lint",
+        "shellcheck",
+        "markdownlint",
+        "yamllint",
+        "jsonlint",
+        "htmlhint",
+        "stylelint",
+        "phpstan",
+        "ruff",
+        "mypy",
+        -- Formatters
+        "stylua",
+        "goimports",
+        "prettier",
+        "black",
+        "isort",
+        "shfmt",
       },
     },
   },

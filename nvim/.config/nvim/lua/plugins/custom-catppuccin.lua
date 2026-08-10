@@ -76,7 +76,7 @@ return {
         gitsigns = true,
         hop = true,
         illuminate = { enabled = true },
-        native_lsp = { enabled = true, inlay_hints = { background = true } },
+        native_lsp = { enabled = false, inlay_hints = { background = true } },
         neogit = true,
         neotree = true,
         semantic_tokens = true,
@@ -128,6 +128,15 @@ return {
             TelescopeResultsNormal = { bg = colors.mantle },
             TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
             TelescopeSelection = { bg = colors.surface0 },
+            -- FffBorder = { fg = colors.surface0, bg = colors.base },
+            -- FffNormal = { fg = colors.text, bg = colors.base },
+            -- FffCursor = { fg = colors.text, bg = colors.surface0, bold = true },
+            -- FffMatched = { fg = colors.peach, bg = colors.base, bold = true },
+            -- FffTitle = { fg = colors.green, bg = colors.base, bold = true },
+            -- FffPrompt = { fg = colors.mauve, bg = colors.base },
+            -- FffActiveFile = { fg = colors.blue, bg = colors.surface0 },
+            -- FffFrecency = { fg = colors.teal, bg = colors.base },
+            -- FffDebug = { fg = colors.overlay1, bg = colors.base, italic = true },
             VertSplit = { bg = colors.base, fg = colors.surface0 },
             WhichKeyFloat = { bg = colors.mantle },
             YankHighlight = { bg = colors.surface2 },
@@ -354,6 +363,6 @@ return {
       },
     })
 
-    vim.api.nvim_command("colorscheme catppuccin")
+    -- vim.api.nvim_command("colorscheme catppuccin")
   end,
 }

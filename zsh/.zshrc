@@ -144,6 +144,7 @@ export PATH="$PATH:$HOME/.cargo/bin/"
 export ANDROID_HOME="$HOME/Android/sdk"
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$HOME/.ghcup/bin:$PATH
 
 # Useful functions
 
@@ -228,6 +229,10 @@ function toppacman() {
       printf("%.2f MiB\t%s\n", val*mult, name)
     }
   ' | sort -nr | head -n "$n"
+}
+
+function llms() {
+  fd -e "${2:-rs}" . "${1:-.}" -x sh -c 'echo "========== $1 =========="; cat "$1"; echo "========== end of $1 =========="; echo' _ {} | tee llms.txt > /dev/null;
 }
 
 

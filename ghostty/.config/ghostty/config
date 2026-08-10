@@ -1,18 +1,18 @@
 theme = GruvBoxCustom
-font-size = 11
+font-size = 12
 
-# font-family = MonaspiceRn Nerd Font Mono
-# font-family-bold = MonaspiceRn Nerd Font Mono
-# font-family-italic = MonaspiceRn Nerd Font Mono
-# font-family-bold-italic = MonaspiceRn Nerd Font Mono
+font-family = MonaspiceXe Nerd Font Mono
+font-family-bold = MonaspiceXe Nerd Font Mono
+font-family-italic = MonaspiceXe Nerd Font Mono
+font-family-bold-italic = MonaspiceXe Nerd Font Mono
 
-font-family = Comic Mono
-font-family-bold = Comic Mono
-font-family-italic = Comic Mono
-font-family-bold-italic = Comic Mono
+# font-family = Comic Mono
+# font-family-bold = Comic Mono
+# font-family-italic = Comic Mono
+# font-family-bold-italic = Comic Mono
 font-style = bold
 gtk-titlebar = false
-background-opacity = 0.98
+background-opacity = 0.9
 confirm-close-surface = false
 adjust-cell-height = 10%
 

@@ -6,7 +6,7 @@ configs=(
   "wezterm:$HOME/dotfiles/wezterm/.config/wezterm/wezterm.lua"
   "awesome:$HOME/dotfiles/awesome/.config/awesome/rc.lua"
   "kitty:$HOME/dotfiles/kitty/.config/kitty/kitty.conf"
-  "hyprland:$HOME/dotfiles/hypr/.config/hypr/hyprland.conf"
+  "hyprland:$HOME/dotfiles/hypr/.config/hypr/hyprland.lua"
   "vim:$HOME/dotfiles/vim/.vimrc"
   "neovim:$HOME/dotfiles/nvim/.config/nvim/init.lua"
   "starship:$HOME/dotfiles/starship/.config/starship.toml"
