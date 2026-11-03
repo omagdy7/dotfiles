@@ -6,7 +6,7 @@ local mainMod = "SUPER"
 local localBin = home .. "/.local/bin"
 local scriptsDir = home .. "/.config/hypr/scripts"
 local hyprDir = home .. "/.config/hypr"
-local term = "kitty"
+local term = "ghostty"
 local menu = scriptsDir .. "/menu"
 local fullmenu = scriptsDir .. "/fullmenu"
 local volume = scriptsDir .. "/volume"
@@ -42,8 +42,9 @@ hl.workspace_rule({ workspace = "9", monitor = "HDMI-A-1" })
 -------------------
 -- ENVIRONMENT VARS
 -------------------
+hl.env("XCURSOR_THEME", "breeze_cursors")
 hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_THEME", "MyCursor")
+hl.env("HYPRCURSOR_THEME", "breeze_cursors")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("QT_QPA_PLATFORM", "wayland")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
@@ -221,7 +222,7 @@ hl.window_rule({ match = { class = "^clock$", title = "^clock$" }, center = true
 -- NOTE: original line "match:float oning 0" was malformed; interpreted as
 -- non-floating + unfocused windows
 
--- hl.layer_rule({ match = { namespace = "quickshell" }, no_anim = true })
+hl.layer_rule({ match = { namespace = "vicinae" }, no_anim = true })
 
 -------------------
 -- KEYBINDINGS -----
@@ -246,7 +247,7 @@ hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dms ipc call notifications t
 
 -- Rofi bindings
 hl.bind(mainMod .. " + d", hl.dsp.exec_cmd("rofi -show run"))
-hl.bind(mainMod .. " + o", hl.dsp.exec_cmd("rofi -show drun"))
+hl.bind(mainMod .. " + o", hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(mainMod .. " + i", hl.dsp.exec_cmd("rofi -show calc"))
 hl.bind(mainMod .. " + w", hl.dsp.exec_cmd("rofi -show window"))
 hl.bind(mainMod .. " + SHIFT + e", hl.dsp.exec_cmd("rofi -show emoji"))
@@ -271,9 +272,6 @@ hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("dms ipc call processlist toggle"))
 
 -- === Audio Controls ===
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volume .. " --inc"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(volume .. " --dec"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(volume .. " --toggle"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
@@ -317,8 +315,8 @@ hl.define_submap("volume", function()
 end)
 
 -- === Window Management ===
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "set" }))
-hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "set" }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind(mainMod .. " + SHIFT + Space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(scriptsDir .. "/changeLayout"))
 hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
@@ -490,3 +488,23 @@ hl.bind(mainMod .. " + p", hl.dsp.exec_cmd(home .. "/.scripts/toggle_waybar.sh")
 hl.bind(mainMod .. " + y", hl.dsp.exec_cmd(home .. "/.scripts/config_files.sh"))
 hl.bind(mainMod .. " + t", hl.dsp.exec_cmd(home .. "/.scripts/create_tmp.sh"))
 hl.bind(mainMod .. " + SHIFT + p", hl.dsp.exec_cmd(scriptsDir .. "/pomodoro.sh menu"))
+
+-- autostart
+hl.on("hyprland.start", function()
+	hl.exec_cmd("vicinae server")
+end)
+
+-- blur
+hl.layer_rule({
+	match = { namespace = "vicinae" },
+	name = "vicinae-blur",
+	blur = true,
+	ignore_alpha = 0,
+})
+
+-- disable animation for vicinae only
+hl.layer_rule({
+	match = { namespace = "vicinae" },
+	name = "vicinae-no-animation",
+	no_anim = true,
+})

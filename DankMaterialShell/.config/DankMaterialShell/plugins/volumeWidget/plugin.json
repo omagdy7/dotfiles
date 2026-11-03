@@ -1,0 +1,11 @@
+{
+    "id": "volumeWidget",
+    "name": "Volume",
+    "description": "Shows the current output volume in the bar. Click to mute or unmute.",
+    "version": "1.0.0",
+    "author": "Omar",
+    "type": "widget",
+    "capabilities": ["dankbar-widget"],
+    "component": "./VolumeWidget.qml",
+    "icon": "volume_up"
+}

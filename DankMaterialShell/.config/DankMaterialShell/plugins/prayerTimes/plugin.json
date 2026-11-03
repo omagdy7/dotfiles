@@ -1,0 +1,14 @@
+{
+    "id": "prayerTimes",
+    "name": "Prayer Times",
+    "description": "Next prayer countdown in the bar with a Gruvbox-styled prayer times popout",
+    "version": "1.0.0",
+    "author": "Omar",
+    "type": "widget",
+    "capabilities": ["dankbar-widget", "prayer-times"],
+    "component": "./PrayerTimes.qml",
+    "icon": "prayer_times",
+    "settings": "./PrayerTimesSettings.qml",
+    "requires": ["curl"],
+    "permissions": ["settings_read", "settings_write"]
+}

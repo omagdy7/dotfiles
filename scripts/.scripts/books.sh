@@ -4,24 +4,22 @@
 # / _ \ _ __ ___   __ _ _ __  |  \/  | __ _  __ _  __| |_   _    #
 #| | | | '_ ` _ \ / _` | '__| | |\/| |/ _` |/ _` |/ _` | | | |   #
 #| |_| | | | | | | (_| | |    | |  | | (_| | (_| | (_| | |_| |   #
-# \___/|_| |_| |_|\__,_|_|    |_|  |_|\__,_|\__, |\__,_|\__  |   #
+# \___/|_| |_| |_|\__,_|_|    |_|  |_/ \__,_|\__, |\__,_|\__  |   #
 #                                           |___/       |___/    #
 #                                                                #
 ##################################################################
 
 path="/mnt/dev/Books/"
 
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-  launcher=(rofi -dmenu -i -l 10 -p "Book name"  -theme-str "window { width: 45%; }")
-elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
-  launcher=(dmenu -i -l 10)
-else
-  echo "Error: Could not detect display server (Wayland or X11)."
-  exit 1
-fi
-
-# Pipe filenames to launcher and capture choice
-choice=$(fd -e pdf . "$path" -x basename | sort | "${launcher[@]}")
+# Pipe filenames to Vicinae and capture choice
+choice=$(
+  fd -e pdf . "$path" -x basename |
+    sort |
+    vicinae dmenu \
+      --placeholder "Book name" \
+      --height 500 \
+      --width 700
+)
 
 # Exit silently if nothing selected
 [ -z "$choice" ] && exit 0
@@ -30,6 +28,5 @@ choice=$(fd -e pdf . "$path" -x basename | sort | "${launcher[@]}")
 full_path=$(fd -e pdf . "$path" | grep "/$choice$" | head -1)
 
 # Open in zathura fullscreen
-zathura --mode fullscreen "$full_path"
-# QT_QPA_PLATFORM=xcb sioyek "$full_path"
-
+# zathura --mode fullscreen "$full_path"
+QT_QPA_PLATFORM=xcb sioyek "$full_path"

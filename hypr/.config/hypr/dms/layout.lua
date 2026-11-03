@@ -5,8 +5,17 @@ hl.config({
 		gaps_in = 4,
 		gaps_out = 4,
 		border_size = 2,
+		resize_on_border = false,
 	},
 	decoration = {
 		rounding = 12,
+		blur = {
+			passes = 2,
+		},
 	},
+})
+
+hl.layer_rule({
+	match = { namespace = "^dms:bar$" },
+	xray = true,
 })

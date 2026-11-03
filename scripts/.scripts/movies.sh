@@ -2,28 +2,23 @@
 
 path="/mnt/Storage/Movies/Movies"
 
-# Detect session type and choose launcher
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-  launcher=(rofi -dmenu -i -l 10 -p "Movie name" -theme-str "window { width: 45%; }")
-elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
-  launcher=(dmenu -i -l 10)
-else
-  echo "Error: Could not detect display server (Wayland or X11)."
-  exit 1
-fi
+# Create a list of full paths
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
 
-# Pipe movie filenames to launcher and capture choice
-choice=$(fd -e mp4 -e mkv . "$path" -x basename | sort | "${launcher[@]}")
+fd -e mp4 -e mkv . "$path" | sort >"$tmp"
+
+# Show only filenames in Vicinae
+choice=$(
+  sed 's#.*/##' "$tmp" |
+    vicinae dmenu --placeholder "Movie name"
+)
 
 # Exit silently if nothing selected
 [ -z "$choice" ] && exit 0
 
-echo $choice
-
-# Find full path of selected file
-full_path=$(fd -e mp4 -e mkv . "$path" | grep -F "/$choice")
-
-echo "full_path = $full_path"
+# Find the corresponding full path
+full_path=$(grep -F "/$choice" "$tmp" | head -1)
 
 # Open with mpv in fullscreen mode
 mpv --fs "$full_path"

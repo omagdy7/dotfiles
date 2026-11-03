@@ -8,6 +8,11 @@ on   = [ "g", "c" ]
 run  = "cd /mnt/Storage/omar/College/"
 desc = "Cd to College folder"
 
+[[mgr.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = "cd /mnt/Storage/Movies/"
+desc = "Go Movies"
+
 
 [[mgr.prepend_keymap]]
 on   = [ "g", "c" ]
